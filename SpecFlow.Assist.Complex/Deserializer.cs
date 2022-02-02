@@ -1,8 +1,8 @@
 ﻿namespace SpecFlow.Assist.Complex;
 
 internal static class Deserializer {
-    internal static T? Deserialize<T>(IDictionary<string, string> source) {
-        var context = new DeserializationContext(source);
+    internal static T? Deserialize<T>(Table table) {
+        var context = new DeserializationContext(table.Rows);
         var result = ProcessSource(context);
         return result.Deserialize<T>();
     }
@@ -11,9 +11,12 @@ internal static class Deserializer {
         var result = new JsonObject();
         bool finished;
         do {
-            (context.CurrentKey, context.CurrentValue) = context.Enumerator.Current;
+            if (context.Enumerator.Current is null) return result;
+            context.CurrentKey = context.Enumerator.Current[0];
+            context.CurrentValue = context.Enumerator.Current[1];
             context.ParentPath = parentPath ?? context.ParentPath;
-            if (!context.CurrentKey.StartsWith(context.ParentPath)) return result;
+            var isSameParent = context.CurrentKey.StartsWith(context.ParentPath);
+            if (!isSameParent) return result;
             finished = ProcessCurrentProperty(context, result);
         } while (!finished);
         return result;
@@ -42,14 +45,15 @@ internal static class Deserializer {
 
     private static JsonNode? GetNodeTypedValue(DeserializationContext context) =>
         context.CurrentValue switch {
-            "Null" or "null" or "NULL" => default,
-            "True" or "true" or "TRUE" => JsonValue.Create(true),
-            "False" or "false" or "FALSE" => JsonValue.Create(false),
+            _ when context.CurrentValue!.ToLower() == "null" => default,
+            _ when context.CurrentValue.ToLower() == "default" => default,
             _ when string.IsNullOrWhiteSpace(context.CurrentValue) => default,
+            _ when context.CurrentValue.ToLower() == "true" => JsonValue.Create(true),
+            _ when context.CurrentValue.ToLower() == "false" => JsonValue.Create(false),
             _ when context.CurrentValue.StartsWith("\"") => JsonValue.Create(context.CurrentValue.Remove(context.CurrentValue.Length - 1).Remove(0, 1)),
             _ when int.TryParse(context.CurrentValue, out var number) => JsonValue.Create(number),
             _ when double.TryParse(context.CurrentValue, out var number) => JsonValue.Create(number),
-            _ => throw new InvalidCastException(),
+            _ => throw new InvalidCastException($"Invalid value for property '{context.CurrentKey}'."),
         };
 
     private static void AddValueOrArray(JsonObject result, string name, JsonNode? nodeValue, bool isArray) {

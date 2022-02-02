@@ -13,6 +13,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Extensions for Table class to help create complex objects using a flat json structure.</Description>
     <Copyright>© Andre Vianna 2022</Copyright>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

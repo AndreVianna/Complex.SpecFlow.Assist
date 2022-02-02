@@ -1,4 +1,6 @@
-﻿global using FluentAssertions;
+﻿global using System.Diagnostics.CodeAnalysis;
+
+global using FluentAssertions;
 
 global using SpecFlow.Assist.Complex.Tests.Support;
 

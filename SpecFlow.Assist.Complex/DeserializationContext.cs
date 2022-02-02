@@ -1,14 +1,14 @@
 ﻿namespace SpecFlow.Assist.Complex;
 
 internal class DeserializationContext {
-    public DeserializationContext(IDictionary<string, string> source) {
+    public DeserializationContext(TableRows source) {
         Enumerator = source.GetEnumerator();
         Enumerator.MoveNext();
     }
 
-    public IEnumerator<KeyValuePair<string, string>> Enumerator { get; }
-    public string CurrentKey { get; set; } = string.Empty;
-    public string CurrentValue { get; set; } = string.Empty;
+    public IEnumerator<TableRow?> Enumerator { get; }
+    public string? CurrentKey { get; set; }
+    public string? CurrentValue { get; set; }
     public string ParentPath { get; set; } = string.Empty;
 
     public string CurrentToken => RelativePath.First();
@@ -16,5 +16,5 @@ internal class DeserializationContext {
     public bool HasChildren => RelativePath.Skip(1).Any();
     public bool IsArray => CurrentToken.Contains('[');
 
-    private IEnumerable<string> RelativePath => CurrentKey.Remove(0, ParentPath.Length).Split('.');
+    private IEnumerable<string> RelativePath => CurrentKey!.Remove(0, ParentPath.Length).Split('.');
 }
