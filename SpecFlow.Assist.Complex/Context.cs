@@ -30,7 +30,7 @@ internal class Context {
         }
     }
 
-    public int[] PreviousIndexes { get; private set; } = default!;
+    public int[] PreviousLineIndexes { get; private set; } = default!;
     private readonly string _basePath;
     private PropertyInfo? _previousProperty;
     private PropertyInfo? _currentProperty;
@@ -63,19 +63,19 @@ internal class Context {
         SetCurrentPropertyInfo();
     }
 
-    public void AdjustPreviousIndexes() {
-        PreviousIndexes = _previousProperty?.Indexes ?? Array.Empty<int>();
+    private void AdjustPreviousIndexes() {
+        PreviousLineIndexes = _previousProperty?.Indexes ?? Array.Empty<int>();
         if (_currentProperty!.Name != _previousProperty?.Name) {
-            PreviousIndexes = Enumerable.Repeat(-1, _currentProperty.Indexes.Length).ToArray();
+            PreviousLineIndexes = Enumerable.Repeat(-1, _currentProperty.Indexes.Length).ToArray();
             return;
         }
 
         if (_currentProperty.Indexes.Length <= 1) return;
 
         for (var i = 0; i < _currentProperty.Indexes.Length; i++) {
-            if (PreviousIndexes[i] == _currentProperty.Indexes[i]) continue;
-            for (var j = (i + 1); j < PreviousIndexes.Length; j++) {
-                PreviousIndexes[j] = -1;
+            if (PreviousLineIndexes[i] == _currentProperty.Indexes[i]) continue;
+            for (var j = (i + 1); j < PreviousLineIndexes.Length; j++) {
+                PreviousLineIndexes[j] = -1;
             }
 
             return;

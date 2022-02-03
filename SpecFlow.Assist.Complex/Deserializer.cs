@@ -32,7 +32,7 @@ internal static class Deserializer {
     private static void AddComplexProperty(Context context, JsonNode targetNode, PropertyInfo property) {
         var newContext = new Context(context.Enumerator, context.Level + 1);
         var complexValue = CreateObject(newContext);
-        var value = GetFinalValue(context, targetNode[property.Name], complexValue, property.Indexes, context.PreviousIndexes);
+        var value = GetFinalValue(context, targetNode[property.Name], complexValue, property.Indexes, context.PreviousLineIndexes);
         targetNode[property.Name] = value;
     }
 
@@ -49,7 +49,7 @@ internal static class Deserializer {
             _ when double.TryParse(context.CurrentValue, out var number) => JsonValue.Create(number),
             _ => throw new InvalidCastException($"Invalid value at '{context.CurrentKey}'."),
         };
-        var value = GetFinalValue(context, targetNode[property.Name], valueNode, property.Indexes, context.PreviousIndexes);
+        var value = GetFinalValue(context, targetNode[property.Name], valueNode, property.Indexes, context.PreviousLineIndexes);
         targetNode[property.Name] = value;
     }
 
