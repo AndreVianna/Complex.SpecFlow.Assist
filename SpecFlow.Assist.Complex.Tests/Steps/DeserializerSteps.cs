@@ -17,8 +17,8 @@ public sealed class DeserializerSteps {
         _result = _table!.CreateComplexInstance<ComplexObject>();
     }
 
-    [When(@"I request a complex type from an invalid table")]
-    public void WhenIRequestAComplexTypeFromAnInvalidTable() {
+    [When(@"I request a complex type with an error")]
+    public void WhenIRequestAComplexTypeWithAnError() {
         _action = () => _table!.CreateComplexInstance<ComplexObject>();
     }
 
@@ -88,11 +88,18 @@ public sealed class DeserializerSteps {
                 _result!.Lines!.Count.Should().Be(count);
                 return;
             case "Numbers":
-                _result!.Numbers!.Count.Should().Be(count);
+                _result!.Numbers!.Length.Should().Be(count);
                 return;
             case "Children":
                 _result!.Children!.Count.Should().Be(count);
                 return;
+            case "Items":
+                _result!.Items!.Count.Should().Be(count);
+                return;
+            case "Dictionary":
+                _result!.Dictionary!.Count.Should().Be(count);
+                return;
+
         }
     }
 
@@ -126,32 +133,73 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the process should throw InvalidCastException for property '([^']*)'")]
-    public void ThenTheProcessShouldThrowInvalidCastExceptionForProperty(string property) {
+    [Then(@"the item ([^,]*) of the '([^']*)' property should have (.*) items")]
+    public void ThenTheItemOfTheItemsPropertyShouldHaveItems(int x, string property, int count) {
+        switch (property) {
+            case "Items":
+                _result!.Items!.ElementAt(x).Count.Should().Be(count);
+                return;
+        }
+    }
+
+    [Then(@"the item ([^,]*), ([^,]*) of the 'Items' property should have (.*) items")]
+    public void ThenTheItem2XOfTheItemsPropertyShouldHaveItems(int x, int y, int count) {
+        _result!.Items!.ElementAt(x).ElementAt(y).Count.Should().Be(count);
+    }
+
+    [Then(@"the item ([^,]*), ([^,]*), ([^,]*) of the 'Items' property should be (.*)")]
+    public void ThenTheItem3XOfTheItemsPropertyShouldBe(int x, int y, int z, int value) {
+        _result!.Items!.ElementAt(x).ElementAt(y).ElementAt(z).Should().Be(value);
+    }
+
+    [Then(@"the '([^']*)' key from the '([^']*)' property should be '([^']*)'")]
+    public void ThenTheKeyFromThePropertyShouldBe(string key, string property, string value) {
+        switch (property) {
+            case "Complex":
+                _result!.Dictionary![key].Should().Be(value);
+                return;
+            case "SimpleTuple":
+                switch (key) {
+                    case "Item1":
+                        _result!.SimpleTuple!.Value.Item1.Should().Be(value);
+                        return;
+                    case "Item2":
+                        _result!.SimpleTuple!.Value.Item2.Should().Be(int.Parse(value));
+                        return;
+                    case "Item3":
+                        _result!.SimpleTuple!.Value.Item3.Should().Be(bool.Parse(value));
+                        return;
+                }
+                return;
+            case "NamedTuple":
+                switch (key) {
+                    case "Name":
+                        _result!.NamedTuple!.Value.Name.Should().Be(value);
+                        return;
+                    case "Power":
+                        _result!.NamedTuple!.Value.Power.Should().Be(int.Parse(value));
+                        return;
+                }
+                return;
+        }
+    }
+
+    [Then(@"the 'Id' property of the '([^']*)' key of the item (.*) of the 'Crazy' property should be '([^']*)'")]
+    public void ThenThePropertyOfTheKeyOfTheItemOfThePropertyShouldBe(string key, int index, string value) {
+        _result!.Crazy!.ElementAt(index)![key].Id.Should().Be(int.Parse(value));
+    }
+
+    [Then(@"it should throw 'InvalidCastException' with message ""([^""]*)""")]
+    public void ThenItShouldThrowInvalidCastExceptionWithMessage(string message) {
         _action.Should().Throw<InvalidCastException>()
-            .WithMessage($"Invalid value at '{property}'.");
+            .WithMessage(message);
     }
 
-    [Then(@"the 'MultiDimensional' array property should have (.*) items")]
-    public void ThenTheMultiDimensionalPropertyShouldHaveItems(int count) {
-        _result!.MultiDimensional!.Count.Should().Be(count);
+    [Then(@"it should throw 'InvalidDataException' with message ""([^""]*)""")]
+    public void ThenItShouldThrowInvalidDataExceptionWithMessage(string message) {
+        _action.Should().Throw<InvalidDataException>()
+            .WithMessage(message);
     }
-
-    [Then(@"the item ([^,]*) of the 'MultiDimensional' array property should have (.*) items")]
-    public void ThenTheItemOfTheMultiDimensionalPropertyShouldHaveItems(int i, int count) {
-        _result!.MultiDimensional!.ElementAt(i).Count.Should().Be(count);
-    }
-
-    [Then(@"the item ([^,]*), ([^,]*) of the 'MultiDimensional' array property should have (.*) items")]
-    public void ThenTheItemOfTheMultiDimensionalPropertyShouldHaveItems(int i, int j, int count) {
-        _result!.MultiDimensional!.ElementAt(i).ElementAt(j).Count.Should().Be(count);
-    }
-
-    [Then(@"the item ([^,]*), ([^,]*), ([^,]*) of the 'MultiDimensional' array property should be (.*)")]
-    public void ThenTheItemOfTheMultiDimensionalPropertyShouldBe(int i, int j, int k, int value) {
-        _result!.MultiDimensional!.ElementAt(i).ElementAt(j).ElementAt(k).Should().Be(value);
-    }
-
 
     [StepArgumentTransformation]
     public static ComplexObject AsComplexObject(Table table)

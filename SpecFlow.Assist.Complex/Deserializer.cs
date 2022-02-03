@@ -2,80 +2,65 @@
 
 internal static class Deserializer {
     internal static T? Deserialize<T>(Table table) {
-        var context = new Context(table.Rows.GetEnumerator());
-        context.MoveNext();
-        var result = CreateObject(context);
-        return result.Deserialize<T>();
+        var result = GetJsonObject(table.Rows.GetEnumerator());
+        return result.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true });
+    }
+
+    private static JsonNode GetJsonObject(IEnumerator<TableRow?> enumerator, int level = 0) {
+        return CreateObject(new Context(enumerator, level));
     }
 
     private static JsonNode CreateObject(Context context) {
-        var result = new JsonObject();
+        var objectNode = new JsonObject();
         while (context.HasMore) {
-            AddPropertyTo(context, result);
+            AddPropertyTo(context, objectNode);
         }
 
-        return result;
+        return objectNode;
     }
 
     private static void AddPropertyTo(Context context, JsonNode targetNode) {
-        var property = context.GetCurrentPropertyInfo();
-        if (property.IsComplex) {
+        var property = context.Current;
+        if (property!.Children.Any()) {
             AddComplexProperty(context, targetNode, property);
             context.UpdateCurrent();
         }
         else {
-            AddValueNode(context, targetNode, property);
+            AddSimpleProperty(context, targetNode, property);
             context.MoveNext();
         }
     }
 
-    private static void AddComplexProperty(Context context, JsonNode targetNode, PropertyInfo property) {
-        var newContext = new Context(context.Enumerator, context.Level + 1);
-        var complexValue = CreateObject(newContext);
-        var value = GetFinalValue(context, targetNode[property.Name], complexValue, property.Indexes, context.PreviousLineIndexes);
-        targetNode[property.Name] = value;
+    private static void AddComplexProperty(Context context, JsonNode targetNode, Property property) {
+        var objectNode = GetJsonObject(context.Enumerator, context.Level + 1);
+        targetNode[property.Name] = GetValueOrArrayNode(context, targetNode[property.Name], objectNode, property.Indexes);
     }
 
-    private static void AddValueNode(Context context, JsonNode targetNode, PropertyInfo property) {
-        var valueNode = context.CurrentValue switch {
-            _ when context.CurrentValue!.ToLower() == "null" => default,
-            _ when context.CurrentValue.ToLower() == "default" => default,
-            _ when string.IsNullOrWhiteSpace(context.CurrentValue) => default,
-            _ when context.CurrentValue.ToLower() == "true" => JsonValue.Create(true),
-            _ when context.CurrentValue.ToLower() == "false" => JsonValue.Create(false),
-            _ when context.CurrentValue.StartsWith("\"") => JsonValue.Create(context.CurrentValue.TrimStart('"')
-                .TrimEnd('"')),
-            _ when int.TryParse(context.CurrentValue, out var number) => JsonValue.Create(number),
-            _ when double.TryParse(context.CurrentValue, out var number) => JsonValue.Create(number),
-            _ => throw new InvalidCastException($"Invalid value at '{context.CurrentKey}'."),
+    private static void AddSimpleProperty(Context context, JsonNode targetNode, Property property) {
+        var text = context.Current!.Value;
+        var valueNode = text switch {
+            _ when string.IsNullOrWhiteSpace(text) => default,
+            _ when text.ToLower() is "null" or "default" => default,
+            _ when bool.TryParse(text, out var value) => JsonValue.Create(value),
+            _ when int.TryParse(text, out var value) => JsonValue.Create(value),
+            _ when double.TryParse(text, out var value) => JsonValue.Create(value),
+            _ when text.StartsWith('"') => JsonValue.Create(text.Trim('"')),
+            _ => throw new InvalidCastException($"Invalid value at '{context.Current.Key}'."),
         };
-        var value = GetFinalValue(context, targetNode[property.Name], valueNode, property.Indexes, context.PreviousLineIndexes);
-        targetNode[property.Name] = value;
+        targetNode[property.Name] = GetValueOrArrayNode(context, targetNode[property.Name], valueNode, property.Indexes);
     }
 
-    private static JsonNode? GetFinalValue(Context context, JsonNode? targetNode, JsonNode? valueNode, int[] indexes, int[] previousIndexes) {
+    private static JsonNode? GetValueOrArrayNode(Context context, JsonNode? targetNode, JsonNode? node, int[] indexes) {
         return indexes.Any()
-            ? CreateOrUpdateArray(context, targetNode, valueNode, indexes, previousIndexes)
-            : valueNode;
+            ? GetArrayNode(context, targetNode, node, indexes)
+            : node;
     }
 
-    private static JsonNode CreateOrUpdateArray(Context context, JsonNode? targetNode, JsonNode? valueNode, int[] indexes, int[] previousIndexes) {
-        var subIndexes = indexes.Skip(1).ToArray();
-        var currentIndex = indexes.First();
-        EnsureIndexChange(context, currentIndex, previousIndexes.First(), subIndexes);
+    private static JsonNode GetArrayNode(Context context, JsonNode? targetNode, JsonNode? valueNode, int[] indexes) {
         var array = targetNode?.AsArray() ?? new JsonArray();
-        var value = GetFinalValue(context, currentIndex < array.Count ? array[currentIndex] : null, valueNode, subIndexes, previousIndexes.Skip(1).ToArray());
-        if (currentIndex == array.Count) array.Add(value);
+        var index = indexes.First();
+        var value = GetValueOrArrayNode(context, index < array.Count ? array[index] : null, valueNode, indexes.Skip(1).ToArray());
+        if (index == array.Count) array.Add(value);
         return array;
-    }
-
-    private static void EnsureIndexChange(Context context, int currentIndex, int previousIndex, int[] subIndexes) {
-        var indexChange = currentIndex - previousIndex;
-        switch (indexChange) {
-            case < 0 or > 1:
-                throw new InvalidDataException($"Invalid array index at '{context.CurrentKey}'.");
-            case 0 when !subIndexes.Any():
-                throw new InvalidDataException($"Duplicated array index at '{context.CurrentKey}'.");
-        }
     }
 }
