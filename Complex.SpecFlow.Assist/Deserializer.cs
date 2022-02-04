@@ -1,9 +1,9 @@
 ﻿namespace Complex.SpecFlow.Assist;
 
 internal static class Deserializer {
-    internal static T? Deserialize<T>(Table table) {
+    internal static T Deserialize<T>(Table table) {
         var root = CreateObject(PropertyCollection.Create(table));
-        return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true });
+        return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true })!;
     }
 
     private static JsonNode CreateObject(PropertyCollection properties) {

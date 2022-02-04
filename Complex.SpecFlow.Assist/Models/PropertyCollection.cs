@@ -57,6 +57,7 @@ internal sealed class PropertyCollection {
             var line = new TableLine(key, value);
 
             var relativePath = key.Split('.').Skip(Level).ToArray();
+            if (!relativePath.Any()) return;
             var (name, keys) = DeconstructToken(relativePath.First());
             var indexes = ConvertKeys(keys, previousIndexes, previousName == name);
             var children = relativePath.Skip(1).ToArray();
