@@ -4,17 +4,20 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Specflow.Assist.Complex</PackageId>
+    <PackageId>Complex.Specflow.Assist</PackageId>
+    <Title>Complex.Specflow.Assist</Title>
     <Version>1.0.0</Version>
     <Authors>Andre Vianna</Authors>
     <Company>Andre Vianna</Company>
     <PackageTags>SpecFlow, Assist, Complex, Json, Gherkin, Cucumber</PackageTags>
-    <PackageProjectUrl>https://github.com/AndreVianna/SpecFlow.Assist.Complex</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AndreVianna/Complex.SpecFlow.Assist</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Extensions for Table class to help create complex objects using a flat hierarchical structure.</Description>
     <Copyright>© Andre Vianna 2022</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +26,10 @@
       <PackagePath>\</PackagePath>
     </None>
     <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
