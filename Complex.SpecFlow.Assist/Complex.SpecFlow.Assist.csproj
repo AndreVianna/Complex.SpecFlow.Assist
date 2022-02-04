@@ -22,9 +22,6 @@
         v1.0.2:
         - Minor bug correction.
     </PackageReleaseNotes>
-        v1.0.0:
-        - Initial release.
-    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
