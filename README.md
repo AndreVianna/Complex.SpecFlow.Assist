@@ -1,5 +1,8 @@
 # SpecFlow.Assist.Complex
-SpecFlow.Assist.Complex adds extension methods to the Table class to help create complex objects.
+
+![Buid](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions/workflows/build.yml/badge.svg)
+
+SpecFlow.Assist.Complex adds extension methods to the Table class to help create complex objects from a vertical table definition.
 
 It supports collectios, complex properties, dictionaries and even tuples.
 
@@ -8,7 +11,7 @@ You need to specify a vertical table using a flat hierarchical description of th
 ## The basics:
 Here is an example:\
 Consider a class defined as:
-```
+```c#
 public class Basic {
     public int Id { get; set; }
     public string String { get; set; }
@@ -21,7 +24,7 @@ public class Basic {
 ```
 
 In the `.feature` file, you could define the table as:
-```
+```Gherkin
 Given I define a table like
 | Field    | Value                                  |
 | Id       | 2                                      |
@@ -36,7 +39,7 @@ The names in the header are ignored.
 
 And in the steps definition you could define the method as:
 
-```
+```c#
     [Given(@"I define a table like")]
     public void GivenIDefineATableLike(Table table) {
         var inut = table.CreateComplexInstance<Basic>();
@@ -47,14 +50,14 @@ And in the steps definition you could define the method as:
 
 You could also create a argument tranformation like:
 
-```
+```c#
     [StepArgumentTransformation]
     public static Basic AsComplexObject(Table table)
         => table.CreateComplexInstance<Basic>()!;
 ```
 
 And instead, define the above method as:
-```
+```c#
     [Given(@"I define a table like")]
     public void GivenIDefineATableLike(Basic input) {
 
@@ -70,7 +73,7 @@ Here are samples of some complex structures supported by the library:
 Any case insensitive combination of `null`, `default`, an empty cell, or by simply not adding the property to the list would add a null value to the nullable field.
 For empty strings use `""`.
 
-```
+```c#
 public class Nullables {
     public string? String { get; set; }
     public int? Integer { get; set; }
@@ -97,7 +100,7 @@ In the `.feature` file, you could define the table as:
 Any Collections interfaces (like `ICollection<>`, `IEnumerble<>`, etc) or concrete types (like `Arrays`, `Lists<>`, etc) are supported.
 Even multi-dimentional collections are supported.
 
-```
+```c#
 public class Colletions {
     public ICollection<string>? Lines { get; set; }
     public int[]? Numbers { get; set; }
@@ -152,7 +155,7 @@ A table with an invalid index will throw an `InvalidDataException`.
 ### Sample 3 - Complex properties
 Any combination os complex classes or collections are supported including self reference types.
 
-```
+```c#
 public class Colletions {
     public int Id { get; set; }
     public Basic? Complex { get; set; }
@@ -197,7 +200,7 @@ As you can see the conbination of complex properties and collections can produce
 Dictionaries are defined the same way that complex properties are, but the keys are not limited to the names of the fields/properties in a strong typed property.
 Tuples must follow the numeric item name ('Item1', 'Item2', etc). Even named tuples have to folow that definition, although the final object will have the named fields correctly filled.
 
-```
+```c#
 public class Colletions {
     public IDictionary<string, string?> Family { get; set; }
     public (int Number, string Street) Address { get; set; }
