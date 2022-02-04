@@ -13,7 +13,7 @@ internal sealed class PropertyCollection {
 
 
     public PropertyEnumerator GetEnumerator() => _enumerator;
-    public void PauseAdvance() => _enumerator.PauseAdvance();
+    public void DoNotMoveNext() => _enumerator.DoNotMoveNext();
 
     public sealed class PropertyEnumerator {
         private const string _regexPattern = @"^([^\[<]+)(\[([^]]+)\])*$"; // abc[2][-3][df] => $1:abc, $3:[2,-3,df]
@@ -21,27 +21,27 @@ internal sealed class PropertyCollection {
         private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
         private static readonly Regex _regex = new(_regexPattern, _regexOptions, _regexTimeout);
         private readonly string _basePath;
-        private bool _canAdvance;
+        private bool _canMoveNext;
 
         public PropertyEnumerator(IEnumerator<TableRow?> source, int level) {
             Source = source;
             Level = level;
-            _canAdvance = level == 0;
+            _canMoveNext = level == 0;
             _basePath = GetBasePath();
-        }
-
-        public void PauseAdvance() {
-            _canAdvance = false;
         }
 
         public IEnumerator<TableRow?> Source { get; }
         public int Level { get; }
         public Property Current { get; private set; } = new();
 
+        public void DoNotMoveNext() {
+            _canMoveNext = false;
+        }
+
         public bool MoveNext() {
-            if (_canAdvance) Source.MoveNext();
+            if (_canMoveNext) Source.MoveNext();
             UpdateCurrent();
-            _canAdvance = true;
+            _canMoveNext = true;
             return Source.Current is not null && _basePath == GetBasePath();
         }
 

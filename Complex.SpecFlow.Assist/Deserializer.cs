@@ -6,10 +6,10 @@ internal static class Deserializer {
         return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true });
     }
 
-    private static JsonNode CreateObject(PropertyCollection lines) {
+    private static JsonNode CreateObject(PropertyCollection properties) {
         var objectNode = new JsonObject();
-        foreach (var property in lines) {
-            objectNode[property.Name] = CreateProperty(objectNode, property, lines);
+        foreach (var property in properties) {
+            objectNode[property.Name] = CreateProperty(objectNode, property, properties);
         }
 
         return objectNode;
@@ -23,7 +23,7 @@ internal static class Deserializer {
     private static JsonNode? CreateComplexProperty(JsonNode parent, Property property, PropertyCollection context) {
         var objectNode = CreateObject(context.LevelUp());
         var result = GetValueOrArray(parent[property.Name], objectNode, property.Indexes);
-        context.PauseAdvance();
+        context.DoNotMoveNext();
         return result;
     }
 
