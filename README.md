@@ -1,6 +1,6 @@
 # SpecFlow.Assist.Complex
 
-Master: [![Buid Status Master](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions)
+Main: [![Buid Status Master](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions)
 
 Development: [![Buid Status Development](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions/workflows/build.yml/badge.svg?branch=development)](https://github.com/andrevianna/SpecFlow.Assist.Complex/actions)
 
