@@ -4,6 +4,7 @@ global using System.Text.Json.Nodes;
 global using System.Text.RegularExpressions;
 
 global using Complex.SpecFlow.Assist;
+global using Complex.SpecFlow.Assist.Models;
 
 global using TechTalk.SpecFlow;
 

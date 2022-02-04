@@ -2,42 +2,33 @@
 
 internal static class Deserializer {
     internal static T? Deserialize<T>(Table table) {
-        var result = GetJsonObject(table.Rows.GetEnumerator());
-        return result.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true });
+        var root = CreateObject(PropertyCollection.Create(table));
+        return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true });
     }
 
-    private static JsonNode GetJsonObject(IEnumerator<TableRow?> enumerator, int level = 0) {
-        return CreateObject(new Context(enumerator, level));
-    }
-
-    private static JsonNode CreateObject(Context context) {
+    private static JsonNode CreateObject(PropertyCollection properties) {
         var objectNode = new JsonObject();
-        while (context.HasMore) {
-            AddPropertyTo(context, objectNode);
+        foreach (var property in properties) {
+            objectNode[property.Name] = CreateProperty(objectNode, property, properties);
         }
 
         return objectNode;
     }
 
-    private static void AddPropertyTo(Context context, JsonNode targetNode) {
-        var property = context.Current;
-        if (property!.Children.Any()) {
-            AddComplexProperty(context, targetNode, property);
-            context.UpdateCurrent();
-        }
-        else {
-            AddSimpleProperty(context, targetNode, property);
-            context.MoveNext();
-        }
+    private static JsonNode? CreateProperty(JsonNode parent, Property property, PropertyCollection context)
+        => property.Children.Any()
+            ? CreateComplexProperty(parent, property, context)
+            : CreateSimpleProperty(parent, property);
+
+    private static JsonNode? CreateComplexProperty(JsonNode parent, Property property, PropertyCollection context) {
+        var objectNode = CreateObject(context.LevelUp());
+        var result = GetValueOrArray(parent[property.Name], objectNode, property.Indexes);
+        context.DoNotMoveNext();
+        return result;
     }
 
-    private static void AddComplexProperty(Context context, JsonNode targetNode, Property property) {
-        var objectNode = GetJsonObject(context.Enumerator, context.Level + 1);
-        targetNode[property.Name] = GetValueOrArrayNode(context, targetNode[property.Name], objectNode, property.Indexes);
-    }
-
-    private static void AddSimpleProperty(Context context, JsonNode targetNode, Property property) {
-        var text = context.Current!.Value;
+    private static JsonNode? CreateSimpleProperty(JsonNode parent, Property property) {
+        var text = property.Line.Value;
         var valueNode = text switch {
             _ when string.IsNullOrWhiteSpace(text) => default,
             _ when text.ToLower() is "null" or "default" => default,
@@ -45,22 +36,22 @@ internal static class Deserializer {
             _ when int.TryParse(text, out var value) => JsonValue.Create(value),
             _ when double.TryParse(text, out var value) => JsonValue.Create(value),
             _ when text.StartsWith('"') => JsonValue.Create(text.Trim('"')),
-            _ => throw new InvalidCastException($"Invalid value at '{context.Current.Key}'."),
+            _ => throw new InvalidCastException($"Invalid value at '{property.Line.Key}'."),
         };
-        targetNode[property.Name] = GetValueOrArrayNode(context, targetNode[property.Name], valueNode, property.Indexes);
+        return GetValueOrArray(parent[property.Name], valueNode, property.Indexes);
     }
 
-    private static JsonNode? GetValueOrArrayNode(Context context, JsonNode? targetNode, JsonNode? node, int[] indexes) {
+    private static JsonNode? GetValueOrArray(JsonNode? propertyNode, JsonNode? valueNode, int[] indexes) {
         return indexes.Any()
-            ? GetArrayNode(context, targetNode, node, indexes)
-            : node;
+            ? CreateOrUpdateArray(propertyNode, valueNode, indexes)
+            : valueNode;
     }
 
-    private static JsonNode GetArrayNode(Context context, JsonNode? targetNode, JsonNode? valueNode, int[] indexes) {
-        var array = targetNode?.AsArray() ?? new JsonArray();
+    private static JsonNode CreateOrUpdateArray(JsonNode? propertyNode, JsonNode? valueNode, int[] indexes) {
+        var arrayNode = propertyNode?.AsArray() ?? new JsonArray();
         var index = indexes.First();
-        var value = GetValueOrArrayNode(context, index < array.Count ? array[index] : null, valueNode, indexes.Skip(1).ToArray());
-        if (index == array.Count) array.Add(value);
-        return array;
+        var value = GetValueOrArray(index < arrayNode.Count ? arrayNode[index] : null, valueNode, indexes.Skip(1).ToArray());
+        if (index == arrayNode.Count) arrayNode.Add(value);
+        return arrayNode;
     }
 }
