@@ -1,4 +1,4 @@
-﻿namespace SpecFlow.Assist.Complex.Tests.Support;
+﻿namespace Complex.SpecFlow.Assist.Tests.Support;
 
 public class ComplexObject {
     public int Id { get; set; }

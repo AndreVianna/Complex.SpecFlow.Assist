@@ -1,4 +1,4 @@
-﻿namespace SpecFlow.Assist.Complex;
+﻿namespace Complex.SpecFlow.Assist;
 
 internal static class Deserializer {
     internal static T? Deserialize<T>(Table table) {

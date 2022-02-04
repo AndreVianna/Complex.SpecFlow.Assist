@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlow.Assist.Complex.Tests
+namespace Complex.SpecFlow.Assist.Tests
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace SpecFlow.Assist.Complex.Tests
 #line 1 "Deserializer.feature"
 #line hidden
         
-        public DeserializerFeature(DeserializerFeature.FixtureData fixtureData, SpecFlow_Assist_Complex_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public DeserializerFeature(DeserializerFeature.FixtureData fixtureData, Complex_SpecFlow_Assist_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();

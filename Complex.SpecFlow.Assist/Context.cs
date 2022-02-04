@@ -1,4 +1,4 @@
-﻿namespace SpecFlow.Assist.Complex;
+﻿namespace Complex.SpecFlow.Assist;
 
 internal class Context {
     private const string _regexPattern = @"^([^\[<]+)(\[([^]]+)\])*$"; // abc[2][-3][df] => $1:abc, #3:[2,-3,df]

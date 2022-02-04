@@ -1,4 +1,4 @@
-namespace SpecFlow.Assist.Complex.Tests.Steps;
+namespace Complex.SpecFlow.Assist.Tests.Steps;
 
 [Binding]
 [ExcludeFromCodeCoverage]

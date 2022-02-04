@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpecFlow.Assist.Complex\SpecFlow.Assist.Complex.csproj" />
+    <ProjectReference Include="..\Complex.SpecFlow.Assist\Complex.SpecFlow.Assist.csproj" />
   </ItemGroup>
 
 </Project>
