@@ -3,7 +3,8 @@ namespace Complex.SpecFlow.Assist.Tests.Steps;
 [Binding]
 [ExcludeFromCodeCoverage]
 public sealed class DeserializerSteps {
-    private ComplexObject _result = default!;
+    private ComplexObject _instance = default!;
+    private IEnumerable<ComplexObject> _set = default!;
     private Action _action = default!;
     private Table _table = default!;
 
@@ -12,44 +13,87 @@ public sealed class DeserializerSteps {
         _table = table;
     }
 
-    [When(@"I request a complex object")]
-    public void WhenIRequestAComplexObject() {
-        _result = _table.CreateComplexInstance<ComplexObject>();
+    [When(@"I request a complex instance")]
+    public void WhenIRequestAComplexInstance() {
+        _instance = _table.CreateComplexInstance<ComplexObject>();
     }
 
-    [When(@"I request a complex object with an error")]
-    public void WhenIRequestAComplexObjectWithAnError() {
+    [When(@"I request a complex set")]
+    public void WhenIRequestAComplexSet() {
+        _set = _table.CreateComplexSet<ComplexObject>();
+    }
+
+    [When(@"I request a complex instance with an error")]
+    public void WhenIRequestAComplexInstanceWithAnError() {
         _action = () => _table.CreateComplexInstance<ComplexObject>();
+    }
+
+    [When(@"I request a complex set with an error")]
+    public void WhenIRequestAComplexSetWithAnError() {
+        _action = () => _table.CreateComplexSet<ComplexObject>();
     }
 
     [Then(@"the result object should not be null")]
     public void ThenTheResultObjectShouldBeOfTypeComplexObject() {
-        _result.Should().NotBeNull();
+        _instance.Should().NotBeNull();
+    }
+
+    [Then(@"the result collection should have (.*) items")]
+    public void ThenTheResultCollectionShouldHaveItems(int count) {
+        _set.Should().NotBeNull();
+        _set.Count().Should().Be(count);
     }
 
     [Then(@"the '([^']*)' property should be '([^']*)'")]
     public void ThenThePropertyShouldBe(string property, string value) {
         switch (property) {
             case "Id":
-                _result.Id.Should().Be(int.Parse(value));
+                _instance.Id.Should().Be(int.Parse(value));
                 return;
             case "String":
-                _result.String.Should().Be(value);
+                _instance.String.Should().Be(value);
                 return;
             case "Integer":
-                _result.Integer.Should().Be(int.Parse(value));
+                _instance.Integer.Should().Be(int.Parse(value));
                 return;
             case "Decimal":
-                _result.Decimal.Should().Be(decimal.Parse(value));
+                _instance.Decimal.Should().Be(decimal.Parse(value));
                 return;
             case "Boolean":
-                _result.Boolean.Should().Be(bool.Parse(value));
+                _instance.Boolean.Should().Be(bool.Parse(value));
                 break;
             case "DateTime":
-                _result.DateTime.Should().Be(DateTime.Parse(value));
+                _instance.DateTime.Should().Be(DateTime.Parse(value));
                 return;
             case "Guid":
-                _result.Guid.Should().Be(Guid.Parse(value));
+                _instance.Guid.Should().Be(Guid.Parse(value));
+                return;
+        }
+    }
+
+    [Then(@"the '([^']*)' property of the item (.*) should be '([^']*)'")]
+    public void ThenThePropertyOfTheItemShouldBe(string property, int index, string value) {
+        switch (property) {
+            case "Id":
+                _set.ElementAt(index).Id.Should().Be(int.Parse(value));
+                return;
+            case "String":
+                _set.ElementAt(index).String.Should().Be(value);
+                return;
+            case "Integer":
+                _set.ElementAt(index).Integer.Should().Be(int.Parse(value));
+                return;
+            case "Decimal":
+                _set.ElementAt(index).Decimal.Should().Be(decimal.Parse(value));
+                return;
+            case "Boolean":
+                _set.ElementAt(index).Boolean.Should().Be(bool.Parse(value));
+                break;
+            case "DateTime":
+                _set.ElementAt(index).DateTime.Should().Be(DateTime.Parse(value));
+                return;
+            case "Guid":
+                _set.ElementAt(index).Guid.Should().Be(Guid.Parse(value));
                 return;
         }
     }
@@ -58,25 +102,25 @@ public sealed class DeserializerSteps {
     public void ThenThePropertyShouldBeNull(string property) {
         switch (property) {
             case "String":
-                _result.String.Should().BeNull();
+                _instance.String.Should().BeNull();
                 return;
             case "Integer":
-                _result.Integer.Should().BeNull();
+                _instance.Integer.Should().BeNull();
                 return;
             case "Decimal":
-                _result.Decimal.Should().BeNull();
+                _instance.Decimal.Should().BeNull();
                 return;
             case "Boolean":
-                _result.Boolean.Should().BeNull();
+                _instance.Boolean.Should().BeNull();
                 break;
             case "DateTime":
-                _result.DateTime.Should().BeNull();
+                _instance.DateTime.Should().BeNull();
                 return;
             case "Guid":
-                _result.Guid.Should().BeNull();
+                _instance.Guid.Should().BeNull();
                 return;
             case "Complex":
-                _result.Complex.Should().BeNull();
+                _instance.Complex.Should().BeNull();
                 return;
         }
     }
@@ -85,19 +129,19 @@ public sealed class DeserializerSteps {
     public void ThenThePropertyShouldHaveItems(string property, int count) {
         switch (property) {
             case "Lines":
-                _result.Lines!.Count.Should().Be(count);
+                _instance.Lines!.Count.Should().Be(count);
                 return;
             case "Numbers":
-                _result.Numbers!.Length.Should().Be(count);
+                _instance.Numbers!.Length.Should().Be(count);
                 return;
             case "Children":
-                _result.Children!.Count.Should().Be(count);
+                _instance.Children!.Count.Should().Be(count);
                 return;
             case "Items":
-                _result.Items!.Count.Should().Be(count);
+                _instance.Items!.Count.Should().Be(count);
                 return;
             case "Dictionary":
-                _result.Dictionary!.Count.Should().Be(count);
+                _instance.Dictionary!.Count.Should().Be(count);
                 return;
 
         }
@@ -107,10 +151,10 @@ public sealed class DeserializerSteps {
     public void ThenTheItemFromShouldBe(int index, string property, string value) {
         switch (property) {
             case "Lines":
-                _result.Lines!.ElementAt(index).Should().Be(value);
+                _instance.Lines!.ElementAt(index).Should().Be(value);
                 return;
             case "Numbers":
-                _result.Numbers!.ElementAt(index).Should().Be(int.Parse(value));
+                _instance.Numbers!.ElementAt(index).Should().Be(int.Parse(value));
                 return;
         }
     }
@@ -119,7 +163,7 @@ public sealed class DeserializerSteps {
     public void ThenTheItemFromShouldBe(int index, string property, ComplexObject expectedObject) {
         switch (property) {
             case "Children":
-                _result.Children!.ElementAt(index).Should().BeEquivalentTo(expectedObject);
+                _instance.Children!.ElementAt(index).Should().BeEquivalentTo(expectedObject);
                 return;
         }
     }
@@ -128,7 +172,7 @@ public sealed class DeserializerSteps {
     public void ThenThePropertyShouldBe(string property, ComplexObject expectedObject) {
         switch (property) {
             case "Complex":
-                _result.Complex.Should().BeEquivalentTo(expectedObject);
+                _instance.Complex.Should().BeEquivalentTo(expectedObject);
                 return;
         }
     }
@@ -137,47 +181,47 @@ public sealed class DeserializerSteps {
     public void ThenTheItemOfTheItemsPropertyShouldHaveItems(int x, string property, int count) {
         switch (property) {
             case "Items":
-                _result.Items!.ElementAt(x).Count.Should().Be(count);
+                _instance.Items!.ElementAt(x).Count.Should().Be(count);
                 return;
         }
     }
 
     [Then(@"the item ([^,]*), ([^,]*) of the 'Items' property should have (.*) items")]
     public void ThenTheItem2XOfTheItemsPropertyShouldHaveItems(int x, int y, int count) {
-        _result.Items!.ElementAt(x).ElementAt(y).Count.Should().Be(count);
+        _instance.Items!.ElementAt(x).ElementAt(y).Count.Should().Be(count);
     }
 
     [Then(@"the item ([^,]*), ([^,]*), ([^,]*) of the 'Items' property should be (.*)")]
     public void ThenTheItem3XOfTheItemsPropertyShouldBe(int x, int y, int z, int value) {
-        _result.Items!.ElementAt(x).ElementAt(y).ElementAt(z).Should().Be(value);
+        _instance.Items!.ElementAt(x).ElementAt(y).ElementAt(z).Should().Be(value);
     }
 
     [Then(@"the '([^']*)' key from the '([^']*)' property should be '([^']*)'")]
     public void ThenTheKeyFromThePropertyShouldBe(string key, string property, string value) {
         switch (property) {
             case "Complex":
-                _result.Dictionary![key].Should().Be(value);
+                _instance.Dictionary![key].Should().Be(value);
                 return;
             case "SimpleTuple":
                 switch (key) {
                     case "Item1":
-                        _result.SimpleTuple!.Value.Item1.Should().Be(value);
+                        _instance.SimpleTuple!.Value.Item1.Should().Be(value);
                         return;
                     case "Item2":
-                        _result.SimpleTuple!.Value.Item2.Should().Be(int.Parse(value));
+                        _instance.SimpleTuple!.Value.Item2.Should().Be(int.Parse(value));
                         return;
                     case "Item3":
-                        _result.SimpleTuple!.Value.Item3.Should().Be(bool.Parse(value));
+                        _instance.SimpleTuple!.Value.Item3.Should().Be(bool.Parse(value));
                         return;
                 }
                 return;
             case "NamedTuple":
                 switch (key) {
                     case "Name":
-                        _result.NamedTuple!.Value.Name.Should().Be(value);
+                        _instance.NamedTuple!.Value.Name.Should().Be(value);
                         return;
                     case "Power":
-                        _result.NamedTuple!.Value.Power.Should().Be(int.Parse(value));
+                        _instance.NamedTuple!.Value.Power.Should().Be(int.Parse(value));
                         return;
                 }
                 return;
@@ -186,18 +230,24 @@ public sealed class DeserializerSteps {
 
     [Then(@"the 'Id' property of the '([^']*)' key of the item (.*) of the 'Crazy' property should be '([^']*)'")]
     public void ThenThePropertyOfTheKeyOfTheItemOfThePropertyShouldBe(string key, int index, string value) {
-        _result.Crazy!.ElementAt(index)[key].Id.Should().Be(int.Parse(value));
+        _instance.Crazy!.ElementAt(index)[key].Id.Should().Be(int.Parse(value));
     }
 
-    [Then(@"it should throw 'InvalidCastException' with message ""([^""]*)""")]
-    public void ThenItShouldThrowInvalidCastExceptionWithMessage(string message) {
-        _action.Should().Throw<InvalidCastException>()
+    [Then(@"it should throw 'JsonException' with message ""([^""]*)""")]
+    public void ThenItShouldThrowJsonExceptionWithMessage(string message) {
+        _action.Should().Throw<JsonException>()
             .WithMessage(message);
     }
 
     [Then(@"it should throw 'InvalidDataException' with message ""([^""]*)""")]
     public void ThenItShouldThrowInvalidDataExceptionWithMessage(string message) {
         _action.Should().Throw<InvalidDataException>()
+            .WithMessage(message);
+    }
+
+    [Then(@"it should throw 'InvalidOperationException' with message ""([^""]*)""")]
+    public void ThenItShouldThrowInvalidOperationExceptionWithMessage(string message) {
+        _action.Should().Throw<InvalidOperationException>()
             .WithMessage(message);
     }
 
