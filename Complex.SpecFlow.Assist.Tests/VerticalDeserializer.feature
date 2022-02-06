@@ -1,27 +1,27 @@
-﻿Feature: Deserializer
-Transforms table in complex types
+﻿Feature: Vertical deserializer
+Transforms a vertical table in complex object
 
 @Deserializer
 Scenario: Using vertical table
 	Given I define a table like
 	| Field | Value |
 	| Id    | 1     |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '1'
 
 @Deserializer
 Scenario: With basic properties
 	Given I define a table like
-	| Field    | Value                                  |
-	| Id       | 2                                      |
-	| String   | "Some string."                         |
-	| Integer  | 42                                     |
-	| Decimal  | 3.141592                               |
-	| Boolean  | True                                   |
-	| DateTime | "2020-02-20T12:34:56.789"              |
+	| Field    | Value                                |
+	| Id       | 2                                    |
+	| String   | Some string.                       |
+	| Integer  | 42                                   |
+	| Decimal  | 3.141592                             |
+	| Boolean  | True                                 |
+	| DateTime | '2020-02-20T12:34:56.789'            |
 	| Guid     | "1f576fa6-16c9-4905-95f8-e00cad6a8ded" |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '2'
 	And the 'String' property should be 'Some string.'
@@ -43,7 +43,7 @@ Scenario: With nullable properties
 	| DateTime |         |
 	| Guid     | DEFAULT |
 	| Complex  | Default |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '3'
 	And the 'String' property should be null
@@ -66,7 +66,7 @@ Scenario: With collection properties
 	| Numbers[0] | 101             |
 	| Numbers[1] | -201            |
 	| Numbers[2] | 0               |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '4'
 	And the 'Lines' property should have 4 items
@@ -99,7 +99,7 @@ Scenario: With complex properties
 	| Complex.Decimal            | 3.141592                  |
 	| Complex.Boolean            | True                      |
 	| Complex.DateTime           | "2020-02-20T12:34:56.789" |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '5'
 	And the 'Children' property should have 2 items
@@ -157,7 +157,7 @@ Scenario: With multi-dimensional arrays
 	| Items[3][0][0] | 25    |
 	| Items[3][0][1] | 26    |
 	| Items[3][0][2] | 27    |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '6'
 	And the 'Items' property should have 4 items
@@ -211,7 +211,7 @@ Scenario: With dictionary property
 	| Dictionary.Mother   | "Ana"   |
 	| Dictionary.Son      | "Billy" |
 	| Dictionary.Daughter | "Cindy" |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '7'
 	And the 'Dictionary' property should have 4 items
@@ -230,7 +230,7 @@ Scenario: With very complex property
 	| Crazy[1].Blue.Id  | 911   |
 	| Crazy[1].White.Id | 912   |
 	| Crazy[1].Black.Id | 913   |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '9'
 	And the 'Crazy' property should have 2 items
@@ -252,7 +252,7 @@ Scenario: With tuple property
 	| SimpleTuple.Item3 | False   |
 	| NamedTuple.Item1  | "Neo"   |
 	| NamedTuple.Item2  | 42      |
-	When I request a complex object
+	When I request a complex instance
 	Then the result object should not be null
 	And the 'Id' property should be '8'
 	And the 'Item1' key from the 'SimpleTuple' property should be 'Smith'
@@ -262,13 +262,12 @@ Scenario: With tuple property
 	And the 'Power' key from the 'NamedTuple' property should be '42'
 
 @Deserializer
-Scenario: Property value must be in a valid format
+Scenario: Property value must be of a valid type
 	Given I define a table like
-	| Field | Value                  |
-	| Id    | 99                     |
-	| Id    | {Invalid Value Format} |
-	When I request a complex object with an error
-	Then it should throw 'InvalidCastException' with message "Invalid value at 'Id'."
+	| Field | Value                |
+	| Id    | Invalid Value Format |
+	When I request a complex instance with an error
+	Then it should throw 'JsonException' with message "The JSON value could not be converted to System.Int32. Path: $.Id | LineNumber: 0 | BytePositionInLine: 28."
 
 @Deserializer
 Scenario: Collection property index must be an number
@@ -276,7 +275,7 @@ Scenario: Collection property index must be an number
 	| Field      | Value        |
 	| Id         | 99           |
 	| Lines[abc] | "Some line." |
-	When I request a complex object with an error
+	When I request a complex instance with an error
 	Then it should throw 'InvalidDataException' with message "Invalid array index at 'Lines[abc]'."
 
 @Deserializer
@@ -285,7 +284,7 @@ Scenario: Collection property index must start at 0
 	| Field    | Value        |
 	| Id       | 99           |
 	| Lines[1] | "Some line." |
-	When I request a complex object with an error
+	When I request a complex instance with an error
 	Then it should throw 'InvalidDataException' with message "Invalid array index at 'Lines[1]'."
 
 @Deserializer
@@ -294,7 +293,7 @@ Scenario: Collection property index must not be negative
 	| Field     | Value        |
 	| Id        | 99           |
 	| Lines[-1] | "Some line." |
-	When I request a complex object with an error
+	When I request a complex instance with an error
 	Then it should throw 'InvalidDataException' with message "Invalid array index at 'Lines[-1]'."
 
 @Deserializer
@@ -304,7 +303,7 @@ Scenario: Collection property index must be in sequence
 	| Id       | 99                 |
 	| Lines[0] | "Some line."       |
 	| Lines[2] | "Some other line." |
-	When I request a complex object with an error
+	When I request a complex instance with an error
 	Then it should throw 'InvalidDataException' with message "Invalid array index at 'Lines[2]'."
 
 @Deserializer
@@ -314,5 +313,5 @@ Scenario: Collection property index cannot repeat
 	| Id       | 99                 |
 	| Lines[0] | "Some line."       |
 	| Lines[0] | "Some other line." |
-	When I request a complex object with an error
+	When I request a complex instance with an error
 	Then it should throw 'InvalidDataException' with message "Invalid array index at 'Lines[0]'."

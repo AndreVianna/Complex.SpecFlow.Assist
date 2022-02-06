@@ -19,7 +19,7 @@ namespace Complex.SpecFlow.Assist.Tests
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class DeserializerFeature : object, Xunit.IClassFixture<DeserializerFeature.FixtureData>, System.IDisposable
+    public partial class VerticalDeserializerFeature : object, Xunit.IClassFixture<VerticalDeserializerFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace Complex.SpecFlow.Assist.Tests
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "Deserializer.feature"
+#line 1 "VerticalDeserializer.feature"
 #line hidden
         
-        public DeserializerFeature(DeserializerFeature.FixtureData fixtureData, Complex_SpecFlow_Assist_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public VerticalDeserializerFeature(VerticalDeserializerFeature.FixtureData fixtureData, Complex_SpecFlow_Assist_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace Complex.SpecFlow.Assist.Tests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Deserializer", "Transforms table in complex types", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Vertical deserializer", "Transforms a vertical table in complex object", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,7 +81,7 @@ namespace Complex.SpecFlow.Assist.Tests
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Using vertical table")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "Using vertical table")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void UsingVerticalTable()
@@ -110,17 +110,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Id",
                             "1"});
 #line 6
- testRunner.Given("I define a table like", ((string)(null)), table1, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table3, "Given ");
 #line hidden
 #line 9
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With basic properties")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With basic properties")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithBasicProperties()
@@ -162,35 +162,35 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Id",
                             "2"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "String",
-                            "\"Some string.\""});
-                table2.AddRow(new string[] {
+                            "Some string."});
+                table4.AddRow(new string[] {
                             "Integer",
                             "42"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Decimal",
                             "3.141592"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Boolean",
                             "True"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "DateTime",
-                            "\"2020-02-20T12:34:56.789\""});
-                table2.AddRow(new string[] {
+                            "\'2020-02-20T12:34:56.789\'"});
+                table4.AddRow(new string[] {
                             "Guid",
                             "\"1f576fa6-16c9-4905-95f8-e00cad6a8ded\""});
 #line 15
- testRunner.Given("I define a table like", ((string)(null)), table2, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table4, "Given ");
 #line hidden
 #line 24
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -221,7 +221,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With nullable properties")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With nullable properties")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithNullableProperties()
@@ -250,38 +250,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Id",
                             "3"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "String",
                             "null"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Integer",
                             "NULL"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Decimal",
                             "Null"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Boolean",
                             "default"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "DateTime",
                             ""});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Guid",
                             "DEFAULT"});
-                table3.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Complex",
                             "Default"});
 #line 36
- testRunner.Given("I define a table like", ((string)(null)), table3, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table5, "Given ");
 #line hidden
 #line 46
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 47
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -315,7 +315,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With collection properties")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With collection properties")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithCollectionProperties()
@@ -344,38 +344,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Id",
                             "4"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Lines[0]",
                             "\"Some line.\""});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Lines[1]",
                             "\"\""});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Lines[2]",
                             "\"Another line.\""});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Lines[3]",
                             "\"Last line.\""});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Numbers[0]",
                             "101"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Numbers[1]",
                             "-201"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Numbers[2]",
                             "0"});
 #line 59
- testRunner.Given("I define a table like", ((string)(null)), table4, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table6, "Given ");
 #line hidden
 #line 69
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 70
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -415,7 +415,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With complex properties")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With complex properties")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithComplexProperties()
@@ -444,62 +444,62 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Id",
                             "5"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[0].Id",
                             "51"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[0].String",
                             "\"Some string.\""});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[0].Integer",
                             "42"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[1].Id",
                             "52"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[1].Decimal",
                             "3.141592"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[1].Boolean",
                             "False"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Children[1].DateTime",
                             "\"2020-02-20T12:34:56.789\""});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.Id",
                             "53"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.Complex.Id",
                             "531"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.Complex.Complex.Id",
                             "5311"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.String",
                             "\"Some string.\""});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.Integer",
                             "42"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.Decimal",
                             "3.141592"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.Boolean",
                             "True"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Complex.DateTime",
                             "\"2020-02-20T12:34:56.789\""});
 #line 84
- testRunner.Given("I define a table like", ((string)(null)), table5, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table7, "Given ");
 #line hidden
 #line 102
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 103
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -510,75 +510,75 @@ this.ScenarioInitialize(scenarioInfo);
 #line 105
  testRunner.And("the \'Children\' property should have 2 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table6.AddRow(new string[] {
-                            "Id",
-                            "51"});
-                table6.AddRow(new string[] {
-                            "String",
-                            "\"Some string.\""});
-                table6.AddRow(new string[] {
-                            "Integer",
-                            "42"});
-#line 106
- testRunner.And("the item 0 from \'Children\' should be", ((string)(null)), table6, "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table7.AddRow(new string[] {
-                            "Id",
-                            "52"});
-                table7.AddRow(new string[] {
-                            "Decimal",
-                            "3.141592"});
-                table7.AddRow(new string[] {
-                            "Boolean",
-                            "False"});
-                table7.AddRow(new string[] {
-                            "DateTime",
-                            "\"2020-02-20T12:34:56.789\""});
-#line 111
- testRunner.And("the item 1 from \'Children\' should be", ((string)(null)), table7, "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table8.AddRow(new string[] {
                             "Id",
-                            "53"});
+                            "51"});
                 table8.AddRow(new string[] {
                             "String",
                             "\"Some string.\""});
                 table8.AddRow(new string[] {
                             "Integer",
                             "42"});
-                table8.AddRow(new string[] {
+#line 106
+ testRunner.And("the item 0 from \'Children\' should be", ((string)(null)), table8, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table9.AddRow(new string[] {
+                            "Id",
+                            "52"});
+                table9.AddRow(new string[] {
                             "Decimal",
                             "3.141592"});
-                table8.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Boolean",
-                            "True"});
-                table8.AddRow(new string[] {
+                            "False"});
+                table9.AddRow(new string[] {
                             "DateTime",
                             "\"2020-02-20T12:34:56.789\""});
-                table8.AddRow(new string[] {
+#line 111
+ testRunner.And("the item 1 from \'Children\' should be", ((string)(null)), table9, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table10.AddRow(new string[] {
+                            "Id",
+                            "53"});
+                table10.AddRow(new string[] {
+                            "String",
+                            "\"Some string.\""});
+                table10.AddRow(new string[] {
+                            "Integer",
+                            "42"});
+                table10.AddRow(new string[] {
+                            "Decimal",
+                            "3.141592"});
+                table10.AddRow(new string[] {
+                            "Boolean",
+                            "True"});
+                table10.AddRow(new string[] {
+                            "DateTime",
+                            "\"2020-02-20T12:34:56.789\""});
+                table10.AddRow(new string[] {
                             "Complex.Id",
                             "531"});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "Complex.Complex.Id",
                             "5311"});
 #line 117
- testRunner.And("the \'Complex\' property should be", ((string)(null)), table8, "And ");
+ testRunner.And("the \'Complex\' property should be", ((string)(null)), table10, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With multi-dimensional arrays")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With multi-dimensional arrays")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithMulti_DimensionalArrays()
@@ -607,98 +607,98 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Id",
                             "6"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[0][0][0]",
                             "1"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[0][0][1]",
                             "2"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[0][0][2]",
                             "3"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[0][1][0]",
                             "4"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[0][1][1]",
                             "5"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[0][1][2]",
                             "6"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][0][0]",
                             "7"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][0][1]",
                             "8"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][0][2]",
                             "9"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][1][0]",
                             "10"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][1][1]",
                             "11"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][1][2]",
                             "12"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][2][0]",
                             "13"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][2][1]",
                             "14"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[1][2][2]",
                             "15"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][0][0]",
                             "16"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][0][1]",
                             "17"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][0][2]",
                             "18"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][1][0]",
                             "19"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][1][1]",
                             "20"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][1][2]",
                             "21"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][2][0]",
                             "22"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][2][1]",
                             "23"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[2][2][2]",
                             "24"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[3][0][0]",
                             "25"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[3][0][1]",
                             "26"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Items[3][0][2]",
                             "27"});
 #line 130
- testRunner.Given("I define a table like", ((string)(null)), table9, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table11, "Given ");
 #line hidden
 #line 160
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 161
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -834,7 +834,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With dictionary property")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With dictionary property")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithDictionaryProperty()
@@ -863,29 +863,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Id",
                             "7"});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Dictionary.Father",
                             "\"John\""});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Dictionary.Mother",
                             "\"Ana\""});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Dictionary.Son",
                             "\"Billy\""});
-                table10.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Dictionary.Daughter",
                             "\"Cindy\""});
 #line 207
- testRunner.Given("I define a table like", ((string)(null)), table10, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table12, "Given ");
 #line hidden
 #line 214
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 215
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -913,7 +913,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With very complex property")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With very complex property")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithVeryComplexProperty()
@@ -942,32 +942,32 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Id",
                             "9"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Crazy[0].Red.Id",
                             "901"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Crazy[0].Green.Id",
                             "902"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Crazy[1].Blue.Id",
                             "911"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Crazy[1].White.Id",
                             "912"});
-                table11.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Crazy[1].Black.Id",
                             "913"});
 #line 225
- testRunner.Given("I define a table like", ((string)(null)), table11, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table13, "Given ");
 #line hidden
 #line 233
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 234
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1009,7 +1009,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="With tuple property")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
         [Xunit.TraitAttribute("Description", "With tuple property")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void WithTupleProperty()
@@ -1038,32 +1038,32 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Id",
                             "8"});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "SimpleTuple.Item1",
                             "\"Smith\""});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "SimpleTuple.Item2",
                             "7"});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "SimpleTuple.Item3",
                             "False"});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "NamedTuple.Item1",
                             "\"Neo\""});
-                table12.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "NamedTuple.Item2",
                             "42"});
 #line 247
- testRunner.Given("I define a table like", ((string)(null)), table12, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table14, "Given ");
 #line hidden
 #line 255
- testRunner.When("I request a complex object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I request a complex instance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 256
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1090,122 +1090,17 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Property value must be in a valid format")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
-        [Xunit.TraitAttribute("Description", "Property value must be in a valid format")]
+        [Xunit.SkippableFactAttribute(DisplayName="Property value must be of a valid type")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
+        [Xunit.TraitAttribute("Description", "Property value must be of a valid type")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void PropertyValueMustBeInAValidFormat()
+        public virtual void PropertyValueMustBeOfAValidType()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Property value must be in a valid format", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Property value must be of a valid type", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 265
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table13.AddRow(new string[] {
-                            "Id",
-                            "99"});
-                table13.AddRow(new string[] {
-                            "Id",
-                            "{Invalid Value Format}"});
-#line 266
- testRunner.Given("I define a table like", ((string)(null)), table13, "Given ");
-#line hidden
-#line 270
- testRunner.When("I request a complex object with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 271
- testRunner.Then("it should throw \'InvalidCastException\' with message \"Invalid value at \'Id\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must be an number")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index must be an number")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexMustBeAnNumber()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must be an number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 274
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table14.AddRow(new string[] {
-                            "Id",
-                            "99"});
-                table14.AddRow(new string[] {
-                            "Lines[abc]",
-                            "\"Some line.\""});
-#line 275
- testRunner.Given("I define a table like", ((string)(null)), table14, "Given ");
-#line hidden
-#line 279
- testRunner.When("I request a complex object with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 280
- testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
-                        "s[abc]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must start at 0")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index must start at 0")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexMustStartAt0()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must start at 0", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 283
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1230,35 +1125,32 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table15.AddRow(new string[] {
                             "Id",
-                            "99"});
-                table15.AddRow(new string[] {
-                            "Lines[1]",
-                            "\"Some line.\""});
-#line 284
+                            "Invalid Value Format"});
+#line 266
  testRunner.Given("I define a table like", ((string)(null)), table15, "Given ");
 #line hidden
-#line 288
- testRunner.When("I request a complex object with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 269
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 289
- testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
-                        "s[1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 270
+ testRunner.Then("it should throw \'JsonException\' with message \"The JSON value could not be convert" +
+                        "ed to System.Int32. Path: $.Id | LineNumber: 0 | BytePositionInLine: 28.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must not be negative")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index must not be negative")]
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must be an number")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index must be an number")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexMustNotBeNegative()
+        public virtual void CollectionPropertyIndexMustBeAnNumber()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must not be negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 292
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must be an number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 273
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1285,33 +1177,33 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "99"});
                 table16.AddRow(new string[] {
-                            "Lines[-1]",
+                            "Lines[abc]",
                             "\"Some line.\""});
-#line 293
+#line 274
  testRunner.Given("I define a table like", ((string)(null)), table16, "Given ");
 #line hidden
-#line 297
- testRunner.When("I request a complex object with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 278
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 298
+#line 279
  testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
-                        "s[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "s[abc]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must be in sequence")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index must be in sequence")]
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must start at 0")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index must start at 0")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexMustBeInSequence()
+        public virtual void CollectionPropertyIndexMustStartAt0()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must be in sequence", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 301
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must start at 0", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 282
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1338,36 +1230,33 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "99"});
                 table17.AddRow(new string[] {
-                            "Lines[0]",
+                            "Lines[1]",
                             "\"Some line.\""});
-                table17.AddRow(new string[] {
-                            "Lines[2]",
-                            "\"Some other line.\""});
-#line 302
+#line 283
  testRunner.Given("I define a table like", ((string)(null)), table17, "Given ");
 #line hidden
-#line 307
- testRunner.When("I request a complex object with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 287
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 308
+#line 288
  testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
-                        "s[2]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "s[1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index cannot repeat")]
-        [Xunit.TraitAttribute("FeatureTitle", "Deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index cannot repeat")]
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must not be negative")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index must not be negative")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexCannotRepeat()
+        public virtual void CollectionPropertyIndexMustNotBeNegative()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index cannot repeat", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 311
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must not be negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 291
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1394,18 +1283,127 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "99"});
                 table18.AddRow(new string[] {
-                            "Lines[0]",
+                            "Lines[-1]",
                             "\"Some line.\""});
-                table18.AddRow(new string[] {
-                            "Lines[0]",
-                            "\"Some other line.\""});
-#line 312
+#line 292
  testRunner.Given("I define a table like", ((string)(null)), table18, "Given ");
 #line hidden
-#line 317
- testRunner.When("I request a complex object with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 296
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 318
+#line 297
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
+                        "s[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must be in sequence")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index must be in sequence")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void CollectionPropertyIndexMustBeInSequence()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must be in sequence", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 300
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table19.AddRow(new string[] {
+                            "Id",
+                            "99"});
+                table19.AddRow(new string[] {
+                            "Lines[0]",
+                            "\"Some line.\""});
+                table19.AddRow(new string[] {
+                            "Lines[2]",
+                            "\"Some other line.\""});
+#line 301
+ testRunner.Given("I define a table like", ((string)(null)), table19, "Given ");
+#line hidden
+#line 306
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 307
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
+                        "s[2]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index cannot repeat")]
+        [Xunit.TraitAttribute("FeatureTitle", "Vertical deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index cannot repeat")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void CollectionPropertyIndexCannotRepeat()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index cannot repeat", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 310
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table20.AddRow(new string[] {
+                            "Id",
+                            "99"});
+                table20.AddRow(new string[] {
+                            "Lines[0]",
+                            "\"Some line.\""});
+                table20.AddRow(new string[] {
+                            "Lines[0]",
+                            "\"Some other line.\""});
+#line 311
+ testRunner.Given("I define a table like", ((string)(null)), table20, "Given ");
+#line hidden
+#line 316
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 317
  testRunner.Then("it should throw \'InvalidDataException\' with message \"Invalid array index at \'Line" +
                         "s[0]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -1420,12 +1418,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                DeserializerFeature.FeatureSetup();
+                VerticalDeserializerFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                DeserializerFeature.FeatureTearDown();
+                VerticalDeserializerFeature.FeatureTearDown();
             }
         }
     }

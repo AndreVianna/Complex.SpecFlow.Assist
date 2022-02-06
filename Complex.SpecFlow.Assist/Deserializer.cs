@@ -1,9 +1,27 @@
 ﻿namespace Complex.SpecFlow.Assist;
 
 internal static class Deserializer {
-    internal static T Deserialize<T>(Table table) {
-        var root = CreateObject(PropertyCollection.Create(table));
-        return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true })!;
+    internal static T DeserializeVertical<T>(Table table) {
+        return Deserialize<T>(CreateFromVertical(table));
+    }
+
+    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table) {
+        return CreateFromHorizontal(table)
+            .Select(Deserialize<T>);
+    }
+
+    private static T Deserialize<T>(PropertyCollection properties, int line = -1) {
+        try {
+            var root = CreateObject(properties);
+            return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true })!;
+        }
+        catch (Exception e) {
+            if (line == -1) throw;
+            throw new InvalidOperationException($"An error has occurred while deserializing line {line}.", e);
+        }
+        finally {
+            properties.Dispose();
+        }
     }
 
     private static JsonNode CreateObject(PropertyCollection properties) {
@@ -33,10 +51,11 @@ internal static class Deserializer {
             _ when string.IsNullOrWhiteSpace(text) => default,
             _ when text.ToLower() is "null" or "default" => default,
             _ when bool.TryParse(text, out var value) => JsonValue.Create(value),
-            _ when int.TryParse(text, out var value) => JsonValue.Create(value),
-            _ when double.TryParse(text, out var value) => JsonValue.Create(value),
             _ when text.StartsWith('"') => JsonValue.Create(text.Trim('"')),
-            _ => throw new InvalidCastException($"Invalid value at '{property.Line.Key}'."),
+            _ when text.StartsWith('\'') => JsonValue.Create(text.Trim('\'')),
+            _ when int.TryParse(text, out var value) => JsonValue.Create(value),
+            _ when decimal.TryParse(text, out var value) => JsonValue.Create(value),
+            _ => JsonValue.Create(text),
         };
         return GetValueOrArray(parent[property.Name], valueNode, property.Indexes);
     }
