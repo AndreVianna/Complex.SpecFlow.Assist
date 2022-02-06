@@ -111,13 +111,37 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id"});
+                            "Id",
+                            "String",
+                            "Integer",
+                            "Decimal",
+                            "Boolean",
+                            "DateTime",
+                            "Guid"});
                 table1.AddRow(new string[] {
-                            "1"});
+                            "1",
+                            "Some string.",
+                            "42",
+                            "3.141592",
+                            "True",
+                            "\'2020-02-20T12:34:56.789\'",
+                            "\"8D8CDA94-861B-42E4-9836-D972E2F3235B\""});
                 table1.AddRow(new string[] {
-                            "2"});
+                            "2",
+                            "Another string.",
+                            "43",
+                            "6.283185",
+                            "True",
+                            "\'2020-02-21T12:35:00.000\'",
+                            "\"72346CA1-B732-4674-9685-491A1C9020D0\""});
                 table1.AddRow(new string[] {
-                            "3"});
+                            "3",
+                            "One more string.",
+                            "44",
+                            "2.718282",
+                            "False",
+                            "\'2020-02-22T23:55:55.111\'",
+                            "\"0562F255-A838-415F-9082-3D4A00F06C07\""});
 #line 6
  testRunner.Given("I define a table like", ((string)(null)), table1, "Given ");
 #line hidden
