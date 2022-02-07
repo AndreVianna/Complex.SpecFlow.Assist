@@ -335,6 +335,67 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the inner exception should be \'InvalidDataException\' with message \"Invalid array " +
                         "index at \'Lines[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 24
+ testRunner.And("the inner exception should be \'InvalidCastException\' with message \"The value at \'" +
+                        "Id\' is not of the correct type.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must not be negative")]
+        [Xunit.TraitAttribute("FeatureTitle", "Horizontal deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index must not be negative")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void CollectionPropertyIndexMustNotBeNegative()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must not be negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
+                            "Lines[-1]"});
+                table3.AddRow(new string[] {
+                            "1",
+                            "\"Some line\""});
+                table3.AddRow(new string[] {
+                            "2",
+                            "\"Other line\""});
+#line 28
+ testRunner.Given("I define a table like", ((string)(null)), table3, "Given ");
+#line hidden
+#line 32
+ testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+ testRunner.Then("it should throw \'InvalidOperationException\' with message \"An error has occurred w" +
+                        "hile deserializing line 0.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 34
+ testRunner.And("the inner exception should be \'InvalidDataException\' with message \"Invalid array " +
+                        "index at \'Lines[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
