@@ -7,15 +7,31 @@ public sealed class DeserializerSteps {
     private IEnumerable<ComplexObject> _set = default!;
     private Action _action = default!;
     private Table _table = default!;
+    private readonly IDictionary<string, object> _context = new Dictionary<string, object>();
 
     [Given(@"I define a table like")]
     public void GivenIDefineATableLike(Table table) {
         _table = table;
     }
 
+    [Given(@"store as an instance in a context under '([^']*)'")]
+    public void GivenStoreAsAnInstanceInAContextUnder(string key) {
+        _context[key] = _table.CreateComplexInstance<ComplexObject>();
+    }
+
+    [Given(@"store as a set in a context under '([^']*)'")]
+    public void GivenStoreAsASetInAContextUnder(string key) {
+        _context[key] = _table.CreateComplexSet<ComplexObject>();
+    }
+
     [When(@"I request a complex instance")]
     public void WhenIRequestAComplexInstance() {
         _instance = _table.CreateComplexInstance<ComplexObject>();
+    }
+
+    [When(@"I request a complex instance with a context")]
+    public void WhenIRequestAComplexInstanceWithAContext() {
+        _instance = _table.CreateComplexInstance<ComplexObject>(_context);
     }
 
     [When(@"I request a complex set")]
@@ -28,6 +44,11 @@ public sealed class DeserializerSteps {
         _action = () => _table.CreateComplexInstance<ComplexObject>();
     }
 
+    [When(@"I request a complex instance with a context with an error")]
+    public void WhenIRequestAComplexInstanceWithAContextWithAnError() {
+        _action = () => _table.CreateComplexInstance<ComplexObject>(_context);
+    }
+
     [When(@"I request a complex set with an error")]
     public void WhenIRequestAComplexSetWithAnError() {
         _action = () => _table.CreateComplexSet<ComplexObject>();
@@ -36,6 +57,12 @@ public sealed class DeserializerSteps {
     [Then(@"the result object should not be null")]
     public void ThenTheResultObjectShouldBeOfTypeComplexObject() {
         _instance.Should().NotBeNull();
+    }
+
+    [Then(@"the result object should be")]
+    public void ThenTheResultObjectShouldBe(Table table) {
+        var result = table.CreateComplexInstance<ComplexObject>();
+        _instance.Should().BeEquivalentTo(result);
     }
 
     [Then(@"the result collection should have (.*) items")]
@@ -233,9 +260,9 @@ public sealed class DeserializerSteps {
         _instance.Crazy!.ElementAt(index)[key].Id.Should().Be(int.Parse(value));
     }
 
-    [Then(@"it should throw 'JsonException' with message ""([^""]*)""")]
-    public void ThenItShouldThrowJsonExceptionWithMessage(string message) {
-        _action.Should().Throw<JsonException>()
+    [Then(@"it should throw 'InvalidCastException' with message ""([^""]*)""")]
+    public void ThenItShouldThrowInvalidCastExceptionWithMessage(string message) {
+        _action.Should().Throw<InvalidCastException>()
             .WithMessage(message);
     }
 
@@ -248,6 +275,20 @@ public sealed class DeserializerSteps {
     [Then(@"it should throw 'InvalidOperationException' with message ""([^""]*)""")]
     public void ThenItShouldThrowInvalidOperationExceptionWithMessage(string message) {
         _action.Should().Throw<InvalidOperationException>()
+            .WithMessage(message);
+    }
+
+    [Then(@"the inner exception should be 'InvalidCastException' with message ""([^""]*)""")]
+    public void ThenTheInnerExceptionShouldBeInvalidCastExceptionWithMessage(string message) {
+        _action.Should().Throw<InvalidOperationException>()
+            .WithInnerException<InvalidCastException>()
+            .WithMessage(message);
+    }
+
+    [Then(@"the inner exception should be 'InvalidDataException' with message ""([^""]*)""")]
+    public void ThenTheInnerExceptionShouldBeInvalidDataExceptionWithMessage(string message) {
+        _action.Should().Throw<InvalidOperationException>()
+            .WithInnerException<InvalidDataException>()
             .WithMessage(message);
     }
 

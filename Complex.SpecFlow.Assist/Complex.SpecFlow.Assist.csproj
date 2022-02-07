@@ -6,20 +6,20 @@
     <Nullable>enable</Nullable>
     <PackageId>Complex.Specflow.Assist</PackageId>
     <Title>Complex.Specflow.Assist</Title>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Andre Vianna</Authors>
     <Company>Andre Vianna</Company>
     <PackageTags>SpecFlow, Assist, Complex, Json, Gherkin, Cucumber</PackageTags>
     <PackageProjectUrl>https://github.com/AndreVianna/Complex.SpecFlow.Assist</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Description>This package adds extension methods to the Table object to help create complex objects from a vertical table definition.</Description>
+    <Description>This package adds extension methods to the Table object to help create complex objects from a table definition.</Description>
     <Copyright>© Andre Vianna 2022</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>v1.1.0:
-    - Added support to horizontal tables and multiple instances.
+    <PackageReleaseNotes>v1.2.0:
+    - Added support to deserializatin context.
     </PackageReleaseNotes>
   </PropertyGroup>
 
