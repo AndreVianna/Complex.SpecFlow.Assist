@@ -38,7 +38,9 @@ internal static class Deserializer {
     private static JsonNode CreateObject(PropertyCollection properties) {
         var objectNode = new JsonObject();
         foreach (var property in properties) {
-            objectNode[property!.Name] = CreateProperty(objectNode, property, properties);
+            var value = CreateProperty(objectNode, property!, properties);
+            if (property!.Name.ToLower() == "{self}") return value!;
+            objectNode[property.Name] = value;
         }
 
         return objectNode;
@@ -90,7 +92,7 @@ internal static class Deserializer {
         return indexes.Count switch {
             > 1 => throw new InvalidDataException($"An instance value can not have more than one index at '{line}'."),
             > 0 when collection.Length == 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context contains a single object and can't be used with an index at '{line}'."),
-            > 0 when int.TryParse(indexes[0], out var index) && index > 0 && index < collection.Length => SerializeToNode(collection[index], new JsonSerializerOptions { IncludeFields = true })!,
+            > 0 when int.TryParse(indexes[0], out var index) && index >= 0 && index < collection.Length => SerializeToNode(collection[index], new JsonSerializerOptions { IncludeFields = true })!,
             > 0 => throw new InvalidDataException($"'{indexes[0]}' is not a valid index for the collection contained in the deserialization context under '{contextKey}' at '{line}'."),
             _ when collection.Length > 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context contains a collection and can't be assigned to an instance without an index at '{line}'."),
             _ => SerializeToNode(value)!
@@ -101,7 +103,7 @@ internal static class Deserializer {
         var collection = (value as IEnumerable)?.Cast<object>().ToArray() ?? Array.Empty<object>();
         return values.Count switch {
             > 0 when collection.Length == 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context does not contain a collection at '{line}'."),
-            > 0 when TryGetIndexes(values, out var indexes) && indexes.All(index => index > 0 && index < collection.Length)
+            > 0 when TryGetIndexes(values, out var indexes) && indexes.All(index => index >= 0 && index < collection.Length)
                 => SerializeToNode(indexes.Select(index => collection[index]).ToArray(), new JsonSerializerOptions { IncludeFields = true })!,
             > 0 => throw new InvalidDataException($"'{string.Join(',', values)}' is not a valid set of indexes for the collection contained in the deserialization context under '{contextKey}' at '{line}'."),
             _ when collection.Length > 0 => SerializeToNode(collection.ToArray(), new JsonSerializerOptions { IncludeFields = true })!,

@@ -111,35 +111,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table4.AddRow(new string[] {
-                            "Id",
-                            "1"});
-#line 6
- testRunner.Given("I define a table like", ((string)(null)), table4, "Given ");
-#line hidden
-#line 9
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table5.AddRow(new string[] {
                             "Id",
-                            "2"});
-                table5.AddRow(new string[] {
-                            "Complex",
-                            "{StoredObject}"});
-#line 10
- testRunner.And("I define a table like", ((string)(null)), table5, "And ");
+                            "1"});
+#line 6
+ testRunner.Given("I define a table like", ((string)(null)), table5, "Given ");
 #line hidden
-#line 14
- testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
- testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
@@ -148,10 +130,28 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "2"});
                 table6.AddRow(new string[] {
+                            "Complex",
+                            "{StoredObject}"});
+#line 10
+ testRunner.And("I define a table like", ((string)(null)), table6, "And ");
+#line hidden
+#line 14
+ testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 15
+ testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table7.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table7.AddRow(new string[] {
                             "Complex.Id",
                             "1"});
 #line 16
- testRunner.And("the result object should be", ((string)(null)), table6, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table7, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -187,39 +187,21 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table7.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "10"});
-                table7.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "20"});
-                table7.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "30"});
-                table7.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "40"});
 #line 23
- testRunner.Given("I define a table like", ((string)(null)), table7, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table8, "Given ");
 #line hidden
 #line 29
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table8.AddRow(new string[] {
-                            "Id",
-                            "2"});
-                table8.AddRow(new string[] {
-                            "Complex",
-                            "{StoredArray:2}"});
-#line 30
- testRunner.And("I define a table like", ((string)(null)), table8, "And ");
-#line hidden
-#line 34
- testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 35
- testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
@@ -228,10 +210,28 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "2"});
                 table9.AddRow(new string[] {
+                            "Complex",
+                            "{StoredArray:2}"});
+#line 30
+ testRunner.And("I define a table like", ((string)(null)), table9, "And ");
+#line hidden
+#line 34
+ testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 35
+ testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table10.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table10.AddRow(new string[] {
                             "Complex.Id",
                             "30"});
 #line 36
- testRunner.And("the result object should be", ((string)(null)), table9, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table10, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -267,39 +267,21 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table10.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "10"});
-                table10.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "20"});
-                table10.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "30"});
-                table10.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "40"});
 #line 43
- testRunner.Given("I define a table like", ((string)(null)), table10, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table11, "Given ");
 #line hidden
 #line 49
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table11.AddRow(new string[] {
-                            "Id",
-                            "2"});
-                table11.AddRow(new string[] {
-                            "Children",
-                            "[StoredArray]"});
-#line 50
- testRunner.And("I define a table like", ((string)(null)), table11, "And ");
-#line hidden
-#line 54
- testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 55
- testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
@@ -308,19 +290,37 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "2"});
                 table12.AddRow(new string[] {
+                            "Children",
+                            "[StoredArray]"});
+#line 50
+ testRunner.And("I define a table like", ((string)(null)), table12, "And ");
+#line hidden
+#line 54
+ testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 55
+ testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table13.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table13.AddRow(new string[] {
                             "Children[0].Id",
                             "10"});
-                table12.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Children[1].Id",
                             "20"});
-                table12.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Children[2].Id",
                             "30"});
-                table12.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Children[3].Id",
                             "40"});
 #line 56
- testRunner.And("the result object should be", ((string)(null)), table12, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table13, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -356,39 +356,21 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table13.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "10"});
-                table13.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "20"});
-                table13.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "30"});
-                table13.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "40"});
 #line 66
- testRunner.Given("I define a table like", ((string)(null)), table13, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table14, "Given ");
 #line hidden
 #line 72
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table14.AddRow(new string[] {
-                            "Id",
-                            "2"});
-                table14.AddRow(new string[] {
-                            "Children",
-                            "[StoredArray:1,3,2]"});
-#line 73
- testRunner.And("I define a table like", ((string)(null)), table14, "And ");
-#line hidden
-#line 77
- testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 78
- testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
@@ -397,16 +379,34 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "2"});
                 table15.AddRow(new string[] {
+                            "Children",
+                            "[StoredArray:1,3,2]"});
+#line 73
+ testRunner.And("I define a table like", ((string)(null)), table15, "And ");
+#line hidden
+#line 77
+ testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 78
+ testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table16.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table16.AddRow(new string[] {
                             "Children[0].Id",
                             "20"});
-                table15.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "Children[1].Id",
                             "40"});
-                table15.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "Children[2].Id",
                             "30"});
 #line 79
- testRunner.And("the result object should be", ((string)(null)), table15, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table16, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -442,35 +442,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table16.AddRow(new string[] {
-                            "Id",
-                            "1"});
-#line 88
- testRunner.Given("I define a table like", ((string)(null)), table16, "Given ");
-#line hidden
-#line 91
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table17.AddRow(new string[] {
                             "Id",
-                            "2"});
-                table17.AddRow(new string[] {
-                            "Children",
-                            "[StoredObject]"});
-#line 92
- testRunner.And("I define a table like", ((string)(null)), table17, "And ");
+                            "1"});
+#line 88
+ testRunner.Given("I define a table like", ((string)(null)), table17, "Given ");
 #line hidden
-#line 96
- testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 97
- testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 91
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
@@ -479,10 +461,28 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "2"});
                 table18.AddRow(new string[] {
+                            "Children",
+                            "[StoredObject]"});
+#line 92
+ testRunner.And("I define a table like", ((string)(null)), table18, "And ");
+#line hidden
+#line 96
+ testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 97
+ testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table19.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table19.AddRow(new string[] {
                             "Children[0].Id",
                             "1"});
 #line 98
- testRunner.And("the result object should be", ((string)(null)), table18, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table19, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -518,17 +518,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table19.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "Id",
                             "2"});
-                table19.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "Complex",
                             "{Invalid}"});
 #line 105
- testRunner.And("I define a table like", ((string)(null)), table19, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table20, "And ");
 #line hidden
 #line 109
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -571,29 +571,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table20.AddRow(new string[] {
-                            "Id",
-                            "1"});
-#line 114
- testRunner.Given("I define a table like", ((string)(null)), table20, "Given ");
-#line hidden
-#line 117
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table21.AddRow(new string[] {
                             "Id",
+                            "1"});
+#line 114
+ testRunner.Given("I define a table like", ((string)(null)), table21, "Given ");
+#line hidden
+#line 117
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table22.AddRow(new string[] {
+                            "Id",
                             "2"});
-                table21.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "Complex",
                             "{StoredObject:0}"});
 #line 118
- testRunner.And("I define a table like", ((string)(null)), table21, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table22, "And ");
 #line hidden
 #line 122
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -637,29 +637,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table22.AddRow(new string[] {
-                            "Id",
-                            "1"});
-#line 127
- testRunner.Given("I define a table like", ((string)(null)), table22, "Given ");
-#line hidden
-#line 130
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table23.AddRow(new string[] {
                             "Id",
+                            "1"});
+#line 127
+ testRunner.Given("I define a table like", ((string)(null)), table23, "Given ");
+#line hidden
+#line 130
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table24.AddRow(new string[] {
+                            "Id",
                             "2"});
-                table23.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "Complex",
                             "{StoredObject:1,2}"});
 #line 131
- testRunner.And("I define a table like", ((string)(null)), table23, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table24, "And ");
 #line hidden
 #line 135
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -702,33 +702,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table24.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "10"});
-                table24.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "20"});
-                table24.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "30"});
-                table24.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "40"});
 #line 140
- testRunner.Given("I define a table like", ((string)(null)), table24, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table25, "Given ");
 #line hidden
 #line 146
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table25.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "Id",
                             "2"});
-                table25.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "Complex",
                             "{StoredArray}"});
 #line 147
- testRunner.And("I define a table like", ((string)(null)), table25, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table26, "And ");
 #line hidden
 #line 151
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -772,33 +772,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table26.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "10"});
-                table26.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "20"});
-                table26.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "30"});
-                table26.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "40"});
 #line 156
- testRunner.Given("I define a table like", ((string)(null)), table26, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table27, "Given ");
 #line hidden
 #line 162
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table27.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "Id",
                             "2"});
-                table27.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "Complex",
                             "{StoredArray:x}"});
 #line 163
- testRunner.And("I define a table like", ((string)(null)), table27, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table28, "And ");
 #line hidden
 #line 167
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -842,33 +842,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table28.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "10"});
-                table28.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "20"});
-                table28.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "30"});
-                table28.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "40"});
 #line 172
- testRunner.Given("I define a table like", ((string)(null)), table28, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table29, "Given ");
 #line hidden
 #line 178
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table29.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             "Id",
                             "2"});
-                table29.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             "Complex",
                             "{StoredArray:-1}"});
 #line 179
- testRunner.And("I define a table like", ((string)(null)), table29, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table30, "And ");
 #line hidden
 #line 183
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -915,33 +915,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table30.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "10"});
-                table30.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "20"});
-                table30.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "30"});
-                table30.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             "40"});
 #line 188
- testRunner.Given("I define a table like", ((string)(null)), table30, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table31, "Given ");
 #line hidden
 #line 194
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table31.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "Id",
                             "2"});
-                table31.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             "Complex",
                             "{StoredArray:4}"});
 #line 195
- testRunner.And("I define a table like", ((string)(null)), table31, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table32, "And ");
 #line hidden
 #line 199
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -985,17 +985,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table32.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "Id",
                             "2"});
-                table32.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             "Children",
                             "[Invalid]"});
 #line 204
- testRunner.And("I define a table like", ((string)(null)), table32, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table33, "And ");
 #line hidden
 #line 208
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1038,29 +1038,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table33.AddRow(new string[] {
-                            "Id",
-                            "1"});
-#line 213
- testRunner.Given("I define a table like", ((string)(null)), table33, "Given ");
-#line hidden
-#line 216
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table34.AddRow(new string[] {
                             "Id",
+                            "1"});
+#line 213
+ testRunner.Given("I define a table like", ((string)(null)), table34, "Given ");
+#line hidden
+#line 216
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table35.AddRow(new string[] {
+                            "Id",
                             "2"});
-                table34.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "Children",
                             "[StoredObject:1]"});
 #line 217
- testRunner.And("I define a table like", ((string)(null)), table34, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table35, "And ");
 #line hidden
 #line 221
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1106,33 +1106,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "10"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "20"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "30"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "40"});
 #line 226
- testRunner.Given("I define a table like", ((string)(null)), table35, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table36, "Given ");
 #line hidden
 #line 232
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table36.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "Id",
                             "2"});
-                table36.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "Children",
                             "[StoredArray:x,2]"});
 #line 233
- testRunner.And("I define a table like", ((string)(null)), table36, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table37, "And ");
 #line hidden
 #line 237
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1176,33 +1176,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table37.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "10"});
-                table37.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "20"});
-                table37.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "30"});
-                table37.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "40"});
 #line 242
- testRunner.Given("I define a table like", ((string)(null)), table37, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table38, "Given ");
 #line hidden
 #line 248
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table38.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "Id",
                             "2"});
-                table38.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "Children",
                             "[StoredArray:-1,2]"});
 #line 249
- testRunner.And("I define a table like", ((string)(null)), table38, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table39, "And ");
 #line hidden
 #line 253
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1249,33 +1249,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table39.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "10"});
-                table39.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "20"});
-                table39.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "30"});
-                table39.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "40"});
 #line 258
- testRunner.Given("I define a table like", ((string)(null)), table39, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table40, "Given ");
 #line hidden
 #line 264
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table40.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "Id",
                             "2"});
-                table40.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "Children",
                             "[StoredArray:4,5]"});
 #line 265
- testRunner.And("I define a table like", ((string)(null)), table40, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table41, "And ");
 #line hidden
 #line 269
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
