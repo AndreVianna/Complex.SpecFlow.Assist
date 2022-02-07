@@ -5,6 +5,7 @@ namespace Complex.SpecFlow.Assist.Tests.Steps;
 public sealed class DeserializerSteps {
     private ComplexObject _instance = default!;
     private IEnumerable<ComplexObject> _set = default!;
+    private IEnumerable<string> _primitives = default!;
     private Action _action = default!;
     private Table _table = default!;
     private readonly IDictionary<string, object> _context = new Dictionary<string, object>();
@@ -54,6 +55,16 @@ public sealed class DeserializerSteps {
         _action = () => _table.CreateComplexSet<ComplexObject>();
     }
 
+    [When(@"I request a set of strings")]
+    public void WhenIRequestASetOfStrings() {
+        _primitives = _table.CreateComplexSet<string>();
+    }
+
+    [Then(@"the item (.*) should be '([^']*)'")]
+    public void ThenTheItemShouldBe(int index, string value) {
+        _primitives.ElementAt(index).Should().Be(value);
+    }
+
     [Then(@"the result object should not be null")]
     public void ThenTheResultObjectShouldBeOfTypeComplexObject() {
         _instance.Should().NotBeNull();
@@ -63,6 +74,12 @@ public sealed class DeserializerSteps {
     public void ThenTheResultObjectShouldBe(Table table) {
         var result = table.CreateComplexInstance<ComplexObject>();
         _instance.Should().BeEquivalentTo(result);
+    }
+
+    [Then(@"the result collection of strings should have (.*) items")]
+    public void ThenTheResultCollectionOfStringsShouldHaveItems(int count) {
+        _primitives.Should().NotBeNull();
+        _primitives.Count().Should().Be(count);
     }
 
     [Then(@"the result collection should have (.*) items")]
