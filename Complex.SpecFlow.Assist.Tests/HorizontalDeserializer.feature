@@ -21,3 +21,14 @@ Scenario: One line with a invalid property value
 	| 3       |
 	When I request a complex set with an error
 	Then it should throw 'InvalidOperationException' with message "An error has occurred while deserializing line 1."
+	And the inner exception should be 'InvalidCastException' with message "The value at 'Id' is not of the correct type."
+
+	@Deserializer
+Scenario: Collection property index must not be negative
+	Given I define a table like
+	| Id | Lines[-1]    |
+	| 1  | "Some line"  |
+	| 2  | "Other line" |
+	When I request a complex set with an error
+	Then it should throw 'InvalidOperationException' with message "An error has occurred while deserializing line 0."
+	And the inner exception should be 'InvalidDataException' with message "Invalid array index at 'Lines[-1]'."

@@ -3,11 +3,12 @@
 internal sealed class PropertyCollection : IDisposable {
 
     private readonly PropertyEnumerator _enumerator;
-    internal PropertyCollection(IEnumerator<TableLine> enumerator, int level = 0) {
-        _enumerator = new PropertyEnumerator(enumerator, level);
+
+    internal PropertyCollection(IEnumerator<TableLine> enumerator, IDictionary<string, object> context, int level = 0) {
+        _enumerator = new PropertyEnumerator(enumerator, context, level);
     }
 
-    public PropertyCollection LevelUp() => new(_enumerator.Source!, _enumerator.Level + 1);
+    public PropertyCollection LevelUp() => new(_enumerator.Source!, _enumerator.Context, _enumerator.Level + 1);
 
 
     public PropertyEnumerator GetEnumerator() => _enumerator;
@@ -15,7 +16,7 @@ internal sealed class PropertyCollection : IDisposable {
 
     public void Dispose() => _enumerator.Source.Dispose();
 
-    public sealed class PropertyEnumerator {
+    internal sealed class PropertyEnumerator {
         private const string _regexPattern = @"^([^\[<]+)(\[([^]]+)\])*$"; // abc[2][-3][df] => $1:abc, $3:[2,-3,df]
         private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
         private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
@@ -23,16 +24,18 @@ internal sealed class PropertyCollection : IDisposable {
         private readonly string _basePath;
         private bool _canMoveNext;
 
-        public PropertyEnumerator(IEnumerator<TableLine> source, int level) {
+        public PropertyEnumerator(IEnumerator<TableLine> source, IDictionary<string, object> context, int level) {
             Source = source;
             Level = level;
+            Context = context;
             _canMoveNext = level == 0;
             _basePath = GetBasePath();
         }
 
         public IEnumerator<TableLine?> Source { get; }
         public int Level { get; }
-        public Property Current { get; private set; } = default!;
+        public IDictionary<string, object> Context { get; }
+        public Property? Current { get; private set; }
 
         public void DoNotMoveNext() {
             _canMoveNext = false;
@@ -60,7 +63,7 @@ internal sealed class PropertyCollection : IDisposable {
             var indexes = ConvertKeys(keys, previousIndexes, previousName == name);
             var children = relativePath.Skip(1).ToArray();
 
-            Current = new Property(name, indexes, children, Source.Current);
+            Current = new Property(name, indexes, children, Source.Current, Context);
         }
 
         private static (string name, string[] keys) DeconstructToken(string token) {

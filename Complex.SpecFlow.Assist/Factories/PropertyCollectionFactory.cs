@@ -1,16 +1,14 @@
-﻿using Complex.SpecFlow.Assist.Collections;
-
-namespace Complex.SpecFlow.Assist.Factories;
+﻿namespace Complex.SpecFlow.Assist.Factories;
 
 internal static class PropertyCollectionFactory {
 
-    public static PropertyCollection CreateFromVertical(Table table) {
+    public static PropertyCollection CreateFromVertical(Table table, IDictionary<string, object> context) {
         var source = table.Rows.Select(i => new TableLine(i[0], i[1])).GetEnumerator();
-        return new PropertyCollection(source);
+        return new PropertyCollection(source, context);
     }
 
-    public static IEnumerable<PropertyCollection> CreateFromHorizontal(Table table) {
-        return table.Rows.Select(row => row.Keys.Select(key => new TableLine(key, row[key])).GetEnumerator())
-            .Select(source => new PropertyCollection(source));
+    public static IEnumerable<PropertyCollection> CreateFromHorizontal(Table table, IDictionary<string, object> context) {
+        var lines = table.Rows.Select(row => row.Keys.Select(key => new TableLine(key, row[key])).GetEnumerator());
+        return lines.Select(source => new PropertyCollection(source, context));
     }
 }
