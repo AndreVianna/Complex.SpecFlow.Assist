@@ -1,4 +1,4 @@
-﻿Feature: Inject object
+﻿Feature: Deserialization context
 Use a deserialization context to store pre-defined objects and use during the deserialization process
 
 @Deserializer
@@ -99,6 +99,33 @@ Scenario: Using vertical table get an instance from a stored instance as a colle
 	| Field          | Value |
 	| Id             | 2     |
 	| Children[0].Id | 1     |
+
+@Deserializer
+Scenario: Use previous values of the table definition
+	Given I define a table like
+	| Id | Complex        | Integer   | Children     |
+	| 10 |                | {_index_} |              |
+	| 20 | {_previous_:0} | {_index_} |              |
+	| 30 | {_previous_:0} | {_index_} |              |
+	| 40 | {_previous_:1} | {_index_} |              |
+	| 50 |                | {_index_} | [_previous_] |
+	When I request a complex set
+	Then the result collection should have 5 items
+	And the 'Id' property of the item 0 should be '10'
+	And the 'Integer' property of the item 0 should be '0'
+	And the 'Id' property of the item 1 should be '20'
+	And the 'Integer' property of the item 1 should be '1'
+	And the 'Complex.Id' property of the item 1 should be '10'
+	And the 'Id' property of the item 2 should be '30'
+	And the 'Integer' property of the item 2 should be '2'
+	And the 'Complex.Id' property of the item 2 should be '10'
+	And the 'Id' property of the item 3 should be '40'
+	And the 'Integer' property of the item 3 should be '3'
+	And the 'Complex.Id' property of the item 3 should be '20'
+	And the 'Complex.Complext.Id' property of the item 3 should be '10'
+	And the 'Id' property of the item 4 should be '50'
+	And the 'Integer' property of the item 4 should be '4'
+	And the 'Children' property of the item 4 should have 4 items
 
 @Deserializer
 Scenario: Try to get a key not stored in the context when returning an instance

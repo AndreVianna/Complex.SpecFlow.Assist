@@ -19,7 +19,7 @@ namespace Complex.SpecFlow.Assist.Tests
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class InjectObjectFeature : object, Xunit.IClassFixture<InjectObjectFeature.FixtureData>, System.IDisposable
+    public partial class DeserializationContextFeature : object, Xunit.IClassFixture<DeserializationContextFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace Complex.SpecFlow.Assist.Tests
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "InjectObject.feature"
+#line 1 "DeserializatonContext.feature"
 #line hidden
         
-        public InjectObjectFeature(InjectObjectFeature.FixtureData fixtureData, Complex_SpecFlow_Assist_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public DeserializationContextFeature(DeserializationContextFeature.FixtureData fixtureData, Complex_SpecFlow_Assist_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace Complex.SpecFlow.Assist.Tests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Inject object", "Use a deserialization context to store pre-defined objects and use during the des" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Deserialization context", "Use a deserialization context to store pre-defined objects and use during the des" +
                     "erialization process", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -82,7 +82,7 @@ namespace Complex.SpecFlow.Assist.Tests
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Using vertical table get an intance from a stored object")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get an intance from a stored object")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void UsingVerticalTableGetAnIntanceFromAStoredObject()
@@ -111,29 +111,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table5.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "Id",
                             "1"});
 #line 6
- testRunner.Given("I define a table like", ((string)(null)), table5, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table1, "Given ");
 #line hidden
 #line 9
  testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table6.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "Id",
                             "2"});
-                table6.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "Complex",
                             "{StoredObject}"});
 #line 10
- testRunner.And("I define a table like", ((string)(null)), table6, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table2, "And ");
 #line hidden
 #line 14
  testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -141,24 +141,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 15
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Id",
                             "2"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Complex.Id",
                             "1"});
 #line 16
- testRunner.And("the result object should be", ((string)(null)), table7, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Using vertical table get single item form a stored collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get single item form a stored collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void UsingVerticalTableGetSingleItemFormAStoredCollection()
@@ -187,33 +187,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table8.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "10"});
-                table8.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "20"});
-                table8.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "30"});
-                table8.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "40"});
 #line 23
- testRunner.Given("I define a table like", ((string)(null)), table8, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table4, "Given ");
 #line hidden
 #line 29
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Id",
                             "2"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Complex",
                             "{StoredArray:2}"});
 #line 30
- testRunner.And("I define a table like", ((string)(null)), table9, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table5, "And ");
 #line hidden
 #line 34
  testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -221,24 +221,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 35
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table10.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Id",
                             "2"});
-                table10.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Complex.Id",
                             "30"});
 #line 36
- testRunner.And("the result object should be", ((string)(null)), table10, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table6, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Using vertical table get the whole list from a stored collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get the whole list from a stored collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void UsingVerticalTableGetTheWholeListFromAStoredCollection()
@@ -267,33 +267,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table11.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "10"});
-                table11.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "20"});
-                table11.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "30"});
-                table11.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "40"});
 #line 43
- testRunner.Given("I define a table like", ((string)(null)), table11, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table7, "Given ");
 #line hidden
 #line 49
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table12.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Id",
                             "2"});
-                table12.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Children",
                             "[StoredArray]"});
 #line 50
- testRunner.And("I define a table like", ((string)(null)), table12, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table8, "And ");
 #line hidden
 #line 54
  testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -301,33 +301,33 @@ this.ScenarioInitialize(scenarioInfo);
 #line 55
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table13.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Id",
                             "2"});
-                table13.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Children[0].Id",
                             "10"});
-                table13.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Children[1].Id",
                             "20"});
-                table13.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Children[2].Id",
                             "30"});
-                table13.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Children[3].Id",
                             "40"});
 #line 56
- testRunner.And("the result object should be", ((string)(null)), table13, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table9, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Using vertical table get selected items from a stored collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get selected items from a stored collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void UsingVerticalTableGetSelectedItemsFromAStoredCollection()
@@ -356,33 +356,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table14.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "10"});
-                table14.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "20"});
-                table14.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "30"});
-                table14.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "40"});
 #line 66
- testRunner.Given("I define a table like", ((string)(null)), table14, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table10, "Given ");
 #line hidden
 #line 72
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table15.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Id",
                             "2"});
-                table15.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Children",
                             "[StoredArray:1,3,2]"});
 #line 73
- testRunner.And("I define a table like", ((string)(null)), table15, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table11, "And ");
 #line hidden
 #line 77
  testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -390,30 +390,30 @@ this.ScenarioInitialize(scenarioInfo);
 #line 78
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table16.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Id",
                             "2"});
-                table16.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Children[0].Id",
                             "20"});
-                table16.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Children[1].Id",
                             "40"});
-                table16.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Children[2].Id",
                             "30"});
 #line 79
- testRunner.And("the result object should be", ((string)(null)), table16, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table12, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Using vertical table get an instance from a stored instance as a collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get an instance from a stored instance as a collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void UsingVerticalTableGetAnInstanceFromAStoredInstanceAsACollection()
@@ -442,29 +442,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table17.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Id",
                             "1"});
 #line 88
- testRunner.Given("I define a table like", ((string)(null)), table17, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table13, "Given ");
 #line hidden
 #line 91
  testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table18.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Id",
                             "2"});
-                table18.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Children",
                             "[StoredObject]"});
 #line 92
- testRunner.And("I define a table like", ((string)(null)), table18, "And ");
+ testRunner.And("I define a table like", ((string)(null)), table14, "And ");
 #line hidden
 #line 96
  testRunner.When("I request a complex instance with a context", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -472,24 +472,142 @@ this.ScenarioInitialize(scenarioInfo);
 #line 97
  testRunner.Then("the result object should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table19.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "Id",
                             "2"});
-                table19.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "Children[0].Id",
                             "1"});
 #line 98
- testRunner.And("the result object should be", ((string)(null)), table19, "And ");
+ testRunner.And("the result object should be", ((string)(null)), table15, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Use previous values of the table definition")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
+        [Xunit.TraitAttribute("Description", "Use previous values of the table definition")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void UsePreviousValuesOfTheTableDefinition()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Use previous values of the table definition", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 104
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
+                            "Complex",
+                            "Integer",
+                            "Children"});
+                table16.AddRow(new string[] {
+                            "10",
+                            "",
+                            "{_index_}",
+                            ""});
+                table16.AddRow(new string[] {
+                            "20",
+                            "{_previous_:0}",
+                            "{_index_}",
+                            ""});
+                table16.AddRow(new string[] {
+                            "30",
+                            "{_previous_:0}",
+                            "{_index_}",
+                            ""});
+                table16.AddRow(new string[] {
+                            "40",
+                            "{_previous_:1}",
+                            "{_index_}",
+                            ""});
+                table16.AddRow(new string[] {
+                            "50",
+                            "",
+                            "{_index_}",
+                            "[_previous_]"});
+#line 105
+ testRunner.Given("I define a table like", ((string)(null)), table16, "Given ");
+#line hidden
+#line 112
+ testRunner.When("I request a complex set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 113
+ testRunner.Then("the result collection should have 5 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 114
+ testRunner.And("the \'Id\' property of the item 0 should be \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 115
+ testRunner.And("the \'Integer\' property of the item 0 should be \'0\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 116
+ testRunner.And("the \'Id\' property of the item 1 should be \'20\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 117
+ testRunner.And("the \'Integer\' property of the item 1 should be \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 118
+ testRunner.And("the \'Complex.Id\' property of the item 1 should be \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 119
+ testRunner.And("the \'Id\' property of the item 2 should be \'30\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 120
+ testRunner.And("the \'Integer\' property of the item 2 should be \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 121
+ testRunner.And("the \'Complex.Id\' property of the item 2 should be \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 122
+ testRunner.And("the \'Id\' property of the item 3 should be \'40\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 123
+ testRunner.And("the \'Integer\' property of the item 3 should be \'3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 124
+ testRunner.And("the \'Complex.Id\' property of the item 3 should be \'20\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 125
+ testRunner.And("the \'Complex.Complext.Id\' property of the item 3 should be \'10\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 126
+ testRunner.And("the \'Id\' property of the item 4 should be \'50\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 127
+ testRunner.And("the \'Integer\' property of the item 4 should be \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 128
+ testRunner.And("the \'Children\' property of the item 4 should have 4 items", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to get a key not stored in the context when returning an instance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to get a key not stored in the context when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void TryToGetAKeyNotStoredInTheContextWhenReturningAnInstance()
@@ -498,7 +616,126 @@ this.ScenarioInitialize(scenarioInfo);
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 104
+#line 131
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table17.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table17.AddRow(new string[] {
+                            "Complex",
+                            "{Invalid}"});
+#line 132
+ testRunner.And("I define a table like", ((string)(null)), table17, "And ");
+#line hidden
+#line 136
+ testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 137
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'Invalid\' was not fo" +
+                        "und in the deserialization context at \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Try to use an index with an object stored as an instance")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
+        [Xunit.TraitAttribute("Description", "Try to use an index with an object stored as an instance")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void TryToUseAnIndexWithAnObjectStoredAsAnInstance()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use an index with an object stored as an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 140
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table18.AddRow(new string[] {
+                            "Id",
+                            "1"});
+#line 141
+ testRunner.Given("I define a table like", ((string)(null)), table18, "Given ");
+#line hidden
+#line 144
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table19.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table19.AddRow(new string[] {
+                            "Complex",
+                            "{StoredObject:0}"});
+#line 145
+ testRunner.And("I define a table like", ((string)(null)), table19, "And ");
+#line hidden
+#line 149
+ testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 150
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'StoredObject\' of th" +
+                        "e deserialization context contains a single object and can\'t be used with an ind" +
+                        "ex at \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Try to use more than one index when returning an instance")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
+        [Xunit.TraitAttribute("Description", "Try to use more than one index when returning an instance")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void TryToUseMoreThanOneIndexWhenReturningAnInstance()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use more than one index when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 153
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -523,148 +760,29 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table20.AddRow(new string[] {
                             "Id",
-                            "2"});
-                table20.AddRow(new string[] {
-                            "Complex",
-                            "{Invalid}"});
-#line 105
- testRunner.And("I define a table like", ((string)(null)), table20, "And ");
+                            "1"});
+#line 154
+ testRunner.Given("I define a table like", ((string)(null)), table20, "Given ");
 #line hidden
-#line 109
- testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 157
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 110
- testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'Invalid\' was not fo" +
-                        "und in the deserialization context at \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Try to use an index with an object stored as an instance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
-        [Xunit.TraitAttribute("Description", "Try to use an index with an object stored as an instance")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToUseAnIndexWithAnObjectStoredAsAnInstance()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use an index with an object stored as an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 113
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
                 TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table21.AddRow(new string[] {
                             "Id",
-                            "1"});
-#line 114
- testRunner.Given("I define a table like", ((string)(null)), table21, "Given ");
-#line hidden
-#line 117
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table22.AddRow(new string[] {
-                            "Id",
                             "2"});
-                table22.AddRow(new string[] {
-                            "Complex",
-                            "{StoredObject:0}"});
-#line 118
- testRunner.And("I define a table like", ((string)(null)), table22, "And ");
-#line hidden
-#line 122
- testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 123
- testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'StoredObject\' of th" +
-                        "e deserialization context contains a single object and can\'t be used with an ind" +
-                        "ex at \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Try to use more than one index when returning an instance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
-        [Xunit.TraitAttribute("Description", "Try to use more than one index when returning an instance")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToUseMoreThanOneIndexWhenReturningAnInstance()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use more than one index when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 126
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table23.AddRow(new string[] {
-                            "Id",
-                            "1"});
-#line 127
- testRunner.Given("I define a table like", ((string)(null)), table23, "Given ");
-#line hidden
-#line 130
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table24.AddRow(new string[] {
-                            "Id",
-                            "2"});
-                table24.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "Complex",
                             "{StoredObject:1,2}"});
-#line 131
- testRunner.And("I define a table like", ((string)(null)), table24, "And ");
+#line 158
+ testRunner.And("I define a table like", ((string)(null)), table21, "And ");
 #line hidden
-#line 135
+#line 162
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 136
+#line 163
  testRunner.Then("it should throw \'InvalidDataException\' with message \"An instance value can not ha" +
                         "ve more than one index at \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -673,7 +791,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to assign a collection when returning an instance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to assign a collection when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void TryToAssignACollectionWhenReturningAnInstance()
@@ -682,7 +800,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to assign a collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 139
+#line 166
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -702,38 +820,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table25.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "10"});
-                table25.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "20"});
-                table25.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "30"});
-                table25.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "40"});
-#line 140
- testRunner.Given("I define a table like", ((string)(null)), table25, "Given ");
+#line 167
+ testRunner.Given("I define a table like", ((string)(null)), table22, "Given ");
 #line hidden
-#line 146
+#line 173
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table26.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "Id",
                             "2"});
-                table26.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "Complex",
                             "{StoredArray}"});
-#line 147
- testRunner.And("I define a table like", ((string)(null)), table26, "And ");
+#line 174
+ testRunner.And("I define a table like", ((string)(null)), table23, "And ");
 #line hidden
-#line 151
+#line 178
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 152
+#line 179
  testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'StoredArray\' of the" +
                         " deserialization context contains a collection and can\'t be assigned to an insta" +
                         "nce without an index at \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -743,7 +861,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to apply a non-numeric index to stored collection when returning an instance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply a non-numeric index to stored collection when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningAnInstance()
@@ -752,7 +870,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a non-numeric index to stored collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 155
+#line 182
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -772,38 +890,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table27.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "10"});
-                table27.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "20"});
-                table27.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "30"});
-                table27.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "40"});
-#line 156
- testRunner.Given("I define a table like", ((string)(null)), table27, "Given ");
+#line 183
+ testRunner.Given("I define a table like", ((string)(null)), table24, "Given ");
 #line hidden
-#line 162
+#line 189
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table28.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "Id",
                             "2"});
-                table28.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "Complex",
                             "{StoredArray:x}"});
-#line 163
- testRunner.And("I define a table like", ((string)(null)), table28, "And ");
+#line 190
+ testRunner.And("I define a table like", ((string)(null)), table25, "And ");
 #line hidden
-#line 167
+#line 194
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 168
+#line 195
  testRunner.Then("it should throw \'InvalidDataException\' with message \"\'x\' is not a valid index for" +
                         " the collection contained in the deserialization context under \'StoredArray\' at " +
                         "\'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -813,7 +931,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to apply a negative index to stored collection when returning an instance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply a negative index to stored collection when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void TryToApplyANegativeIndexToStoredCollectionWhenReturningAnInstance()
@@ -822,7 +940,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a negative index to stored collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 171
+#line 198
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -842,38 +960,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table29.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "10"});
-                table29.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "20"});
-                table29.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "30"});
-                table29.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "40"});
-#line 172
- testRunner.Given("I define a table like", ((string)(null)), table29, "Given ");
+#line 199
+ testRunner.Given("I define a table like", ((string)(null)), table26, "Given ");
 #line hidden
-#line 178
+#line 205
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table30.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "Id",
                             "2"});
-                table30.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "Complex",
                             "{StoredArray:-1}"});
-#line 179
- testRunner.And("I define a table like", ((string)(null)), table30, "And ");
+#line 206
+ testRunner.And("I define a table like", ((string)(null)), table27, "And ");
 #line hidden
-#line 183
+#line 210
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 184
+#line 211
  testRunner.Then("it should throw \'InvalidDataException\' with message \"\'-1\' is not a valid index fo" +
                         "r the collection contained in the deserialization context under \'StoredArray\' at" +
                         " \'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -884,7 +1002,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to apply an index not contained in the stored collection when returning an in" +
             "stance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply an index not contained in the stored collection when returning an in" +
             "stance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
@@ -895,7 +1013,130 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index not contained in the stored collection when returning an in" +
                     "stance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 187
+#line 214
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id"});
+                table28.AddRow(new string[] {
+                            "10"});
+                table28.AddRow(new string[] {
+                            "20"});
+                table28.AddRow(new string[] {
+                            "30"});
+                table28.AddRow(new string[] {
+                            "40"});
+#line 215
+ testRunner.Given("I define a table like", ((string)(null)), table28, "Given ");
+#line hidden
+#line 221
+ testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table29.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table29.AddRow(new string[] {
+                            "Complex",
+                            "{StoredArray:4}"});
+#line 222
+ testRunner.And("I define a table like", ((string)(null)), table29, "And ");
+#line hidden
+#line 226
+ testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 227
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"\'4\' is not a valid index for" +
+                        " the collection contained in the deserialization context under \'StoredArray\' at " +
+                        "\'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Try to get a key not stored in the context when returning a collection")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
+        [Xunit.TraitAttribute("Description", "Try to get a key not stored in the context when returning a collection")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void TryToGetAKeyNotStoredInTheContextWhenReturningACollection()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 230
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table30.AddRow(new string[] {
+                            "Id",
+                            "2"});
+                table30.AddRow(new string[] {
+                            "Children",
+                            "[Invalid]"});
+#line 231
+ testRunner.And("I define a table like", ((string)(null)), table30, "And ");
+#line hidden
+#line 235
+ testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 236
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'Invalid\' was not fo" +
+                        "und in the deserialization context at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Try to apply an index to a stored instance when returning a collection")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
+        [Xunit.TraitAttribute("Description", "Try to apply an index to a stored instance when returning a collection")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void TryToApplyAnIndexToAStoredInstanceWhenReturningACollection()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index to a stored instance when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 239
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -916,20 +1157,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id"});
+                            "Field",
+                            "Value"});
                 table31.AddRow(new string[] {
-                            "10"});
-                table31.AddRow(new string[] {
-                            "20"});
-                table31.AddRow(new string[] {
-                            "30"});
-                table31.AddRow(new string[] {
-                            "40"});
-#line 188
+                            "Id",
+                            "1"});
+#line 240
  testRunner.Given("I define a table like", ((string)(null)), table31, "Given ");
 #line hidden
-#line 194
- testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 243
+ testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
@@ -938,34 +1175,36 @@ this.ScenarioInitialize(scenarioInfo);
                             "Id",
                             "2"});
                 table32.AddRow(new string[] {
-                            "Complex",
-                            "{StoredArray:4}"});
-#line 195
+                            "Children",
+                            "[StoredObject:1]"});
+#line 244
  testRunner.And("I define a table like", ((string)(null)), table32, "And ");
 #line hidden
-#line 199
+#line 248
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 200
- testRunner.Then("it should throw \'InvalidDataException\' with message \"\'4\' is not a valid index for" +
-                        " the collection contained in the deserialization context under \'StoredArray\' at " +
-                        "\'Complex\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 249
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'StoredObject\' of th" +
+                        "e deserialization context does not contain a collection at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Try to get a key not stored in the context when returning a collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
-        [Xunit.TraitAttribute("Description", "Try to get a key not stored in the context when returning a collection")]
+        [Xunit.SkippableFactAttribute(DisplayName="Try to apply a non-numeric index to stored collection when returning a collection" +
+            "")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
+        [Xunit.TraitAttribute("Description", "Try to apply a non-numeric index to stored collection when returning a collection" +
+            "")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToGetAKeyNotStoredInTheContextWhenReturningACollection()
+        public virtual void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 203
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a non-numeric index to stored collection when returning a collection" +
+                    "", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 252
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -986,158 +1225,37 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
+                            "Id"});
                 table33.AddRow(new string[] {
-                            "Id",
-                            "2"});
+                            "10"});
                 table33.AddRow(new string[] {
-                            "Children",
-                            "[Invalid]"});
-#line 204
- testRunner.And("I define a table like", ((string)(null)), table33, "And ");
+                            "20"});
+                table33.AddRow(new string[] {
+                            "30"});
+                table33.AddRow(new string[] {
+                            "40"});
+#line 253
+ testRunner.Given("I define a table like", ((string)(null)), table33, "Given ");
 #line hidden
-#line 208
- testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 259
+ testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 209
- testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'Invalid\' was not fo" +
-                        "und in the deserialization context at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Try to apply an index to a stored instance when returning a collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
-        [Xunit.TraitAttribute("Description", "Try to apply an index to a stored instance when returning a collection")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyAnIndexToAStoredInstanceWhenReturningACollection()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index to a stored instance when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 212
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
                 TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
                 table34.AddRow(new string[] {
                             "Id",
-                            "1"});
-#line 213
- testRunner.Given("I define a table like", ((string)(null)), table34, "Given ");
-#line hidden
-#line 216
- testRunner.And("store as an instance in a context under \'StoredObject\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table35.AddRow(new string[] {
-                            "Id",
                             "2"});
-                table35.AddRow(new string[] {
-                            "Children",
-                            "[StoredObject:1]"});
-#line 217
- testRunner.And("I define a table like", ((string)(null)), table35, "And ");
-#line hidden
-#line 221
- testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 222
- testRunner.Then("it should throw \'InvalidDataException\' with message \"The key \'StoredObject\' of th" +
-                        "e deserialization context does not contain a collection at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Try to apply a non-numeric index to stored collection when returning a collection" +
-            "")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
-        [Xunit.TraitAttribute("Description", "Try to apply a non-numeric index to stored collection when returning a collection" +
-            "")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningACollection()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a non-numeric index to stored collection when returning a collection" +
-                    "", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 225
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id"});
-                table36.AddRow(new string[] {
-                            "10"});
-                table36.AddRow(new string[] {
-                            "20"});
-                table36.AddRow(new string[] {
-                            "30"});
-                table36.AddRow(new string[] {
-                            "40"});
-#line 226
- testRunner.Given("I define a table like", ((string)(null)), table36, "Given ");
-#line hidden
-#line 232
- testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Field",
-                            "Value"});
-                table37.AddRow(new string[] {
-                            "Id",
-                            "2"});
-                table37.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             "Children",
                             "[StoredArray:x,2]"});
-#line 233
- testRunner.And("I define a table like", ((string)(null)), table37, "And ");
+#line 260
+ testRunner.And("I define a table like", ((string)(null)), table34, "And ");
 #line hidden
-#line 237
+#line 264
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 238
+#line 265
  testRunner.Then("it should throw \'InvalidDataException\' with message \"\'x,2\' is not a valid set of " +
                         "indexes for the collection contained in the deserialization context under \'Store" +
                         "dArray\' at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1147,7 +1265,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to apply a negative index to stored collection when returning a collection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply a negative index to stored collection when returning a collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
         public virtual void TryToApplyANegativeIndexToStoredCollectionWhenReturningACollection()
@@ -1156,7 +1274,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a negative index to stored collection when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 241
+#line 268
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1176,38 +1294,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table38.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "10"});
-                table38.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "20"});
-                table38.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "30"});
-                table38.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             "40"});
-#line 242
- testRunner.Given("I define a table like", ((string)(null)), table38, "Given ");
+#line 269
+ testRunner.Given("I define a table like", ((string)(null)), table35, "Given ");
 #line hidden
-#line 248
+#line 275
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table39.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "Id",
                             "2"});
-                table39.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "Children",
                             "[StoredArray:-1,2]"});
-#line 249
- testRunner.And("I define a table like", ((string)(null)), table39, "And ");
+#line 276
+ testRunner.And("I define a table like", ((string)(null)), table36, "And ");
 #line hidden
-#line 253
+#line 280
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 254
+#line 281
  testRunner.Then("it should throw \'InvalidDataException\' with message \"\'-1,2\' is not a valid set of" +
                         " indexes for the collection contained in the deserialization context under \'Stor" +
                         "edArray\' at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1218,7 +1336,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [Xunit.SkippableFactAttribute(DisplayName="Try to apply an index not contained in the stored collection when returning a col" +
             "lection")]
-        [Xunit.TraitAttribute("FeatureTitle", "Inject object")]
+        [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply an index not contained in the stored collection when returning a col" +
             "lection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
@@ -1229,7 +1347,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index not contained in the stored collection when returning a col" +
                     "lection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 257
+#line 284
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1249,38 +1367,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table40.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "10"});
-                table40.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "20"});
-                table40.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "30"});
-                table40.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "40"});
-#line 258
- testRunner.Given("I define a table like", ((string)(null)), table40, "Given ");
+#line 285
+ testRunner.Given("I define a table like", ((string)(null)), table37, "Given ");
 #line hidden
-#line 264
+#line 291
  testRunner.And("store as a set in a context under \'StoredArray\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "Field",
                             "Value"});
-                table41.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "Id",
                             "2"});
-                table41.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "Children",
                             "[StoredArray:4,5]"});
-#line 265
- testRunner.And("I define a table like", ((string)(null)), table41, "And ");
+#line 292
+ testRunner.And("I define a table like", ((string)(null)), table38, "And ");
 #line hidden
-#line 269
+#line 296
  testRunner.When("I request a complex instance with a context with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 270
+#line 297
  testRunner.Then("it should throw \'InvalidDataException\' with message \"\'4,5\' is not a valid set of " +
                         "indexes for the collection contained in the deserialization context under \'Store" +
                         "dArray\' at \'Children\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1296,12 +1414,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                InjectObjectFeature.FeatureSetup();
+                DeserializationContextFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                InjectObjectFeature.FeatureTearDown();
+                DeserializationContextFeature.FeatureTearDown();
             }
         }
     }

@@ -9,7 +9,17 @@ internal static class Deserializer {
     }
 
     internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context) {
-        return CreateFromHorizontal(table, context).Select(Deserialize<T>);
+        context["_previous_"] = new List<T>();
+        var line = 0;
+        foreach (var properties in CreateFromHorizontal(table, context)) {
+            context["_index_"] = line;
+            var item = Deserialize<T>(properties, line);
+            ((IList<T>)context["_previous_"]).Add(item);
+            yield return item;
+            line++;
+        }
+        context.Remove("_previous_");
+        context.Remove("_index_");
     }
 
     private const string _pathPattern = @"Path:\s\$\.([^\s|]*)"; // Path: $.Id => $1:Id
@@ -46,15 +56,15 @@ internal static class Deserializer {
         return objectNode;
     }
 
-    private static JsonNode? CreateProperty(JsonNode parent, Property property, PropertyCollection context)
+    private static JsonNode? CreateProperty(JsonNode parent, Property property, PropertyCollection properties)
         => property.Children.Any()
-            ? CreateComplexProperty(parent, property, context)
+            ? CreateComplexProperty(parent, property, properties)
             : CreateSimpleProperty(parent, property);
 
-    private static JsonNode? CreateComplexProperty(JsonNode parent, Property property, PropertyCollection context) {
-        var objectNode = CreateObject(context.LevelUp());
+    private static JsonNode? CreateComplexProperty(JsonNode parent, Property property, PropertyCollection properties) {
+        var objectNode = CreateObject(properties.LevelUp());
         var result = GetValueOrArray(parent[property.Name], objectNode, property.Indexes);
-        context.DoNotMoveNext();
+        properties.DoNotMoveNext();
         return result;
     }
 
@@ -87,25 +97,25 @@ internal static class Deserializer {
                 : GetFromContextAsInstance(property.Line.Key, contextKey, value, indexes);
     }
 
-    private static JsonNode GetFromContextAsInstance(string line, string contextKey, object value, IReadOnlyList<string> indexes) {
+    private static JsonNode GetFromContextAsInstance(string sourceKey, string contextKey, object value, IReadOnlyList<string> indexes) {
         var collection = (value as IEnumerable)?.Cast<object>().ToArray() ?? Array.Empty<object>();
         return indexes.Count switch {
-            > 1 => throw new InvalidDataException($"An instance value can not have more than one index at '{line}'."),
-            > 0 when collection.Length == 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context contains a single object and can't be used with an index at '{line}'."),
+            > 1 => throw new InvalidDataException($"An instance value can not have more than one index at '{sourceKey}'."),
+            > 0 when collection.Length == 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context contains a single object and can't be used with an index at '{sourceKey}'."),
             > 0 when int.TryParse(indexes[0], out var index) && index >= 0 && index < collection.Length => SerializeToNode(collection[index], new JsonSerializerOptions { IncludeFields = true })!,
-            > 0 => throw new InvalidDataException($"'{indexes[0]}' is not a valid index for the collection contained in the deserialization context under '{contextKey}' at '{line}'."),
-            _ when collection.Length > 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context contains a collection and can't be assigned to an instance without an index at '{line}'."),
+            > 0 => throw new InvalidDataException($"'{indexes[0]}' is not a valid index for the collection contained in the deserialization context under '{contextKey}' at '{sourceKey}'."),
+            _ when collection.Length > 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context contains a collection and can't be assigned to an instance without an index at '{sourceKey}'."),
             _ => SerializeToNode(value)!
         };
     }
 
-    private static JsonNode GetFromContextAsArray(string line, string contextKey, object value, IReadOnlyCollection<string> values) {
+    private static JsonNode GetFromContextAsArray(string sourceKey, string contextKey, object value, IReadOnlyCollection<string> values) {
         var collection = (value as IEnumerable)?.Cast<object>().ToArray() ?? Array.Empty<object>();
         return values.Count switch {
-            > 0 when collection.Length == 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context does not contain a collection at '{line}'."),
+            > 0 when collection.Length == 0 => throw new InvalidDataException($"The key '{contextKey}' of the deserialization context does not contain a collection at '{sourceKey}'."),
             > 0 when TryGetIndexes(values, out var indexes) && indexes.All(index => index >= 0 && index < collection.Length)
                 => SerializeToNode(indexes.Select(index => collection[index]).ToArray(), new JsonSerializerOptions { IncludeFields = true })!,
-            > 0 => throw new InvalidDataException($"'{string.Join(',', values)}' is not a valid set of indexes for the collection contained in the deserialization context under '{contextKey}' at '{line}'."),
+            > 0 => throw new InvalidDataException($"'{string.Join(',', values)}' is not a valid set of indexes for the collection contained in the deserialization context under '{contextKey}' at '{sourceKey}'."),
             _ when collection.Length > 0 => SerializeToNode(collection.ToArray(), new JsonSerializerOptions { IncludeFields = true })!,
             _ => SerializeToNode(new[] { value })!
         };
