@@ -30,6 +30,20 @@ Scenario: Using horizontal table for complex types
 	And the 'Id' property of the item 2 should be '3'
 
 @Deserializer
+Scenario: With a onCreated delegate
+	Given I define a table like
+	| Id |
+	| 1  |
+	| 2  |
+	| 3  |
+	When I request a complex set with a onCreated delegate
+	Then the result collection should have 3 items
+	And the 'Id' property of the item 0 should be '1'
+	And the 'String' property of the item 0 should be 'Set during config at index 0.'
+	And the 'Id' property of the item 2 should be '3'
+	And the 'String' property of the item 2 should be 'Set during config at index 2.'
+
+@Deserializer
 Scenario: One line with a invalid property value
 	Given I define a table like
 	| Id      |
