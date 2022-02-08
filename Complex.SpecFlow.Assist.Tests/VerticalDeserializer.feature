@@ -32,6 +32,16 @@ Scenario: With basic properties
 	And the 'Guid' property should be '1F576FA6-16C9-4905-95F8-E00CAD6A8DED'
 
 @Deserializer
+Scenario: With a onCreated delegate
+	Given I define a table like
+	| Field | Value |
+	| Id    | 2     |
+	When I request a complex instance with a onCreated delegate
+	Then the result object should not be null
+	And the 'Id' property should be '2'
+	And the 'String' property should be 'Set during config.'
+
+@Deserializer
 Scenario: With nullable properties
 	Given I define a table like
 	| Field    | Value   |
@@ -163,44 +173,44 @@ Scenario: With multi-dimensional arrays
 	And the 'Items' property should have 4 items
 	And the item 0 of the 'Items' property should have 2 items
 	And the item 0, 0 of the 'Items' property should have 3 items
-	And the item 0, 0, 0 of the 'Items' property should be 1
-	And the item 0, 0, 1 of the 'Items' property should be 2
-	And the item 0, 0, 2 of the 'Items' property should be 3
+	And the item 0, 0, 0 of the 'Items' property should be '1'
+	And the item 0, 0, 1 of the 'Items' property should be '2'
+	And the item 0, 0, 2 of the 'Items' property should be '3'
 	And the item 0, 1 of the 'Items' property should have 3 items
-	And the item 0, 1, 0 of the 'Items' property should be 4
-	And the item 0, 1, 1 of the 'Items' property should be 5
-	And the item 0, 1, 2 of the 'Items' property should be 6
+	And the item 0, 1, 0 of the 'Items' property should be '4'
+	And the item 0, 1, 1 of the 'Items' property should be '5'
+	And the item 0, 1, 2 of the 'Items' property should be '6'
 	And the item 1 of the 'Items' property should have 3 items
 	And the item 1, 0 of the 'Items' property should have 3 items
-	And the item 1, 0, 0 of the 'Items' property should be 7
-	And the item 1, 0, 1 of the 'Items' property should be 8
-	And the item 1, 0, 2 of the 'Items' property should be 9
+	And the item 1, 0, 0 of the 'Items' property should be '7'
+	And the item 1, 0, 1 of the 'Items' property should be '8'
+	And the item 1, 0, 2 of the 'Items' property should be '9'
 	And the item 1, 1 of the 'Items' property should have 3 items
-	And the item 1, 1, 0 of the 'Items' property should be 10
-	And the item 1, 1, 1 of the 'Items' property should be 11
-	And the item 1, 1, 2 of the 'Items' property should be 12
+	And the item 1, 1, 0 of the 'Items' property should be '10'
+	And the item 1, 1, 1 of the 'Items' property should be '11'
+	And the item 1, 1, 2 of the 'Items' property should be '12'
 	And the item 1, 2 of the 'Items' property should have 3 items
-	And the item 1, 2, 0 of the 'Items' property should be 13
-	And the item 1, 2, 1 of the 'Items' property should be 14
-	And the item 1, 2, 2 of the 'Items' property should be 15
+	And the item 1, 2, 0 of the 'Items' property should be '13'
+	And the item 1, 2, 1 of the 'Items' property should be '14'
+	And the item 1, 2, 2 of the 'Items' property should be '15'
 	And the item 2 of the 'Items' property should have 3 items
 	And the item 2, 0 of the 'Items' property should have 3 items
-	And the item 2, 0, 0 of the 'Items' property should be 16
-	And the item 2, 0, 1 of the 'Items' property should be 17
-	And the item 2, 0, 2 of the 'Items' property should be 18
+	And the item 2, 0, 0 of the 'Items' property should be '16'
+	And the item 2, 0, 1 of the 'Items' property should be '17'
+	And the item 2, 0, 2 of the 'Items' property should be '18'
 	And the item 2, 1 of the 'Items' property should have 3 items
-	And the item 2, 1, 0 of the 'Items' property should be 19
-	And the item 2, 1, 1 of the 'Items' property should be 20
-	And the item 2, 1, 2 of the 'Items' property should be 21
+	And the item 2, 1, 0 of the 'Items' property should be '19'
+	And the item 2, 1, 1 of the 'Items' property should be '20'
+	And the item 2, 1, 2 of the 'Items' property should be '21'
 	And the item 2, 2 of the 'Items' property should have 3 items
-	And the item 2, 2, 0 of the 'Items' property should be 22
-	And the item 2, 2, 1 of the 'Items' property should be 23
-	And the item 2, 2, 2 of the 'Items' property should be 24
+	And the item 2, 2, 0 of the 'Items' property should be '22'
+	And the item 2, 2, 1 of the 'Items' property should be '23'
+	And the item 2, 2, 2 of the 'Items' property should be '24'
 	And the item 3 of the 'Items' property should have 1 items
 	And the item 3, 0 of the 'Items' property should have 3 items
-	And the item 3, 0, 0 of the 'Items' property should be 25
-	And the item 3, 0, 1 of the 'Items' property should be 26
-	And the item 3, 0, 2 of the 'Items' property should be 27
+	And the item 3, 0, 0 of the 'Items' property should be '25'
+	And the item 3, 0, 1 of the 'Items' property should be '26'
+	And the item 3, 0, 2 of the 'Items' property should be '27'
 
 @Deserializer
 Scenario: With dictionary property

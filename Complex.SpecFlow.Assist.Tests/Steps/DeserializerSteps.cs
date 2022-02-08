@@ -25,6 +25,11 @@ public sealed class DeserializerSteps {
         _context[key] = _table.CreateComplexSet<ComplexObject>();
     }
 
+    [Given(@"store as a set of strings in a context under '([^']*)'")]
+    public void GivenStoreAsASetOfStringsInAContextUnder(string key) {
+        _context[key] = _table.CreateComplexSet<string>();
+    }
+
     [When(@"I request a complex instance")]
     public void WhenIRequestAComplexInstance() {
         _instance = _table.CreateComplexInstance<ComplexObject>();
@@ -35,9 +40,11 @@ public sealed class DeserializerSteps {
         _instance = _table.CreateComplexInstance<ComplexObject>(_context);
     }
 
-    [When(@"I request a complex set")]
-    public void WhenIRequestAComplexSet() {
-        _set = _table.CreateComplexSet<ComplexObject>();
+    [When(@"I request a complex instance with a onCreated delegate")]
+    public void WhenIRequestAComplexInstanceWithAConfigDelegate() {
+        _instance = _table.CreateComplexInstance<ComplexObject>(
+            (instance, _)
+                => instance.String = "Set during config.");
     }
 
     [When(@"I request a complex instance with an error")]
@@ -50,6 +57,23 @@ public sealed class DeserializerSteps {
         _action = () => _table.CreateComplexInstance<ComplexObject>(_context);
     }
 
+    [When(@"I request a complex set")]
+    public void WhenIRequestAComplexSet() {
+        _set = _table.CreateComplexSet<ComplexObject>();
+    }
+
+    [When(@"I request a complex set with a context")]
+    public void WhenIRequestAComplexSetWithAContext() {
+        _set = _table.CreateComplexSet<ComplexObject>(_context);
+    }
+
+    [When(@"I request a complex set with a onCreated delegate")]
+    public void WhenIRequestAComplexSetWithAConfigDelegate() {
+        _set = _table.CreateComplexSet<ComplexObject>(
+            (instance, index, _)
+                => instance.String = $"Set during config at index {index}.");
+    }
+
     [When(@"I request a complex set with an error")]
     public void WhenIRequestAComplexSetWithAnError() {
         _action = () => _table.CreateComplexSet<ComplexObject>();
@@ -60,7 +84,7 @@ public sealed class DeserializerSteps {
         _primitives = _table.CreateComplexSet<string>();
     }
 
-    [Then(@"the item (.*) should be '([^']*)'")]
+    [Then(@"the item (\d+) should be '([^']*)'")]
     public void ThenTheItemShouldBe(int index, string value) {
         _primitives.ElementAt(index).Should().Be(value);
     }
@@ -76,13 +100,13 @@ public sealed class DeserializerSteps {
         _instance.Should().BeEquivalentTo(result);
     }
 
-    [Then(@"the result collection of strings should have (.*) items")]
+    [Then(@"the result collection of strings should have (\d+) items")]
     public void ThenTheResultCollectionOfStringsShouldHaveItems(int count) {
         _primitives.Should().NotBeNull();
         _primitives.Count().Should().Be(count);
     }
 
-    [Then(@"the result collection should have (.*) items")]
+    [Then(@"the result collection should have (\d+) items")]
     public void ThenTheResultCollectionShouldHaveItems(int count) {
         _set.Should().NotBeNull();
         _set.Count().Should().Be(count);
@@ -115,7 +139,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the '([^']*)' property of the item (.*) should be '([^']*)'")]
+    [Then(@"the '([^']*)' property of the item (\d+) should be '([^']*)'")]
     public void ThenThePropertyOfTheItemShouldBe(string property, int index, string value) {
         switch (property) {
             case "Id":
@@ -169,7 +193,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the '([^']*)' property should have (.*) items")]
+    [Then(@"the '([^']*)' property should have (\d+) items")]
     public void ThenThePropertyShouldHaveItems(string property, int count) {
         switch (property) {
             case "Lines":
@@ -190,7 +214,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the '([^']*)' property of the item (.*) should have (.*) items")]
+    [Then(@"the '([^']*)' property of the item (\d+) should have (\d+) items")]
     public void ThenThePropertyOfTheItemShouldHaveItems(string property, int index, int count) {
         switch (property) {
             case "Lines":
@@ -211,7 +235,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the item (.*) from '([^']*)' should be '([^']*)'")]
+    [Then(@"the item (\d+) from '([^']*)' should be '([^']*)'")]
     public void ThenTheItemFromShouldBe(int index, string property, string value) {
         switch (property) {
             case "Lines":
@@ -223,7 +247,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the item (.*) from '([^']*)' should be")]
+    [Then(@"the item (\d+) from '([^']*)' should be")]
     public void ThenTheItemFromShouldBe(int index, string property, ComplexObject expectedObject) {
         switch (property) {
             case "Children":
@@ -241,7 +265,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the item ([^,]*) of the '([^']*)' property should have (.*) items")]
+    [Then(@"the item ([^,]*) of the '([^']*)' property should have (\d+) items")]
     public void ThenTheItemOfTheItemsPropertyShouldHaveItems(int x, string property, int count) {
         switch (property) {
             case "Items":
@@ -250,14 +274,14 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the item ([^,]*), ([^,]*) of the 'Items' property should have (.*) items")]
+    [Then(@"the item ([^,]*), ([^,]*) of the 'Items' property should have (\d+) items")]
     public void ThenTheItem2XOfTheItemsPropertyShouldHaveItems(int x, int y, int count) {
         _instance.Items!.ElementAt(x).ElementAt(y).Count.Should().Be(count);
     }
 
-    [Then(@"the item ([^,]*), ([^,]*), ([^,]*) of the 'Items' property should be (.*)")]
-    public void ThenTheItem3XOfTheItemsPropertyShouldBe(int x, int y, int z, int value) {
-        _instance.Items!.ElementAt(x).ElementAt(y).ElementAt(z).Should().Be(value);
+    [Then(@"the item ([^,]*), ([^,]*), ([^,]*) of the 'Items' property should be '([^']*)'")]
+    public void ThenTheItem3XOfTheItemsPropertyShouldBe(int x, int y, int z, string value) {
+        _instance.Items!.ElementAt(x).ElementAt(y).ElementAt(z).Should().Be(int.Parse(value));
     }
 
     [Then(@"the '([^']*)' key from the '([^']*)' property should be '([^']*)'")]
@@ -292,7 +316,7 @@ public sealed class DeserializerSteps {
         }
     }
 
-    [Then(@"the 'Id' property of the '([^']*)' key of the item (.*) of the 'Crazy' property should be '([^']*)'")]
+    [Then(@"the 'Id' property of the '([^']*)' key of the item (\d+) of the 'Crazy' property should be '([^']*)'")]
     public void ThenThePropertyOfTheKeyOfTheItemOfThePropertyShouldBe(string key, int index, string value) {
         _instance.Crazy!.ElementAt(index)[key].Id.Should().Be(int.Parse(value));
     }

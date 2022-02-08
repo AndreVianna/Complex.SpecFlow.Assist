@@ -4,16 +4,19 @@ internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
     private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
 
-    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context) {
-        return Deserialize<T>(CreateFromVertical(table, context));
+    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Action<T, IDictionary<string, object>> config) {
+        var result = Deserialize<T>(CreateFromVertical(table, context));
+        config(result, context);
+        return result;
     }
 
-    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context) {
+    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Action<T, int, IDictionary<string, object>> config) {
         context["_previous_"] = new List<T>();
         var line = 0;
         foreach (var properties in CreateFromHorizontal(table, context)) {
             context["_index_"] = line;
             var item = Deserialize<T>(properties, line);
+            config(item, line, context);
             ((IList<T>)context["_previous_"]).Add(item);
             yield return item;
             line++;
