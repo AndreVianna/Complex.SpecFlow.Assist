@@ -19,6 +19,31 @@ Scenario: Using vertical table get an intance from a stored object
 	| Complex.Id | 1     |
 
 @Deserializer
+Scenario: Using horizontal table for primitive types
+	Given I define a table like
+	| {self}                               |
+	| E7BD910E-B939-4711-978E-C6D81AC037D8 |
+	| 3346B887-5219-43DE-980D-213985D33847 |
+	| CADA29E3-A126-48F7-81BD-F07083773A6A |
+	| B7B95D5B-CE20-4FE4-987D-694511AF880C |
+	| 5E882615-E83A-45BD-A950-AD61633BEE9A |
+	| BE61A824-52B0-42BC-978B-A23AF10B06EB |
+	| 30D73007-9D42-48B8-8D09-E67485EC01D7 |
+	And store as a set of strings in a context under 'Guids'
+	And I define a table like
+	| Id  | Guid      |
+	| 101 | {Guids:3} |
+	| 201 | {Guids:2} |
+	| 301 | {Guids:1} |
+	| 401 | {Guids:0} |
+	When I request a complex set with a context
+	Then the result collection should have 4 items
+	And the 'Id' property of the item 0 should be '101'
+	And the 'Guid' property of the item 0 should be 'B7B95D5B-CE20-4FE4-987D-694511AF880C'
+	And the 'Id' property of the item 2 should be '301'
+	And the 'Guid' property of the item 2 should be '3346B887-5219-43DE-980D-213985D33847'
+
+@Deserializer
 Scenario: Using vertical table get single item form a stored collection
 	Given I define a table like
 	| Id |
