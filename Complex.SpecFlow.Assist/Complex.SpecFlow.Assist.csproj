@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageId>Complex.Specflow.Assist</PackageId>
     <Title>Complex.Specflow.Assist</Title>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <Authors>Andre Vianna</Authors>
     <Company>Andre Vianna</Company>
     <PackageTags>SpecFlow, Assist, Complex, Json, Gherkin, Cucumber</PackageTags>
@@ -18,9 +18,8 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>v1.3.0:
-    - Added support to special property {self}.
-    - Minor bug corrections.
+    <PackageReleaseNotes>v1.4.0:
+    - Added support to special context values "_previous_" and "_index_".
     </PackageReleaseNotes>
   </PropertyGroup>
 

@@ -187,7 +187,27 @@ public sealed class DeserializerSteps {
             case "Dictionary":
                 _instance.Dictionary!.Count.Should().Be(count);
                 return;
+        }
+    }
 
+    [Then(@"the '([^']*)' property of the item (.*) should have (.*) items")]
+    public void ThenThePropertyOfTheItemShouldHaveItems(string property, int index, int count) {
+        switch (property) {
+            case "Lines":
+                _set.ElementAt(index).Lines!.Count.Should().Be(count);
+                return;
+            case "Numbers":
+                _set.ElementAt(index).Numbers!.Length.Should().Be(count);
+                return;
+            case "Children":
+                _set.ElementAt(index).Children!.Count.Should().Be(count);
+                return;
+            case "Items":
+                _set.ElementAt(index).Items!.Count.Should().Be(count);
+                return;
+            case "Dictionary":
+                _set.ElementAt(index).Dictionary!.Count.Should().Be(count);
+                return;
         }
     }
 
