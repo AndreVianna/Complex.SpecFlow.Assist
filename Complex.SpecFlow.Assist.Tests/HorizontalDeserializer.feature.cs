@@ -110,24 +110,24 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "{self}"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "E7BD910E-B939-4711-978E-C6D81AC037D8"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "3346B887-5219-43DE-980D-213985D33847"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "CADA29E3-A126-48F7-81BD-F07083773A6A"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "B7B95D5B-CE20-4FE4-987D-694511AF880C"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "5E882615-E83A-45BD-A950-AD61633BEE9A"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "BE61A824-52B0-42BC-978B-A23AF10B06EB"});
-                table1.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "30D73007-9D42-48B8-8D09-E67485EC01D7"});
 #line 6
- testRunner.Given("I define a table like", ((string)(null)), table1, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table39, "Given ");
 #line hidden
 #line 15
  testRunner.When("I request a set of strings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -175,7 +175,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id",
                             "String",
                             "Integer",
@@ -183,7 +183,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Boolean",
                             "DateTime",
                             "Guid"});
-                table2.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "1",
                             "Some string.",
                             "42",
@@ -191,7 +191,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "True",
                             "\'2020-02-20T12:34:56.789\'",
                             "\"8D8CDA94-861B-42E4-9836-D972E2F3235B\""});
-                table2.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "2",
                             "Another string.",
                             "43",
@@ -199,7 +199,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "True",
                             "\'2020-02-21T12:35:00.000\'",
                             "\"72346CA1-B732-4674-9685-491A1C9020D0\""});
-                table2.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "3",
                             "One more string.",
                             "44",
@@ -208,7 +208,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "\'2020-02-22T23:55:55.111\'",
                             "\"0562F255-A838-415F-9082-3D4A00F06C07\""});
 #line 22
- testRunner.Given("I define a table like", ((string)(null)), table2, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table40, "Given ");
 #line hidden
 #line 27
  testRunner.When("I request a complex set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -256,16 +256,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id"});
-                table3.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "1"});
-                table3.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "Invalid"});
-                table3.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "3"});
 #line 34
- testRunner.Given("I define a table like", ((string)(null)), table3, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table41, "Given ");
 #line hidden
 #line 39
  testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -312,17 +312,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id",
                             "Lines[-1]"});
-                table4.AddRow(new string[] {
+                table42.AddRow(new string[] {
                             "1",
                             "\"Some line\""});
-                table4.AddRow(new string[] {
+                table42.AddRow(new string[] {
                             "2",
                             "\"Other line\""});
 #line 45
- testRunner.Given("I define a table like", ((string)(null)), table4, "Given ");
+ testRunner.Given("I define a table like", ((string)(null)), table42, "Given ");
 #line hidden
 #line 49
  testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -332,67 +332,6 @@ this.ScenarioInitialize(scenarioInfo);
                         "hile deserializing line 0.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 51
- testRunner.And("the inner exception should be \'InvalidDataException\' with message \"Invalid array " +
-                        "index at \'Lines[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 24
- testRunner.And("the inner exception should be \'InvalidCastException\' with message \"The value at \'" +
-                        "Id\' is not of the correct type.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must not be negative")]
-        [Xunit.TraitAttribute("FeatureTitle", "Horizontal deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index must not be negative")]
-        [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexMustNotBeNegative()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "Deserializer"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must not be negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 27
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id",
-                            "Lines[-1]"});
-                table3.AddRow(new string[] {
-                            "1",
-                            "\"Some line\""});
-                table3.AddRow(new string[] {
-                            "2",
-                            "\"Other line\""});
-#line 28
- testRunner.Given("I define a table like", ((string)(null)), table3, "Given ");
-#line hidden
-#line 32
- testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 33
- testRunner.Then("it should throw \'InvalidOperationException\' with message \"An error has occurred w" +
-                        "hile deserializing line 0.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 34
  testRunner.And("the inner exception should be \'InvalidDataException\' with message \"Invalid array " +
                         "index at \'Lines[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
