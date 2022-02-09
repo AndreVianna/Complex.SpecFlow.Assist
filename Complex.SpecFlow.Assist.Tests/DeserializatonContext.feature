@@ -19,6 +19,23 @@ Scenario: Using vertical table get an intance from a stored object
 	| Complex.Id | 1     |
 
 @Deserializer
+Scenario: Using the standard ScenarioContext
+	Given I define a table like
+	| Field | Value |
+	| Id    | 1     |
+	And store as an instance in the ScenarioContext under 'StoredObject'
+	And I define a table like
+	| Field   | Value          |
+	| Id      | 2              |
+	| Complex | {StoredObject} |
+	When I request a complex instance using ScenarioContext
+	Then the result object should not be null
+	And the result object should be
+	| Field      | Value |
+	| Id         | 2     |
+	| Complex.Id | 1     |
+
+@Deserializer
 Scenario: Using horizontal table for primitive types
 	Given I define a table like
 	| {self}                               |

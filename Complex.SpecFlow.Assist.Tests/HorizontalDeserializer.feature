@@ -4,7 +4,7 @@ Transforms a horizontal table in a collection of complex object
 @Deserializer
 Scenario: Using horizontal table for primitive types
 	Given I define a table like
-	| {self}                             |
+	| {self}                               |
 	| E7BD910E-B939-4711-978E-C6D81AC037D8 |
 	| 3346B887-5219-43DE-980D-213985D33847 |
 	| CADA29E3-A126-48F7-81BD-F07083773A6A |
@@ -32,16 +32,21 @@ Scenario: Using horizontal table for complex types
 @Deserializer
 Scenario: With a onCreated delegate
 	Given I define a table like
-	| Id |
-	| 1  |
-	| 2  |
-	| 3  |
+	| Id | !Extra |
+	| 1  | Pi     |
+	| 2  |        |
+	| 3  | Tau    |
 	When I request a complex set with a onCreated delegate
 	Then the result collection should have 3 items
 	And the 'Id' property of the item 0 should be '1'
 	And the 'String' property of the item 0 should be 'Set during config at index 0.'
+	And the 'Decimal' property of the item 0 should be '3.141592'
+	And the 'Id' property of the item 1 should be '2'
+	And the 'String' property of the item 1 should be 'Set during config at index 1.'
+	And the 'Decimal' property of the item 1 should be null
 	And the 'Id' property of the item 2 should be '3'
 	And the 'String' property of the item 2 should be 'Set during config at index 2.'
+	And the 'Decimal' property of the item 2 should be '6.283185'
 
 @Deserializer
 Scenario: One line with a invalid property value
