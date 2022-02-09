@@ -87,7 +87,7 @@ public sealed class DeserializerSteps {
             (instance, index, context)
                 => {
                     instance.String = $"Set during config at index {index}.";
-                    instance.Decimal = ((IDictionary<string, string?>)context["_self_"])["Extra"] switch {
+                    instance.Decimal = ((IDictionary<string, string?>)context["_extra_"])["Extra"] switch {
                         "Pi" => 3.141592m,
                         "Tau" => 6.283185m,
                         _ => null
