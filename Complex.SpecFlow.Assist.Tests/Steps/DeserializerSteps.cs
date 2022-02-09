@@ -9,6 +9,10 @@ public sealed class DeserializerSteps {
     private Action _action = default!;
     private Table _table = default!;
     private readonly IDictionary<string, object> _context = new Dictionary<string, object>();
+    private readonly ScenarioContext _scenarioContext;
+    public DeserializerSteps(ScenarioContext scenarioContext) {
+        _scenarioContext = scenarioContext;
+    }
 
     [Given(@"I define a table like")]
     public void GivenIDefineATableLike(Table table) {
@@ -18,6 +22,11 @@ public sealed class DeserializerSteps {
     [Given(@"store as an instance in a context under '([^']*)'")]
     public void GivenStoreAsAnInstanceInAContextUnder(string key) {
         _context[key] = _table.CreateComplexInstance<ComplexObject>();
+    }
+
+    [Given(@"store as an instance in the ScenarioContext under '([^']*)'")]
+    public void GivenStoreAsAnInstanceInTheScenarioContextUnder(string key) {
+        _scenarioContext[key] = _table.CreateComplexInstance<ComplexObject>();
     }
 
     [Given(@"store as a set in a context under '([^']*)'")]
@@ -38,6 +47,11 @@ public sealed class DeserializerSteps {
     [When(@"I request a complex instance with a context")]
     public void WhenIRequestAComplexInstanceWithAContext() {
         _instance = _table.CreateComplexInstance<ComplexObject>(_context);
+    }
+
+    [When(@"I request a complex instance using ScenarioContext")]
+    public void WhenIRequestAComplexInstanceUsingScenarioContext() {
+        _instance = _table.CreateComplexInstance<ComplexObject>(_scenarioContext);
     }
 
     [When(@"I request a complex instance with a onCreated delegate")]
@@ -70,8 +84,15 @@ public sealed class DeserializerSteps {
     [When(@"I request a complex set with a onCreated delegate")]
     public void WhenIRequestAComplexSetWithAConfigDelegate() {
         _set = _table.CreateComplexSet<ComplexObject>(
-            (instance, index, _)
-                => instance.String = $"Set during config at index {index}.");
+            (instance, index, context)
+                => {
+                    instance.String = $"Set during config at index {index}.";
+                    instance.Decimal = ((IDictionary<string, string?>)context["_self_"])["Extra"] switch {
+                        "Pi" => 3.141592m,
+                        "Tau" => 6.283185m,
+                        _ => null
+                    };
+                });
     }
 
     [When(@"I request a complex set with an error")]
@@ -135,6 +156,15 @@ public sealed class DeserializerSteps {
                 return;
             case "Guid":
                 _instance.Guid.Should().Be(Guid.Parse(value));
+                return;
+        }
+    }
+
+    [Then(@"the '([^']*)' property of the item (\d+) should be null")]
+    public void ThenThePropertyOfTheItemShouldBeNull(string property, int index) {
+        switch (property) {
+            case "Decimal":
+                _set.ElementAt(index).Decimal.Should().BeNull();
                 return;
         }
     }
@@ -287,30 +317,27 @@ public sealed class DeserializerSteps {
     [Then(@"the '([^']*)' key from the '([^']*)' property should be '([^']*)'")]
     public void ThenTheKeyFromThePropertyShouldBe(string key, string property, string value) {
         switch (property) {
-            case "Complex":
-                _instance.Dictionary![key].Should().Be(value);
-                return;
             case "SimpleTuple":
                 switch (key) {
                     case "Item1":
                         _instance.SimpleTuple!.Value.Item1.Should().Be(value);
-                        return;
+                        break;
                     case "Item2":
                         _instance.SimpleTuple!.Value.Item2.Should().Be(int.Parse(value));
-                        return;
+                        break;
                     case "Item3":
                         _instance.SimpleTuple!.Value.Item3.Should().Be(bool.Parse(value));
-                        return;
+                        break;
                 }
                 return;
             case "NamedTuple":
                 switch (key) {
                     case "Name":
                         _instance.NamedTuple!.Value.Name.Should().Be(value);
-                        return;
+                        break;
                     case "Power":
                         _instance.NamedTuple!.Value.Power.Should().Be(int.Parse(value));
-                        return;
+                        break;
                 }
                 return;
         }

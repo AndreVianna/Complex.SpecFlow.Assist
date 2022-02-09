@@ -4,30 +4,34 @@ internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
     private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
 
-    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Action<T, IDictionary<string, object>> config) {
-        var result = Deserialize<T>(CreateFromVertical(table, context));
-        config(result, context);
-        return result;
+    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Action<T, int, IDictionary<string, object>> onCreated) {
+        return DeserializeInstance<T>(context, CreateFromVertical(table, context), onCreated);
     }
 
-    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Action<T, int, IDictionary<string, object>> config) {
+    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Action<T, int, IDictionary<string, object>> onCreated) {
         context["_previous_"] = new List<T>();
         var line = 0;
         foreach (var properties in CreateFromHorizontal(table, context)) {
-            context["_index_"] = line;
-            var item = Deserialize<T>(properties, line);
-            config(item, line, context);
-            ((IList<T>)context["_previous_"]).Add(item);
+            var item = DeserializeInstance(context, properties, onCreated, line);
             yield return item;
+            ((IList<T>)context["_previous_"]).Add(item);
             line++;
         }
         context.Remove("_previous_");
+    }
+
+    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, Action<T, int, IDictionary<string, object>> onCreated, int line = -1) {
+        context["_index_"] = line;
+        context["_self_"] = new Dictionary<string, string?>();
+        var result = Deserialize<T>(properties, line);
+        onCreated(result, line, context);
+        context.Remove("_self_");
         context.Remove("_index_");
+        return result;
     }
 
     private const string _pathPattern = @"Path:\s\$\.([^\s|]*)"; // Path: $.Id => $1:Id
     private static readonly Regex _pathCapture = new(_pathPattern, _regexOptions, _regexTimeout);
-
     private static T Deserialize<T>(PropertyCollection properties, int line = -1) {
         try {
             var root = CreateObject(properties);
@@ -53,10 +57,16 @@ internal static class Deserializer {
         foreach (var property in properties) {
             var value = CreateProperty(objectNode, property!, properties);
             if (property!.Name.ToLower() == "{self}") return value!;
-            objectNode[property.Name] = value;
+            if (property.Name.StartsWith('!')) UpdateSelfContext(property.Context, property!.Name.TrimStart('!'), value);
+            else objectNode[property.Name] = value;
         }
 
         return objectNode;
+    }
+
+    private static void UpdateSelfContext(IDictionary<string, object> context, string name, JsonNode? value) {
+        var selfContext = (IDictionary<string, string?>)context["_self_"];
+        selfContext[name] = value.Deserialize<string>();
     }
 
     private static JsonNode? CreateProperty(JsonNode parent, Property property, PropertyCollection properties)
