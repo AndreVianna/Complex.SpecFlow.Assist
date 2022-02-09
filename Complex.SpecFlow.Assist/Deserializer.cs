@@ -22,10 +22,10 @@ internal static class Deserializer {
 
     private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, Action<T, int, IDictionary<string, object>> onCreated, int line = -1) {
         context["_index_"] = line;
-        context["_self_"] = new Dictionary<string, string?>();
+        context["_extra_"] = new Dictionary<string, string?>();
         var result = Deserialize<T>(properties, line);
         onCreated(result, line, context);
-        context.Remove("_self_");
+        context.Remove("_extra_");
         context.Remove("_index_");
         return result;
     }
@@ -55,18 +55,20 @@ internal static class Deserializer {
     private static JsonNode CreateObject(PropertyCollection properties) {
         var objectNode = new JsonObject();
         foreach (var property in properties) {
+            if (UpdateExtraValuesOnly(property!)) continue;
             var value = CreateProperty(objectNode, property!, properties);
             if (property!.Name.ToLower() == "{self}") return value!;
-            if (property.Name.StartsWith('!')) UpdateSelfContext(property.Context, property!.Name.TrimStart('!'), value);
-            else objectNode[property.Name] = value;
+            objectNode[property.Name] = value;
         }
-
         return objectNode;
     }
 
-    private static void UpdateSelfContext(IDictionary<string, object> context, string name, JsonNode? value) {
-        var selfContext = (IDictionary<string, string?>)context["_self_"];
-        selfContext[name] = value.Deserialize<string>();
+    private static bool UpdateExtraValuesOnly(Property property) {
+        if (!property!.Name.StartsWith('!')) return false;
+        var name = property.Name.TrimStart('!');
+        var extraValues = (IDictionary<string, string?>)property.Context["_extra_"];
+        extraValues[name] = property.Line.Value;
+        return true;
     }
 
     private static JsonNode? CreateProperty(JsonNode parent, Property property, PropertyCollection properties)
