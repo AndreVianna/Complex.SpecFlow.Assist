@@ -258,7 +258,7 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "Id",
-                            "!Extra"});
+                            "!Values"});
                 table46.AddRow(new string[] {
                             "1",
                             "Pi"});

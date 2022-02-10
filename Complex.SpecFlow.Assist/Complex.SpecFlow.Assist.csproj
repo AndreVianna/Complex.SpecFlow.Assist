@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageId>Complex.Specflow.Assist</PackageId>
     <Title>Complex.Specflow.Assist</Title>
-    <Version>1.6.1</Version>
+    <Version>1.6.2</Version>
     <Authors>Andre Vianna</Authors>
     <Company>Andre Vianna</Company>
     <PackageTags>SpecFlow, Assist, Complex, Json, Gherkin, Cucumber</PackageTags>
@@ -18,8 +18,8 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>v1.6.1:
-    - Bug corrections.
+    <PackageReleaseNotes>v1.6.2:
+    - Improve delegate signature to simplify references.
     </PackageReleaseNotes>
   </PropertyGroup>
 

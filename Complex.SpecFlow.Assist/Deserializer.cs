@@ -4,29 +4,28 @@ internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
     private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
 
-    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Action<T, int, IDictionary<string, object>> onCreated) {
-        return DeserializeInstance<T>(context, CreateFromVertical(table, context), onCreated);
+    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Action<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>> onCreated) {
+        return DeserializeInstance<T>(context, CreateFromVertical(table, context), -1, new List<T>(), onCreated);
     }
 
-    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Action<T, int, IDictionary<string, object>> onCreated) {
+    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Action<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>> onCreated) {
         context["_previous_"] = new List<T>();
-        var line = 0;
+        context["_index_"] = 0;
         foreach (var properties in CreateFromHorizontal(table, context)) {
-            var item = DeserializeInstance(context, properties, onCreated, line);
+            var item = DeserializeInstance(context, properties, (int)context["_index_"], (IReadOnlyList<T>)context["_previous_"], onCreated);
             yield return item;
             ((IList<T>)context["_previous_"]).Add(item);
-            line++;
+            context["_index_"] = (int)context["_index_"] + 1;
         }
+        context.Remove("_index_");
         context.Remove("_previous_");
     }
 
-    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, Action<T, int, IDictionary<string, object>> onCreated, int line = -1) {
-        context["_index_"] = line;
+    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, int line, IReadOnlyList<T> previous, Action<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>> onCreated) {
         context["_extra_"] = new Dictionary<string, string?>();
         var result = Deserialize<T>(properties, line);
-        onCreated(result, line, context);
+        onCreated(result, context, line, previous, (IDictionary<string, string?>)context["_extra_"]);
         context.Remove("_extra_");
-        context.Remove("_index_");
         return result;
     }
 
@@ -64,7 +63,7 @@ internal static class Deserializer {
     }
 
     private static bool UpdateExtraValuesOnly(Property property) {
-        if (!property!.Name.StartsWith('!')) return false;
+        if (!property.Name.StartsWith('!')) return false;
         var name = property.Name.TrimStart('!');
         var extraValues = (IDictionary<string, string?>)property.Context["_extra_"];
         extraValues[name] = property.Line.Value;
