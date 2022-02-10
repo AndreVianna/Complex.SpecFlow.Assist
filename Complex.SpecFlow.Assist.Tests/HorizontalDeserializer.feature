@@ -32,10 +32,10 @@ Scenario: Using horizontal table for complex types
 @Deserializer
 Scenario: With a onCreated delegate
 	Given I define a table like
-	| Id | !Extra |
-	| 1  | Pi     |
-	| 2  |        |
-	| 3  | Tau    |
+	| Id | !Values |
+	| 1  | Pi      |
+	| 2  |         |
+	| 3  | Tau     |
 	When I request a complex set with a onCreated delegate
 	Then the result collection should have 3 items
 	And the 'Id' property of the item 0 should be '1'

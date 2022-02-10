@@ -57,7 +57,7 @@ public sealed class DeserializerSteps {
     [When(@"I request a complex instance with a onCreated delegate")]
     public void WhenIRequestAComplexInstanceWithAConfigDelegate() {
         _instance = _table.CreateComplexInstance<ComplexObject>(
-            (instance, _)
+            instance
                 => instance.String = "Set during config.");
     }
 
@@ -84,10 +84,10 @@ public sealed class DeserializerSteps {
     [When(@"I request a complex set with a onCreated delegate")]
     public void WhenIRequestAComplexSetWithAConfigDelegate() {
         _set = _table.CreateComplexSet<ComplexObject>(
-            (instance, index, context)
+            (instance, _, index, _, extra)
                 => {
                     instance.String = $"Set during config at index {index}.";
-                    instance.Decimal = ((IDictionary<string, string?>)context["_extra_"])["Extra"] switch {
+                    instance.Decimal = extra["Values"] switch {
                         "Pi" => 3.141592m,
                         "Tau" => 6.283185m,
                         _ => null
