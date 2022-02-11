@@ -19,7 +19,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>v1.7.0:
-    - Change delegate so it can work with immutable types by returning the updated instance.
+    - Change delegate so it can work with immutable types by replacing the instance with the updated one.
     </PackageReleaseNotes>
   </PropertyGroup>
 
