@@ -120,7 +120,7 @@ public sealed class DeserializerSteps {
     [When(@"I request a complex set with a delegate using extras")]
     public void WhenIRequestAComplexSetWithADelegateUsingExtra() {
         _set = _table.CreateComplexSet<ComplexObject>(
-            (instance, _, index, _, extra) => {
+            (instance, index, _, extra) => {
                 instance.String = $"Set during config at index {index}.";
                 instance.Decimal = extra["Values"] switch {
                     "Pi" => 3.141592m,
