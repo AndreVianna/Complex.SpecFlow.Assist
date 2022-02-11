@@ -32,14 +32,25 @@ Scenario: With basic properties
 	And the 'Guid' property should be '1F576FA6-16C9-4905-95F8-E00CAD6A8DED'
 
 @Deserializer
-Scenario: With a onCreated delegate
+Scenario: With a delegate
 	Given I define a table like
 	| Field | Value |
 	| Id    | 2     |
-	When I request a complex instance with a onCreated delegate
+	When I request a complex instance with a delegate
 	Then the result object should not be null
 	And the 'Id' property should be '2'
 	And the 'String' property should be 'Set during config.'
+
+@Deserializer
+Scenario: With a delegate using extras
+	Given I define a table like
+	| Field  | Value |
+	| Id     | 2     |
+	| !Value | 200   |
+	When I request a complex instance with a delegate using extras
+	Then the result object should not be null
+	And the 'Id' property should be '2'
+	And the 'Integer' property should be '200'
 
 @Deserializer
 Scenario: With nullable properties
