@@ -4,15 +4,15 @@ internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
     private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
 
-    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Action<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>> onCreated) {
-        return DeserializeInstance<T>(context, CreateFromVertical(table, context), -1, new List<T>(), onCreated);
+    internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
+        return DeserializeInstance<T>(context, CreateFromVertical(table, context), -1, new List<T>(), getUpdatedInstance);
     }
 
-    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Action<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>> onCreated) {
+    internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
         context["_previous_"] = new List<T>();
         context["_index_"] = 0;
         foreach (var properties in CreateFromHorizontal(table, context)) {
-            var item = DeserializeInstance(context, properties, (int)context["_index_"], (IReadOnlyList<T>)context["_previous_"], onCreated);
+            var item = DeserializeInstance(context, properties, (int)context["_index_"], (IReadOnlyList<T>)context["_previous_"], getUpdatedInstance);
             yield return item;
             ((IList<T>)context["_previous_"]).Add(item);
             context["_index_"] = (int)context["_index_"] + 1;
@@ -21,10 +21,10 @@ internal static class Deserializer {
         context.Remove("_previous_");
     }
 
-    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, int line, IReadOnlyList<T> previous, Action<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>> onCreated) {
+    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, int line, IReadOnlyList<T> previous, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
         context["_extra_"] = new Dictionary<string, string?>();
         var result = Deserialize<T>(properties, line);
-        onCreated(result, context, line, previous, (IDictionary<string, string?>)context["_extra_"]);
+        result = getUpdatedInstance(result, context, line, previous, (IDictionary<string, string?>)context["_extra_"]);
         context.Remove("_extra_");
         return result;
     }

@@ -54,11 +54,28 @@ public sealed class DeserializerSteps {
         _instance = _table.CreateComplexInstance<ComplexObject>(_scenarioContext);
     }
 
-    [When(@"I request a complex instance with a onCreated delegate")]
-    public void WhenIRequestAComplexInstanceWithAConfigDelegate() {
-        _instance = _table.CreateComplexInstance<ComplexObject>(
-            instance
-                => instance.String = "Set during config.");
+    [When(@"I request a complex instance with a delegate")]
+    public void WhenIRequestAComplexInstanceWitAhDelegate() {
+        _instance = _table.CreateComplexInstance<ComplexObject>(instance => {
+            instance.String = "Set during config.";
+            return instance;
+        });
+    }
+
+    [When(@"I request a complex instance with a delegate using context")]
+    public void WhenIRequestAComplexInstanceWithADelegateUsingContext() {
+        _instance = _table.CreateComplexInstance<ComplexObject>(_scenarioContext, (instance, context) => {
+            instance.Integer = ((ComplexObject)context["StoredObject"]).Integer;
+            return instance;
+        });
+    }
+
+    [When(@"I request a complex instance with a delegate using extras")]
+    public void WhenIRequestAComplexInstanceWithADelegateUsingExtras() {
+        _instance = _table.CreateComplexInstance<ComplexObject>((instance, extras) => {
+            instance.Integer = int.Parse(extras["Value"]!);
+            return instance;
+        });
     }
 
     [When(@"I request a complex instance with an error")]
@@ -81,18 +98,37 @@ public sealed class DeserializerSteps {
         _set = _table.CreateComplexSet<ComplexObject>(_context);
     }
 
-    [When(@"I request a complex set with a onCreated delegate")]
-    public void WhenIRequestAComplexSetWithAConfigDelegate() {
+    [When(@"I request a complex set with a delegate")]
+    public void WhenIRequestAComplexSetWithADelegate() {
         _set = _table.CreateComplexSet<ComplexObject>(
-            (instance, _, index, _, extra)
-                => {
-                    instance.String = $"Set during config at index {index}.";
-                    instance.Decimal = extra["Values"] switch {
-                        "Pi" => 3.141592m,
-                        "Tau" => 6.283185m,
-                        _ => null
-                    };
-                });
+            instance => {
+                instance.String = "Some fixed value.";
+                instance.Decimal = 3.141592m;
+                return instance;
+            });
+    }
+
+    [When(@"I request a complex set with a delegate using context")]
+    public void WhenIRequestAComplexSetWithADelegateUsingContext() {
+        _set = _table.CreateComplexSet<ComplexObject>(_scenarioContext,
+            (instance, context) => {
+                instance.Integer = ((ComplexObject)context["StoredObject"]).Integer;
+                return instance;
+            });
+    }
+
+    [When(@"I request a complex set with a delegate using extras")]
+    public void WhenIRequestAComplexSetWithADelegateUsingExtra() {
+        _set = _table.CreateComplexSet<ComplexObject>(
+            (instance, _, index, _, extra) => {
+                instance.String = $"Set during config at index {index}.";
+                instance.Decimal = extra["Values"] switch {
+                    "Pi" => 3.141592m,
+                    "Tau" => 6.283185m,
+                    _ => null
+                };
+                return instance;
+            });
     }
 
     [When(@"I request a complex set with an error")]

@@ -36,6 +36,42 @@ Scenario: Using the standard ScenarioContext
 	| Complex.Id | 1     |
 
 @Deserializer
+Scenario: With a delegate using context
+	Given I define a table like
+	| Field   | Value |
+	| Id      | 1     |
+	| Integer | 100   |
+	And store as an instance in the ScenarioContext under 'StoredObject'
+	Given I define a table like
+	| Field | Value |
+	| Id    | 2     |
+	When I request a complex instance with a delegate using context
+	Then the result object should not be null
+	And the 'Id' property should be '2'
+	And the 'Integer' property should be '100'
+
+@Deserializer
+Scenario: With horizontal table a delegate using context
+	Given I define a table like
+	| Field   | Value |
+	| Id      | 1     |
+	| Integer | 100   |
+	And store as an instance in the ScenarioContext under 'StoredObject'
+	Given I define a table like
+	| Id |
+	| 1  |
+	| 2  |
+	| 3  |
+	When I request a complex set with a delegate using context
+	Then the result collection should have 3 items
+	And the 'Id' property of the item 0 should be '1'
+	And the 'Integer' property of the item 0 should be '100'
+	And the 'Id' property of the item 1 should be '2'
+	And the 'Integer' property of the item 1 should be '100'
+	And the 'Id' property of the item 2 should be '3'
+	And the 'Integer' property of the item 2 should be '100'
+
+@Deserializer
 Scenario: Using horizontal table for primitive types
 	Given I define a table like
 	| {self}                               |

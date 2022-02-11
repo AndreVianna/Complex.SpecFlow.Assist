@@ -30,13 +30,32 @@ Scenario: Using horizontal table for complex types
 	And the 'Id' property of the item 2 should be '3'
 
 @Deserializer
-Scenario: With a onCreated delegate
+Scenario: With a delegate
+	Given I define a table like
+	| Id |
+	| 1  |
+	| 2  |
+	| 3  |
+	When I request a complex set with a delegate
+	Then the result collection should have 3 items
+	And the 'Id' property of the item 0 should be '1'
+	And the 'String' property of the item 0 should be 'Some fixed value.'
+	And the 'Decimal' property of the item 0 should be '3.141592'
+	And the 'Id' property of the item 1 should be '2'
+	And the 'String' property of the item 1 should be 'Some fixed value.'
+	And the 'Decimal' property of the item 1 should be '3.141592'
+	And the 'Id' property of the item 2 should be '3'
+	And the 'String' property of the item 2 should be 'Some fixed value.'
+	And the 'Decimal' property of the item 2 should be '3.141592'
+
+@Deserializer
+Scenario: With a delegate using extras
 	Given I define a table like
 	| Id | !Values |
 	| 1  | Pi      |
 	| 2  |         |
 	| 3  | Tau     |
-	When I request a complex set with a onCreated delegate
+	When I request a complex set with a delegate using extras
 	Then the result collection should have 3 items
 	And the 'Id' property of the item 0 should be '1'
 	And the 'String' property of the item 0 should be 'Set during config at index 0.'
