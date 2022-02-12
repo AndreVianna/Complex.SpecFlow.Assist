@@ -1,9 +1,10 @@
 ﻿namespace Complex.SpecFlow.Assist.Collections;
+using static RegexOptions;
 
 internal sealed class PropertyCollection : IDisposable {
     internal enum TableDirection {
         Vertical,
-        Horizontal,
+        Horizontal
     }
 
     private readonly PropertyEnumerator _enumerator;
@@ -86,7 +87,7 @@ internal sealed class PropertyCollection : IDisposable {
         private int[] ConvertKeys(IReadOnlyList<string> keys, IList<int> previousIndexes, bool isSameProperty) {
             var result = new List<int>();
             for (var i = 0; i < keys.Count; i++) {
-                var previous = (isSameProperty && i < previousIndexes.Count) ? previousIndexes[i] : -1;
+                var previous = isSameProperty && i < previousIndexes.Count ? previousIndexes[i] : -1;
                 var index = GetIndex(keys[i], previous, i == keys.Count - 1);
                 if (index > 0 && index > previous) for (var j = i + 1; j < previousIndexes.Count; j++) previousIndexes[j] = -1;
                 result.Add(index);

@@ -1,5 +1,4 @@
 ﻿global using System.Diagnostics.CodeAnalysis;
-global using System.Text.Json;
 
 global using Complex.SpecFlow.Assist.Tests.Support;
 
