@@ -4,7 +4,7 @@ Transforms a horizontal table in a collection of complex object
 @Deserializer
 Scenario: Using horizontal table for primitive types
 	Given I define a table like
-	| {self}                               |
+	|                                      |
 	| E7BD910E-B939-4711-978E-C6D81AC037D8 |
 	| 3346B887-5219-43DE-980D-213985D33847 |
 	| CADA29E3-A126-48F7-81BD-F07083773A6A |
@@ -66,6 +66,14 @@ Scenario: With a delegate using extras
 	And the 'Id' property of the item 2 should be '3'
 	And the 'String' property of the item 2 should be 'Set during config at index 2.'
 	And the 'Decimal' property of the item 2 should be '6.283185'
+
+@Deserializer
+Scenario: Define an extra key with a property
+	Given I define a table like
+	| Id              | 1         |
+	| Complex.!Values | Something | 
+	When I request a complex instance with an error
+	Then it should throw 'InvalidDataException' with message "Only top level keys can be assigned to the extra key in the context at 'Complex.!Values'."
 
 @Deserializer
 Scenario: One line with a invalid property value

@@ -1,15 +1,24 @@
 ﻿namespace Complex.SpecFlow.Assist.Collections;
 
 internal sealed class PropertyCollection : IDisposable {
+    internal enum TableDirection {
+        Vertical,
+        Horizontal,
+    }
 
     private readonly PropertyEnumerator _enumerator;
 
-    internal PropertyCollection(IEnumerator<TableLine> enumerator, IDictionary<string, object> context, int level = 0) {
+    internal PropertyCollection(IEnumerator<TableLine> enumerator, int count, TableDirection direction, IDictionary<string, object> context, int level = 0) {
         _enumerator = new PropertyEnumerator(enumerator, context, level);
+        Count = count;
+        Direction = direction;
     }
 
-    public PropertyCollection LevelUp() => new(_enumerator.Source!, _enumerator.Context, _enumerator.Level + 1);
+    public PropertyCollection LevelUp() => new(_enumerator.Source!, Count, Direction, _enumerator.Context, _enumerator.Level + 1);
 
+
+    public int Count { get; }
+    public TableDirection Direction { get; }
 
     public PropertyEnumerator GetEnumerator() => _enumerator;
     public void DoNotMoveNext() => _enumerator.DoNotMoveNext();
@@ -35,7 +44,7 @@ internal sealed class PropertyCollection : IDisposable {
         public IEnumerator<TableLine?> Source { get; }
         public int Level { get; }
         public IDictionary<string, object> Context { get; }
-        public Property? Current { get; private set; }
+        public Property Current { get; private set; } = default!;
 
         public void DoNotMoveNext() {
             _canMoveNext = false;
@@ -56,10 +65,11 @@ internal sealed class PropertyCollection : IDisposable {
             var relativePath = key.Split('.').Skip(Level).ToArray();
             if (!relativePath.Any()) return;
 
-            var previousName = Current?.Name ?? string.Empty;
+            var current = (Property?)Current;
+            var previousName = current?.Name ?? string.Empty;
             var (name, keys) = DeconstructToken(relativePath.First());
 
-            var previousIndexes = Current?.Indexes ?? Array.Empty<int>();
+            var previousIndexes = current?.Indexes ?? Array.Empty<int>();
             var indexes = ConvertKeys(keys, previousIndexes, previousName == name);
             var children = relativePath.Skip(1).ToArray();
 

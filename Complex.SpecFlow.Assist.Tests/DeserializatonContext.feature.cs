@@ -418,7 +418,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
-                            "{self}"});
+                            ""});
                 table11.AddRow(new string[] {
                             "E7BD910E-B939-4711-978E-C6D81AC037D8"});
                 table11.AddRow(new string[] {
