@@ -1,6 +1,8 @@
-﻿using static Complex.SpecFlow.Assist.Collections.PropertyCollection.TableDirection;
-
-namespace Complex.SpecFlow.Assist;
+﻿namespace Complex.SpecFlow.Assist;
+using static Factories.PropertyCollectionFactory;
+using static JsonSerializer;
+using static PropertyCollection.TableDirection;
+using static RegexOptions;
 
 internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
@@ -93,7 +95,7 @@ internal static class Deserializer {
             _ when text.StartsWith('[') => GetFromContext(property, text.TrimStart('[').TrimEnd(']'), index, previous, true),
             _ when int.TryParse(text, out var value) => JsonValue.Create(value),
             _ when decimal.TryParse(text, out var value) => JsonValue.Create(value),
-            _ => JsonValue.Create(text),
+            _ => JsonValue.Create(text)
         };
         return GetValueOrArray(parent[property.Name], valueNode, property.Indexes);
     }

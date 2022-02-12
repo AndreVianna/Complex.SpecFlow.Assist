@@ -21,42 +21,42 @@ public sealed class DeserializerSteps {
 
     [Given(@"store as an instance in a context under '([^']*)'")]
     public void GivenStoreAsAnInstanceInAContextUnder(string key) {
-        _context[key] = _table.CreateComplexInstance<ComplexObject>();
+        _context[key] = _table.ToInstance<ComplexObject>();
     }
 
     [Given(@"store as an instance in the ScenarioContext under '([^']*)'")]
     public void GivenStoreAsAnInstanceInTheScenarioContextUnder(string key) {
-        _scenarioContext[key] = _table.CreateComplexInstance<ComplexObject>();
+        _scenarioContext[key] = _table.ToInstance<ComplexObject>();
     }
 
     [Given(@"store as a set in a context under '([^']*)'")]
     public void GivenStoreAsASetInAContextUnder(string key) {
-        _context[key] = _table.CreateComplexSet<ComplexObject>();
+        _context[key] = _table.ToArray<ComplexObject>();
     }
 
     [Given(@"store as a set of strings in a context under '([^']*)'")]
     public void GivenStoreAsASetOfStringsInAContextUnder(string key) {
-        _context[key] = _table.CreateComplexSet<string>();
+        _context[key] = _table.ToArray<string>();
     }
 
     [When(@"I request a complex instance")]
     public void WhenIRequestAComplexInstance() {
-        _instance = _table.CreateComplexInstance<ComplexObject>();
+        _instance = _table.ToInstance<ComplexObject>();
     }
 
     [When(@"I request a complex instance with a context")]
     public void WhenIRequestAComplexInstanceWithAContext() {
-        _instance = _table.CreateComplexInstance<ComplexObject>(_context);
+        _instance = _table.ToInstance<ComplexObject>(_context);
     }
 
     [When(@"I request a complex instance using ScenarioContext")]
     public void WhenIRequestAComplexInstanceUsingScenarioContext() {
-        _instance = _table.CreateComplexInstance<ComplexObject>(_scenarioContext);
+        _instance = _table.ToInstance<ComplexObject>(_scenarioContext);
     }
 
     [When(@"I request a complex instance with a delegate")]
     public void WhenIRequestAComplexInstanceWitAhDelegate() {
-        _instance = _table.CreateComplexInstance<ComplexObject>(instance => {
+        _instance = _table.ToInstance<ComplexObject>(instance => {
             instance.String = "Set during config.";
             return instance;
         });
@@ -64,7 +64,7 @@ public sealed class DeserializerSteps {
 
     [When(@"I request a complex instance with a delegate using context")]
     public void WhenIRequestAComplexInstanceWithADelegateUsingContext() {
-        _instance = _table.CreateComplexInstance<ComplexObject>(_scenarioContext, (instance, context) => {
+        _instance = _table.ToInstance<ComplexObject>(_scenarioContext, (instance, context) => {
             instance.Integer = ((ComplexObject)context["StoredObject"]).Integer;
             return instance;
         });
@@ -72,7 +72,7 @@ public sealed class DeserializerSteps {
 
     [When(@"I request a complex instance with a delegate using extras")]
     public void WhenIRequestAComplexInstanceWithADelegateUsingExtras() {
-        _instance = _table.CreateComplexInstance<ComplexObject>((instance, extras) => {
+        _instance = _table.ToInstance<ComplexObject>((instance, extras) => {
             instance.Integer = int.Parse(extras["Value"]!);
             return instance;
         });
@@ -80,27 +80,27 @@ public sealed class DeserializerSteps {
 
     [When(@"I request a complex instance with an error")]
     public void WhenIRequestAComplexInstanceWithAnError() {
-        _action = () => _table.CreateComplexInstance<ComplexObject>();
+        _action = () => _table.ToInstance<ComplexObject>();
     }
 
     [When(@"I request a complex instance with a context with an error")]
     public void WhenIRequestAComplexInstanceWithAContextWithAnError() {
-        _action = () => _table.CreateComplexInstance<ComplexObject>(_context);
+        _action = () => _table.ToInstance<ComplexObject>(_context);
     }
 
     [When(@"I request a complex set")]
     public void WhenIRequestAComplexSet() {
-        _set = _table.CreateComplexSet<ComplexObject>();
+        _set = _table.ToArray<ComplexObject>();
     }
 
     [When(@"I request a complex set with a context")]
     public void WhenIRequestAComplexSetWithAContext() {
-        _set = _table.CreateComplexSet<ComplexObject>(_context);
+        _set = _table.ToArray<ComplexObject>(_context);
     }
 
     [When(@"I request a complex set with a delegate")]
     public void WhenIRequestAComplexSetWithADelegate() {
-        _set = _table.CreateComplexSet<ComplexObject>(
+        _set = _table.ToArray<ComplexObject>(
             instance => {
                 instance.String = "Some fixed value.";
                 instance.Decimal = 3.141592m;
@@ -110,7 +110,7 @@ public sealed class DeserializerSteps {
 
     [When(@"I request a complex set with a delegate using context")]
     public void WhenIRequestAComplexSetWithADelegateUsingContext() {
-        _set = _table.CreateComplexSet<ComplexObject>(_scenarioContext,
+        _set = _table.ToArray<ComplexObject>(_scenarioContext,
             (instance, context) => {
                 instance.Integer = ((ComplexObject)context["StoredObject"]).Integer;
                 return instance;
@@ -119,7 +119,7 @@ public sealed class DeserializerSteps {
 
     [When(@"I request a complex set with a delegate using extras")]
     public void WhenIRequestAComplexSetWithADelegateUsingExtra() {
-        _set = _table.CreateComplexSet<ComplexObject>(
+        _set = _table.ToArray<ComplexObject>(
             (instance, index, _, extra) => {
                 instance.String = $"Set during config at index {index}.";
                 instance.Decimal = extra["Values"] switch {
@@ -133,12 +133,12 @@ public sealed class DeserializerSteps {
 
     [When(@"I request a complex set with an error")]
     public void WhenIRequestAComplexSetWithAnError() {
-        _action = () => _table.CreateComplexSet<ComplexObject>();
+        _action = () => _table.ToArray<ComplexObject>();
     }
 
     [When(@"I request a set of strings")]
     public void WhenIRequestASetOfStrings() {
-        _primitives = _table.CreateComplexSet<string>();
+        _primitives = _table.ToArray<string>();
     }
 
     [Then(@"the item (\d+) should be '([^']*)'")]
@@ -153,7 +153,7 @@ public sealed class DeserializerSteps {
 
     [Then(@"the result object should be")]
     public void ThenTheResultObjectShouldBe(Table table) {
-        var result = table.CreateComplexInstance<ComplexObject>();
+        var result = table.ToInstance<ComplexObject>();
         _instance.Should().BeEquivalentTo(result);
     }
 
@@ -418,5 +418,5 @@ public sealed class DeserializerSteps {
 
     [StepArgumentTransformation]
     public static ComplexObject AsComplexObject(Table table)
-        => table.CreateComplexInstance<ComplexObject>();
+        => table.ToInstance<ComplexObject>();
 }
