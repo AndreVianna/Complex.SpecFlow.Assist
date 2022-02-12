@@ -1,88 +1,87 @@
-﻿namespace Complex.SpecFlow.Assist;
+﻿using static Complex.SpecFlow.Assist.Collections.PropertyCollection.TableDirection;
+
+namespace Complex.SpecFlow.Assist;
 
 internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
     private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(10);
 
     internal static T DeserializeVertical<T>(Table table, IDictionary<string, object> context, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
-        return DeserializeInstance<T>(context, CreateFromVertical(table, context), -1, new List<T>(), getUpdatedInstance);
+        return DeserializeInstance(context, CreateFromVertical(table, context), -1, new List<T>(), getUpdatedInstance);
     }
 
     internal static IEnumerable<T> DeserializeHorizontal<T>(Table table, IDictionary<string, object> context, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
-        context["_previous_"] = new List<T>();
-        context["_index_"] = 0;
-        foreach (var properties in CreateFromHorizontal(table, context)) {
-            var item = DeserializeInstance(context, properties, (int)context["_index_"], (IReadOnlyList<T>)context["_previous_"], getUpdatedInstance);
+        var previous = new List<T>();
+        var index = 0;
+        foreach (var instance in CreateFromHorizontal(table, context)) {
+            var item = DeserializeInstance(context, instance, index, previous, getUpdatedInstance);
             yield return item;
-            ((IList<T>)context["_previous_"]).Add(item);
-            context["_index_"] = (int)context["_index_"] + 1;
+            previous.Add(item);
+            index++;
         }
-        context.Remove("_index_");
-        context.Remove("_previous_");
     }
 
-    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, int line, IReadOnlyList<T> previous, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
-        context["_extra_"] = new Dictionary<string, string?>();
-        var result = Deserialize<T>(properties, line);
-        result = getUpdatedInstance(result, context, line, previous, (IDictionary<string, string?>)context["_extra_"]);
-        context.Remove("_extra_");
+    private static T DeserializeInstance<T>(IDictionary<string, object> context, PropertyCollection properties, int index, IReadOnlyList<T> previous, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T> getUpdatedInstance) {
+        var extras = new Dictionary<string, string?>();
+        var result = Deserialize(properties, index, previous, extras);
+        result = getUpdatedInstance(result, context, index, previous, extras);
         return result;
     }
 
     private const string _pathPattern = @"Path:\s\$\.([^\s|]*)"; // Path: $.Id => $1:Id
     private static readonly Regex _pathCapture = new(_pathPattern, _regexOptions, _regexTimeout);
-    private static T Deserialize<T>(PropertyCollection properties, int line = -1) {
+    private static T Deserialize<T>(PropertyCollection properties, int index, IReadOnlyList<T> previous, IDictionary<string, string?> extras) {
         try {
-            var root = CreateObject(properties);
+            var root = CreateObject(properties, index, previous, extras);
             return root.Deserialize<T>(new JsonSerializerOptions { IncludeFields = true })!;
         }
         catch (JsonException e) {
             var path = _pathCapture.Match(e.Message).Groups[1].Value;
             var invalidCastException = new InvalidCastException($"The value at '{path}' is not of the correct type.", e);
-            if (line == -1) throw invalidCastException;
-            throw new InvalidOperationException($"An error has occurred while deserializing line {line}.", invalidCastException);
+            if (index == -1) throw invalidCastException;
+            throw new InvalidOperationException($"An error has occurred while deserializing line {index}.", invalidCastException);
         }
         catch (Exception e) {
-            if (line == -1) throw;
-            throw new InvalidOperationException($"An error has occurred while deserializing line {line}.", e);
+            if (index == -1) throw;
+            throw new InvalidOperationException($"An error has occurred while deserializing line {index}.", e);
         }
         finally {
             properties.Dispose();
         }
     }
 
-    private static JsonNode CreateObject(PropertyCollection properties) {
+    private static JsonNode CreateObject<T>(PropertyCollection properties, int index, IReadOnlyList<T> previous, IDictionary<string, string?>? extras = null) {
         var objectNode = new JsonObject();
         foreach (var property in properties) {
-            if (UpdateExtraValuesOnly(property!)) continue;
-            var value = CreateProperty(objectNode, property!, properties);
-            if (property!.Name.ToLower() == "{self}") return value!;
+            if (UpdateExtraValuesOnly(property, extras)) continue;
+            var value = CreateProperty(objectNode, property, properties, index, previous);
+            if (string.IsNullOrWhiteSpace(property.Name) && properties.Count == 1 && properties.Direction == Horizontal) return value!;
             objectNode[property.Name] = value;
         }
         return objectNode;
     }
 
-    private static bool UpdateExtraValuesOnly(Property property) {
+    private static bool UpdateExtraValuesOnly(Property property, IDictionary<string, string?>? extras) {
         if (!property.Name.StartsWith('!')) return false;
+        if (extras is null) throw new InvalidDataException($"Only top level keys can be assigned to the extra key in the context at '{property.Line.Key}'.");
         var name = property.Name.TrimStart('!');
-        var extraValues = (IDictionary<string, string?>)property.Context["_extra_"];
-        extraValues[name] = property.Line.Value;
+        extras[name] = property.Line.Value;
         return true;
     }
 
-    private static JsonNode? CreateProperty(JsonNode parent, Property property, PropertyCollection properties)
+    private static JsonNode? CreateProperty<T>(JsonNode parent, Property property, PropertyCollection properties, int index, IReadOnlyList<T> previous)
         => property.Children.Any()
-            ? CreateComplexProperty(parent, property, properties)
-            : CreateSimpleProperty(parent, property);
+            ? CreateComplexProperty(parent, property, properties, index, previous)
+            : CreateSimpleProperty(parent, property, index, previous);
 
-    private static JsonNode? CreateComplexProperty(JsonNode parent, Property property, PropertyCollection properties) {
-        var objectNode = CreateObject(properties.LevelUp());
+    private static JsonNode? CreateComplexProperty<T>(JsonNode parent, Property property, PropertyCollection properties, int index, IReadOnlyList<T> previous) {
+        var objectNode = CreateObject(properties.LevelUp(), index, previous);
         var result = GetValueOrArray(parent[property.Name], objectNode, property.Indexes);
         properties.DoNotMoveNext();
         return result;
     }
 
-    private static JsonNode? CreateSimpleProperty(JsonNode parent, Property property) {
+    private static JsonNode? CreateSimpleProperty<T>(JsonNode parent, Property property, int index, IReadOnlyList<T> previous) {
         var text = property.Line.Value;
         var valueNode = text switch {
             _ when string.IsNullOrWhiteSpace(text) => default,
@@ -90,8 +89,8 @@ internal static class Deserializer {
             _ when bool.TryParse(text, out var value) => JsonValue.Create(value),
             _ when text.StartsWith('"') => JsonValue.Create(text.Trim('"')),
             _ when text.StartsWith('\'') => JsonValue.Create(text.Trim('\'')),
-            _ when text.StartsWith('{') => GetFromContext(property, text.TrimStart('{').TrimEnd('}'), false),
-            _ when text.StartsWith('[') => GetFromContext(property, text.TrimStart('[').TrimEnd(']'), true),
+            _ when text.StartsWith('{') => GetFromContext(property, text.TrimStart('{').TrimEnd('}'), index, previous, false),
+            _ when text.StartsWith('[') => GetFromContext(property, text.TrimStart('[').TrimEnd(']'), index, previous, true),
             _ when int.TryParse(text, out var value) => JsonValue.Create(value),
             _ when decimal.TryParse(text, out var value) => JsonValue.Create(value),
             _ => JsonValue.Create(text),
@@ -99,16 +98,24 @@ internal static class Deserializer {
         return GetValueOrArray(parent[property.Name], valueNode, property.Indexes);
     }
 
-    private static JsonNode GetFromContext(Property property, string key, bool asArray) {
+    private static JsonNode GetFromContext<T>(Property property, string key, int index, IReadOnlyList<T> previous, bool asArray) {
         var values = key.Split(':');
         var contextKey = values[0];
         var indexes = Array.Empty<string>();
         if (values.Length > 1) indexes = values[1].Split(',').Select(i => i.Trim()).ToArray();
-        return !property.Context.TryGetValue(contextKey, out var value)
-            ? throw new InvalidDataException($"The key '{contextKey}' was not found in the deserialization context at '{property.Line.Key}'.")
-            : asArray
+        var value = GetContextValue(property, contextKey, index, previous);
+        return asArray
                 ? GetFromContextAsArray(property.Line.Key, contextKey, value, indexes)
                 : GetFromContextAsInstance(property.Line.Key, contextKey, value, indexes);
+    }
+
+    private static object GetContextValue<T>(Property property, string key, int index, IReadOnlyList<T> previous) {
+        return key switch {
+            "_previous_" => previous,
+            "_index_" => index,
+            _ when property.Context.TryGetValue(key, out var value) => value,
+            _ => throw new InvalidDataException($"The key '{key}' was not found in the deserialization context at '{property.Line.Key}'.")
+        };
     }
 
     private static JsonNode GetFromContextAsInstance(string sourceKey, string contextKey, object value, IReadOnlyList<string> indexes) {

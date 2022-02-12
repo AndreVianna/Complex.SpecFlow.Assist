@@ -74,7 +74,7 @@ Scenario: With horizontal table a delegate using context
 @Deserializer
 Scenario: Using horizontal table for primitive types
 	Given I define a table like
-	| {self}                               |
+	|                                      |
 	| E7BD910E-B939-4711-978E-C6D81AC037D8 |
 	| 3346B887-5219-43DE-980D-213985D33847 |
 	| CADA29E3-A126-48F7-81BD-F07083773A6A |

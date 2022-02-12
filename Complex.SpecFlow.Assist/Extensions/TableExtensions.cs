@@ -1,4 +1,7 @@
 ﻿// ReSharper disable once CheckNamespace
+
+using static Complex.SpecFlow.Assist.Deserializer;
+
 namespace TechTalk.SpecFlow.Assist;
 
 public static class TableExtensions {
@@ -16,7 +19,7 @@ public static class TableExtensions {
 
     public static T CreateComplexInstance<T>(this Table table, IDictionary<string, object>? context = null, Func<T, IDictionary<string, object>, IDictionary<string, string?>, T>? getUpdatedInstance = null) {
         context ??= new Dictionary<string, object>();
-        return Deserializer.DeserializeVertical<T>(table, context, (inst, ctx, _, _, extras) => getUpdatedInstance is not null ? getUpdatedInstance(inst, ctx, extras) : inst);
+        return DeserializeVertical<T>(table, context, (inst, ctx, _, _, extras) => getUpdatedInstance is not null ? getUpdatedInstance(inst, ctx, extras) : inst);
     }
 
     public static IEnumerable<T> CreateComplexSet<T>(this Table table, Func<T, T> getUpdatedInstance) {
@@ -33,6 +36,6 @@ public static class TableExtensions {
 
     public static IEnumerable<T> CreateComplexSet<T>(this Table table, IDictionary<string, object>? context = null, Func<T, IDictionary<string, object>, int, IReadOnlyList<T>, IDictionary<string, string?>, T>? getUpdatedInstance = null) {
         context ??= new Dictionary<string, object>();
-        return Deserializer.DeserializeHorizontal<T>(table, context, getUpdatedInstance ?? ((inst, _, _, _, _) => inst)).ToArray();
+        return DeserializeHorizontal<T>(table, context, getUpdatedInstance ?? ((inst, _, _, _, _) => inst)).ToArray();
     }
 }

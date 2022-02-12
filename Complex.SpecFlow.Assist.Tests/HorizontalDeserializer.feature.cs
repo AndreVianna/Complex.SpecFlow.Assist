@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
-                            "{self}"});
+                            ""});
                 table48.AddRow(new string[] {
                             "E7BD910E-B939-4711-978E-C6D81AC037D8"});
                 table48.AddRow(new string[] {
@@ -386,16 +386,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="One line with a invalid property value")]
+        [Xunit.SkippableFactAttribute(DisplayName="Define an extra key with a property")]
         [Xunit.TraitAttribute("FeatureTitle", "Horizontal deserializer")]
-        [Xunit.TraitAttribute("Description", "One line with a invalid property value")]
+        [Xunit.TraitAttribute("Description", "Define an extra key with a property")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void OneLineWithAInvalidPropertyValue()
+        public virtual void DefineAnExtraKeyWithAProperty()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("One line with a invalid property value", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Define an extra key with a property", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 71
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -417,42 +417,36 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id"});
-                table52.AddRow(new string[] {
+                            "Id",
                             "1"});
                 table52.AddRow(new string[] {
-                            "Invalid"});
-                table52.AddRow(new string[] {
-                            "3"});
+                            "Complex.!Values",
+                            "Something"});
 #line 72
  testRunner.Given("I define a table like", ((string)(null)), table52, "Given ");
 #line hidden
-#line 77
- testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 75
+ testRunner.When("I request a complex instance with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 78
- testRunner.Then("it should throw \'InvalidOperationException\' with message \"An error has occurred w" +
-                        "hile deserializing line 1.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 79
- testRunner.And("the inner exception should be \'InvalidCastException\' with message \"The value at \'" +
-                        "Id\' is not of the correct type.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
+ testRunner.Then("it should throw \'InvalidDataException\' with message \"Only top level keys can be a" +
+                        "ssigned to the extra key in the context at \'Complex.!Values\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must not be negative")]
+        [Xunit.SkippableFactAttribute(DisplayName="One line with a invalid property value")]
         [Xunit.TraitAttribute("FeatureTitle", "Horizontal deserializer")]
-        [Xunit.TraitAttribute("Description", "Collection property index must not be negative")]
+        [Xunit.TraitAttribute("Description", "One line with a invalid property value")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void CollectionPropertyIndexMustNotBeNegative()
+        public virtual void OneLineWithAInvalidPropertyValue()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must not be negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 82
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("One line with a invalid property value", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 79
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -473,25 +467,81 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Id",
-                            "Lines[-1]"});
+                            "Id"});
                 table53.AddRow(new string[] {
-                            "1",
-                            "\"Some line\""});
+                            "1"});
                 table53.AddRow(new string[] {
-                            "2",
-                            "\"Other line\""});
-#line 83
+                            "Invalid"});
+                table53.AddRow(new string[] {
+                            "3"});
+#line 80
  testRunner.Given("I define a table like", ((string)(null)), table53, "Given ");
 #line hidden
-#line 87
+#line 85
  testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 88
+#line 86
+ testRunner.Then("it should throw \'InvalidOperationException\' with message \"An error has occurred w" +
+                        "hile deserializing line 1.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 87
+ testRunner.And("the inner exception should be \'InvalidCastException\' with message \"The value at \'" +
+                        "Id\' is not of the correct type.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Collection property index must not be negative")]
+        [Xunit.TraitAttribute("FeatureTitle", "Horizontal deserializer")]
+        [Xunit.TraitAttribute("Description", "Collection property index must not be negative")]
+        [Xunit.TraitAttribute("Category", "Deserializer")]
+        public virtual void CollectionPropertyIndexMustNotBeNegative()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Deserializer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Collection property index must not be negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 90
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table54 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
+                            "Lines[-1]"});
+                table54.AddRow(new string[] {
+                            "1",
+                            "\"Some line\""});
+                table54.AddRow(new string[] {
+                            "2",
+                            "\"Other line\""});
+#line 91
+ testRunner.Given("I define a table like", ((string)(null)), table54, "Given ");
+#line hidden
+#line 95
+ testRunner.When("I request a complex set with an error", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 96
  testRunner.Then("it should throw \'InvalidOperationException\' with message \"An error has occurred w" +
                         "hile deserializing line 0.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 89
+#line 97
  testRunner.And("the inner exception should be \'InvalidDataException\' with message \"Invalid array " +
                         "index at \'Lines[-1]\'.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
