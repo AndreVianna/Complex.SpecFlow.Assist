@@ -5,14 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Complex.Specflow.Assist</PackageId>
-    <Title>Complex.Specflow.Assist</Title>
-    <Version>2.0.0</Version>
+    <Title>Specflow Complex Type Sate Table Helper</Title>
+    <Version>6.0.0</Version>
     <Authors>Andre Vianna</Authors>
-    <Company>Andre Vianna</Company>
-    <PackageTags>SpecFlow, Assist, Complex, Json, Gherkin, Cucumber</PackageTags>
+    <Company>DotNetCoders</Company>
+    <PackageTags>SpecFlow;Assist;Complex;Json;Gherkin;Cucumber</PackageTags>
     <PackageProjectUrl>https://github.com/AndreVianna/Complex.SpecFlow.Assist</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Description>This package adds extension methods to the Table object to help create complex objects from a table definition.</Description>
+    <Description>Complex.Specflow.Assist: Adds extension methods to the Table object to help create complex objects from a table definition.</Description>
     <Copyright>© Andre Vianna 2022</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
@@ -21,18 +21,19 @@
     <PackageReleaseNotes>v2.0.0:
     - [Breaking change!] Rename methods to simplify calls.
     </PackageReleaseNotes>
+    <PackageOutputPath>pkgs\$(Configuration)</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\icon.png">
+    <None Include="..\..\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\README.md">
+    <None Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\LICENSE">
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
