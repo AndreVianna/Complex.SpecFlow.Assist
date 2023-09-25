@@ -1,7 +1,7 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace TechTalk.SpecFlow.Assist;
 using static Complex.SpecFlow.Assist.Deserializer;
 
+namespace TechTalk.SpecFlow.Assist;
 public static class TableExtensions {
     public static T ToInstance<T>(this Table table, Func<T, T> getUpdatedInstance) {
         return table.ToInstance<T>(null, (inst, _, _) => getUpdatedInstance(inst));

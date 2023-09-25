@@ -1,6 +1,6 @@
-﻿namespace Complex.SpecFlow.Assist.Collections;
-using static RegexOptions;
+﻿using static System.Text.RegularExpressions.RegexOptions;
 
+namespace Complex.SpecFlow.Assist.Collections;
 internal sealed class PropertyCollection : IDisposable {
     internal enum TableDirection {
         Vertical,
@@ -16,7 +16,6 @@ internal sealed class PropertyCollection : IDisposable {
     }
 
     public PropertyCollection LevelUp() => new(_enumerator.Source!, Count, Direction, _enumerator.Context, _enumerator.Level + 1);
-
 
     public int Count { get; }
     public TableDirection Direction { get; }
@@ -92,6 +91,7 @@ internal sealed class PropertyCollection : IDisposable {
                 if (index > 0 && index > previous) for (var j = i + 1; j < previousIndexes.Count; j++) previousIndexes[j] = -1;
                 result.Add(index);
             }
+
             return result.ToArray();
         }
 

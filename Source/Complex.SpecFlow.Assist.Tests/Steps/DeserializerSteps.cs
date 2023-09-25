@@ -365,6 +365,7 @@ public sealed class DeserializerSteps {
                         _instance.SimpleTuple!.Value.Item3.Should().Be(bool.Parse(value));
                         break;
                 }
+
                 return;
             case "NamedTuple":
                 switch (key) {
@@ -375,6 +376,7 @@ public sealed class DeserializerSteps {
                         _instance.NamedTuple!.Value.Power.Should().Be(int.Parse(value));
                         break;
                 }
+
                 return;
         }
     }

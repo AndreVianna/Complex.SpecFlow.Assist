@@ -24,7 +24,7 @@ namespace Complex.SpecFlow.Assist.Tests
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
@@ -41,7 +41,7 @@ namespace Complex.SpecFlow.Assist.Tests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Deserialization context", "Use a deserialization context to store pre-defined objects and use during the des" +
-                    "erialization process", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "erialization process", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -51,27 +51,27 @@ namespace Complex.SpecFlow.Assist.Tests
             testRunner = null;
         }
         
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -85,26 +85,16 @@ namespace Complex.SpecFlow.Assist.Tests
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get an intance from a stored object")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingVerticalTableGetAnIntanceFromAStoredObject()
+        public void UsingVerticalTableGetAnIntanceFromAStoredObject()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get an intance from a stored object", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get an intance from a stored object", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -161,26 +151,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using the standard ScenarioContext")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingTheStandardScenarioContext()
+        public void UsingTheStandardScenarioContext()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using the standard ScenarioContext", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using the standard ScenarioContext", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -237,26 +217,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "With a delegate using context")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void WithADelegateUsingContext()
+        public void WithADelegateUsingContext()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("With a delegate using context", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("With a delegate using context", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -307,26 +277,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "With horizontal table a delegate using context")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void WithHorizontalTableADelegateUsingContext()
+        public void WithHorizontalTableADelegateUsingContext()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("With horizontal table a delegate using context", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("With horizontal table a delegate using context", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 54
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -391,26 +351,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using horizontal table for primitive types")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingHorizontalTableForPrimitiveTypes()
+        public void UsingHorizontalTableForPrimitiveTypes()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using horizontal table for primitive types", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using horizontal table for primitive types", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 75
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -485,26 +435,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get single item form a stored collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingVerticalTableGetSingleItemFormAStoredCollection()
+        public void UsingVerticalTableGetSingleItemFormAStoredCollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get single item form a stored collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get single item form a stored collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 100
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -565,26 +505,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get the whole list from a stored collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingVerticalTableGetTheWholeListFromAStoredCollection()
+        public void UsingVerticalTableGetTheWholeListFromAStoredCollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get the whole list from a stored collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get the whole list from a stored collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 120
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -654,26 +584,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get selected items from a stored collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingVerticalTableGetSelectedItemsFromAStoredCollection()
+        public void UsingVerticalTableGetSelectedItemsFromAStoredCollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get selected items from a stored collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get selected items from a stored collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 143
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -740,26 +660,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Using vertical table get an instance from a stored instance as a collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsingVerticalTableGetAnInstanceFromAStoredInstanceAsACollection()
+        public void UsingVerticalTableGetAnInstanceFromAStoredInstanceAsACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get an instance from a stored instance as a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Using vertical table get an instance from a stored instance as a collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 165
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -816,26 +726,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Use previous values of the table definition")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void UsePreviousValuesOfTheTableDefinition()
+        public void UsePreviousValuesOfTheTableDefinition()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Use previous values of the table definition", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Use previous values of the table definition", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 182
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -934,26 +834,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to get a key not stored in the context when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToGetAKeyNotStoredInTheContextWhenReturningAnInstance()
+        public void TryToGetAKeyNotStoredInTheContextWhenReturningAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning an instance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 209
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -987,26 +877,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to use an index with an object stored as an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToUseAnIndexWithAnObjectStoredAsAnInstance()
+        public void TryToUseAnIndexWithAnObjectStoredAsAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use an index with an object stored as an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use an index with an object stored as an instance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 218
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1053,26 +933,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to use more than one index when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToUseMoreThanOneIndexWhenReturningAnInstance()
+        public void TryToUseMoreThanOneIndexWhenReturningAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use more than one index when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to use more than one index when returning an instance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 231
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1118,26 +988,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to assign a collection when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToAssignACollectionWhenReturningAnInstance()
+        public void TryToAssignACollectionWhenReturningAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to assign a collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to assign a collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 244
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1188,26 +1048,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply a non-numeric index to stored collection when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningAnInstance()
+        public void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a non-numeric index to stored collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a non-numeric index to stored collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 260
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1258,26 +1108,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply a negative index to stored collection when returning an instance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyANegativeIndexToStoredCollectionWhenReturningAnInstance()
+        public void TryToApplyANegativeIndexToStoredCollectionWhenReturningAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a negative index to stored collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a negative index to stored collection when returning an instance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 276
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1330,27 +1170,17 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Description", "Try to apply an index not contained in the stored collection when returning an in" +
             "stance")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyAnIndexNotContainedInTheStoredCollectionWhenReturningAnInstance()
+        public void TryToApplyAnIndexNotContainedInTheStoredCollectionWhenReturningAnInstance()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index not contained in the stored collection when returning an in" +
-                    "stance", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "stance", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 292
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1401,26 +1231,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to get a key not stored in the context when returning a collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToGetAKeyNotStoredInTheContextWhenReturningACollection()
+        public void TryToGetAKeyNotStoredInTheContextWhenReturningACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to get a key not stored in the context when returning a collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 308
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1454,26 +1274,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply an index to a stored instance when returning a collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyAnIndexToAStoredInstanceWhenReturningACollection()
+        public void TryToApplyAnIndexToAStoredInstanceWhenReturningACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index to a stored instance when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index to a stored instance when returning a collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 317
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1521,27 +1331,17 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Description", "Try to apply a non-numeric index to stored collection when returning a collection" +
             "")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningACollection()
+        public void TryToApplyANon_NumericIndexToStoredCollectionWhenReturningACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a non-numeric index to stored collection when returning a collection" +
-                    "", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 330
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1592,26 +1392,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("FeatureTitle", "Deserialization context")]
         [Xunit.TraitAttribute("Description", "Try to apply a negative index to stored collection when returning a collection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyANegativeIndexToStoredCollectionWhenReturningACollection()
+        public void TryToApplyANegativeIndexToStoredCollectionWhenReturningACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a negative index to stored collection when returning a collection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply a negative index to stored collection when returning a collection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 346
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1664,27 +1454,17 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Description", "Try to apply an index not contained in the stored collection when returning a col" +
             "lection")]
         [Xunit.TraitAttribute("Category", "Deserializer")]
-        public virtual void TryToApplyAnIndexNotContainedInTheStoredCollectionWhenReturningACollection()
+        public void TryToApplyAnIndexNotContainedInTheStoredCollectionWhenReturningACollection()
         {
             string[] tagsOfScenario = new string[] {
                     "Deserializer"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to apply an index not contained in the stored collection when returning a col" +
-                    "lection", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    "lection", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 362
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }

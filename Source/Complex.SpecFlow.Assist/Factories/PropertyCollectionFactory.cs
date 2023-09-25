@@ -1,6 +1,6 @@
-﻿namespace Complex.SpecFlow.Assist.Factories;
-using static PropertyCollection.TableDirection;
+﻿using static Complex.SpecFlow.Assist.Collections.PropertyCollection.TableDirection;
 
+namespace Complex.SpecFlow.Assist.Factories;
 internal static class PropertyCollectionFactory {
 
     public static PropertyCollection CreateFromVertical(Table table, IDictionary<string, object> context) {

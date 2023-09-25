@@ -1,8 +1,9 @@
-﻿namespace Complex.SpecFlow.Assist;
-using static Factories.PropertyCollectionFactory;
-using static JsonSerializer;
-using static PropertyCollection.TableDirection;
-using static RegexOptions;
+﻿using static Complex.SpecFlow.Assist.Factories.PropertyCollectionFactory;
+using static System.Text.Json.JsonSerializer;
+using static Complex.SpecFlow.Assist.Collections.PropertyCollection.TableDirection;
+using static System.Text.RegularExpressions.RegexOptions;
+
+namespace Complex.SpecFlow.Assist;
 
 internal static class Deserializer {
     private const RegexOptions _regexOptions = Compiled | IgnoreCase | Singleline | IgnorePatternWhitespace;
@@ -60,6 +61,7 @@ internal static class Deserializer {
             if (string.IsNullOrWhiteSpace(property.Name) && properties.Count == 1 && properties.Direction == Horizontal) return value!;
             objectNode[property.Name] = value;
         }
+
         return objectNode;
     }
 
@@ -151,6 +153,7 @@ internal static class Deserializer {
             if (!int.TryParse(value, out var index)) return false;
             result.Add(index);
         }
+
         indexes = result.ToArray();
         return true;
     }

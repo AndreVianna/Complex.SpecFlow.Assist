@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpecFlow" Version="3.9.52" />
+    <PackageReference Include="SpecFlow" Version="3.9.74" />
   </ItemGroup>
 
 </Project>
